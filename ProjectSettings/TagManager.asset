@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - CheckPoint
+  - Box
+  - BouncePad
+  - ChangeGravity
+  - Collectable
+  - Audio
+  - Elevator
   layers:
   - Default
   - TransparentFX
@@ -13,9 +20,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Ground
+  - BoxWall
+  - Player
   - 
   - 
   - 
