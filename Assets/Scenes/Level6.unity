@@ -3416,7 +3416,7 @@ PrefabInstance:
     - target: {fileID: 2829570126778046108, guid: 5cd8fdbca10ec4473bfba3628246091f,
         type: 3}
       propertyPath: changeScene
-      value: Level4
+      value: BetaText
       objectReference: {fileID: 0}
     - target: {fileID: 2829570126778046108, guid: 5cd8fdbca10ec4473bfba3628246091f,
         type: 3}
