@@ -2085,7 +2085,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &683954671
 Transform:
   m_ObjectHideFlags: 0
@@ -5280,7 +5280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1919459077
 Transform:
   m_ObjectHideFlags: 0
@@ -5611,7 +5611,7 @@ PrefabInstance:
     - target: {fileID: 2829570126778046108, guid: 5cd8fdbca10ec4473bfba3628246091f,
         type: 3}
       propertyPath: changeScene
-      value: Level6
+      value: BetaText
       objectReference: {fileID: 0}
     - target: {fileID: 2829570126778046108, guid: 5cd8fdbca10ec4473bfba3628246091f,
         type: 3}
