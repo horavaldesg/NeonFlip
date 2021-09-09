@@ -8737,7 +8737,7 @@ GameObject:
   - component: {fileID: 2098720148}
   - component: {fileID: 2098720152}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Options Canvas
   m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
