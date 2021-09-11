@@ -148,8 +148,9 @@ public class moveCharacter : MonoBehaviour
                 Debug.Log(currobj.name);
             }
             //Debug.Log("ResetPlayer");
-            resetPlayer = false;
             FollowPlayer.gravityChange = false;
+            resetPlayer = false;
+
         }
 
         if (RespawnInteractables.respawn)
