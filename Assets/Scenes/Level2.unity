@@ -5415,6 +5415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera1: {fileID: 771429925}
   camera2: {fileID: 771429924}
+  spacePub: 1
 --- !u!4 &2098442815
 Transform:
   m_ObjectHideFlags: 0

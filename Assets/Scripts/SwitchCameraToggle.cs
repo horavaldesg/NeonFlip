@@ -9,7 +9,7 @@ public class SwitchCameraToggle : MonoBehaviour
     void Start()
     {
         cameraSwitch = GetComponent<Toggle>();
-        cameraSwitch.isOn = false;
+        cameraSwitch.isOn = true;
         cameraSwitch.onValueChanged.AddListener(delegate { SpaceCameraSwitch(cameraSwitch); });
 
     }

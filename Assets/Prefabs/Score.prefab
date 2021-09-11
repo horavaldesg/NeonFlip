@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   downScore: 60
-  up: 0
+  up: 1
   gameOverScene: GameOver
 --- !u!114 &2686613405623485624
 MonoBehaviour:
