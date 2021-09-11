@@ -14,7 +14,8 @@ public class moveCharacter : MonoBehaviour
     public GameObject body;
     public Material doubleJumpMaterial;
     Material orgMaterial;
-    
+    public static string currentObj;
+
     //public Transform camTransform;
     public float speed = 5f;
     public float verticalSpeed = 0;
@@ -139,6 +140,13 @@ public class moveCharacter : MonoBehaviour
             cc.enabled = true;
             transform.rotation = Quaternion.Euler(0, 0, 0);
             doubleJump = false;
+            if (currentObj != null)
+            {
+                GameObject currobj = GameObject.Find(currentObj);
+                currobj.GetComponent<MeshRenderer>().enabled = true;
+                currobj.GetComponent<Collider>().enabled = true;
+                Debug.Log(currobj.name);
+            }
             //Debug.Log("ResetPlayer");
             resetPlayer = false;
             FollowPlayer.gravityChange = false;

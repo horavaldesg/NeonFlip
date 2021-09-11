@@ -5,11 +5,11 @@ using UnityEngine;
 public class RespawnInteractables : MonoBehaviour
 {
     public static bool respawn;
-     GameObject interatable;
+    GameObject interatable;
     GameObject[] spawn;
     private void Awake()
     {
-        spawn = GameObject.FindGameObjectsWithTag("Collectable");
+        //spawn = GameObject.FindGameObjectsWithTag("Collectable");
     }
     // Start is called before the first frame update
     void Start()
@@ -23,16 +23,28 @@ public class RespawnInteractables : MonoBehaviour
     {
         if (respawn)
         {
-            foreach(GameObject obj in spawn)
-            obj.gameObject.SetActive(true);
+            //foreach(GameObject obj in spawn)
+            //obj.gameObject.SetActive(true);
         }
+
         else if (moveCharacter.resetPlayer)
         {
+            /*
             foreach (GameObject obj in spawn)
             {
                 obj.gameObject.SetActive(true);
             }
-               
+            */
+            //gameObject.transform.GetChild(0).GetComponent<GameObject>().SetActive(true);
+
+            //var obj = this.gameObject.transform.name;
+
+            //this.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+            //this.transform.GetChild(0).GetComponent<Collider>().enabled = true;
+            
+            Debug.Log("Respanw");
+            //Respawn(currobj);
+
         }
     }
        
@@ -40,10 +52,14 @@ public class RespawnInteractables : MonoBehaviour
         
         //Debug.Log(ct);
     
-    void Respawn()
+    void Respawn(GameObject currObj)
     {
-        
-       
+
+        currObj.GetComponent<MeshRenderer>().enabled = true;
+        currObj.GetComponent<Collider>().enabled = true;
+        //Debug.Log(currentObj);   
+        Debug.Log("RESET PLAYER");
+
     }
 
 }

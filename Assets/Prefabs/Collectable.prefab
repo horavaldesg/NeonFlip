@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3824847063639688138}
   - component: {fileID: 3824847063639688139}
   - component: {fileID: 3824847063639688136}
-  - component: {fileID: 3915693751948281382}
+  - component: {fileID: 90020658793596728}
   m_Layer: 0
   m_Name: Collectable
-  m_TagString: Untagged
+  m_TagString: Collectable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,7 +50,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3824847063639688137}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -91,11 +91,11 @@ SphereCollider:
   m_GameObject: {fileID: 3824847063639688137}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3915693751948281382
+--- !u!114 &90020658793596728
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +107,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e31dfc38a2474fea89e076efe9040d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: {fileID: 3697270062924271068}
 --- !u!1001 &4513101693347384122
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -177,12 +176,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77a13b1f9e9cd4c41b8d7916b2585e87, type: 3}
---- !u!1 &3697270062924271068 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1003904266888726246, guid: 77a13b1f9e9cd4c41b8d7916b2585e87,
-    type: 3}
-  m_PrefabInstance: {fileID: 4513101693347384122}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2506979741099908978 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2047825969677538376, guid: 77a13b1f9e9cd4c41b8d7916b2585e87,

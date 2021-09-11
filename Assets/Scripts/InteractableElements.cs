@@ -65,9 +65,13 @@ public class InteractableElements : MonoBehaviour
         if (hit.collider.CompareTag("Collectable"))
         {
             moveCharacter.doubleJump = true;
-            hit.gameObject.SetActive(false);
-            //hit.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            //hit.gameObject.GetComponent<Collider>().enabled = false;
+            //Destroy(hit.gameObject);
+            //hit.gameObject.SetActive(false);
+            moveCharacter.currentObj = hit.gameObject.name;
+
+            hit.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            hit.gameObject.GetComponent<Collider>().enabled = false;
+            //Debug.Log("hit Collectable");
             //RespawnInteractables.startCt = true;
             //Destroy(hit.gameObject);
         }
