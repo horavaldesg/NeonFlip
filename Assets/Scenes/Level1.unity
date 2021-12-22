@@ -5908,7 +5908,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "TRY USING THE \nCAMERA BUTTON \nIN THE TOP RIGHT CORNER"
+  m_text: "TRY USING THE \nCAMERA BUTTON \nIN THE TOP RIGHT CORNER\nOR THE SPACEBAR"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6661,11 +6661,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7488580919256908726, guid: 0a34b8bddb3454fec8e6b7e318429e42,
-        type: 3}
-      propertyPath: m_text
-      value: Home
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a34b8bddb3454fec8e6b7e318429e42, type: 3}

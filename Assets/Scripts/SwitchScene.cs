@@ -26,7 +26,10 @@ public class SwitchScene : MonoBehaviour
     }
     public static void ChangeLevel()
     {
+        moveCharacter.currentObj = null;
+        
         SceneManager.LoadScene(sceneLevel);
+        Debug.Log(moveCharacter.currentObj);
         
     }
 }

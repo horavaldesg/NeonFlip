@@ -15,6 +15,11 @@ public class ScoreText : MonoBehaviour
     void Start()
     {
         text = GetComponent<TextMeshProUGUI>();
+        string currentScene = SceneManager.GetActiveScene().name;
+        if (currentScene == "Level1")
+        {
+            score = 0;
+        }
     }
 
     // Update is called once per frame
@@ -26,9 +31,11 @@ public class ScoreText : MonoBehaviour
         }
         if (up)
         {
+            
             score += Time.deltaTime;
             scoreText = score.ToString("##");
             text.SetText(scoreText);
+
         }
         else
         {

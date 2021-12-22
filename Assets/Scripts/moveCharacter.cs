@@ -146,10 +146,12 @@ public class moveCharacter : MonoBehaviour
                 currobj.GetComponent<MeshRenderer>().enabled = true;
                 currobj.GetComponent<Collider>().enabled = true;
                 Debug.Log(currobj.name);
+                
             }
-            //Debug.Log("ResetPlayer");
             FollowPlayer.gravityChange = false;
             resetPlayer = false;
+            //Debug.Log("ResetPlayer");
+
 
         }
 
@@ -187,6 +189,8 @@ public class moveCharacter : MonoBehaviour
 
         if (hit.transform.CompareTag("Finish"))
         {
+            currentObj = null;
+            //Debug.Log(currentObj);
             SceneManager.LoadScene(changeScene);
         }
 

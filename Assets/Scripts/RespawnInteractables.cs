@@ -42,7 +42,7 @@ public class RespawnInteractables : MonoBehaviour
             //this.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
             //this.transform.GetChild(0).GetComponent<Collider>().enabled = true;
             
-            Debug.Log("Respanw");
+            //Debug.Log("Respanw");
             //Respawn(currobj);
 
         }
