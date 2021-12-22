@@ -1,10 +1,16 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+
 public class moveCharacter : MonoBehaviour
 {
+    public static PlayerControls controls;
+    public SwitchCamera switchCamera;
+
+    Vector2 move;
+
     public Material skyboxMat;
     public AudioClip levelSong;
     public CharacterController cc;
@@ -35,10 +41,23 @@ public class moveCharacter : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        
+        controls = new PlayerControls();
 
+        controls.Player.Move.performed += tgb => move = tgb.ReadValue<Vector2>();
+        controls.Player.Move.canceled += tgb => move = Vector2.zero;
+
+        controls.Player.SwitchCamera.performed += tgb => switchCamera.Switch();
+        controls.Player.SwitchCamera.performed += tgb => Debug.Log("CameraSwitch");
         AudioManager.sceneAudio = levelSong;
         RenderSettings.skybox = skyboxMat;
+    }
+    private void OnEnable()
+    {
+        controls.Player.Enable();
+    }
+    private void OnDisable()
+    {
+        controls.Player.Disable(); 
     }
     void Start()
     {
@@ -47,7 +66,10 @@ public class moveCharacter : MonoBehaviour
         checkPoint = gameObject.transform.position;
         initialPos = gameObject.transform.position;
     }
-
+    void JumpWhileSide()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {
@@ -61,21 +83,21 @@ public class moveCharacter : MonoBehaviour
         if (sideView)
         {
             
-            float ySpeed = Input.GetAxis("Horizontal") * speed * speedBoost * Time.deltaTime;
+            float ySpeed = move.x * speed * speedBoost * Time.deltaTime;
             movement += transform.right * ySpeed;
             if (doubleJump)
             {
                 body.gameObject.GetComponent<Renderer>().material = doubleJumpMaterial;
-                if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && jumpCt != 2)
+                if (move.y > 0 && jumpCt != 2)
                 {
                     jumpCt++;
                     verticalSpeed = jumpSpeed;
-                   
+
                 }
                 if (jumpCt == 2)
                 {
                     doubleJump = false;
-                    
+
                 }
             }
             else if(doubleJump == false)
@@ -83,29 +105,29 @@ public class moveCharacter : MonoBehaviour
                 body.gameObject.GetComponent<Renderer>().material = orgMaterial;
                 jumpCt = 0;
             }
-            if (Input.GetKeyDown(KeyCode.W) && grounded || Input.GetKeyDown(KeyCode.UpArrow) && grounded && doubleJump == false)
+            if (move.y >0 && grounded && doubleJump == false)
             {
                 //jumpCt = 0;
                 verticalSpeed = jumpSpeed;
-                
+
             }
         }
         else if (topView)
         {
             if (FollowPlayer.gravityChange)
             {
-                float xSpeed = Input.GetAxis("Vertical") * speed * speedBoost * Time.deltaTime;
+                float xSpeed = move.y * speed * speedBoost * Time.deltaTime;
                 movement += transform.forward * xSpeed;
-                float ySpeed = Input.GetAxis("Horizontal") * speed * speedBoost * Time.deltaTime;
+                float ySpeed = move.x * speed * speedBoost * Time.deltaTime;
                 movement += transform.right * ySpeed;
                 //Debug.Log("G");
 
             }
             else if(FollowPlayer.gravityChange == false)
             {
-                float xSpeed = Input.GetAxis("Vertical") * speed * speedBoost * Time.deltaTime;
+                float xSpeed = move.y * speed * speedBoost * Time.deltaTime;
                 movement += transform.forward * xSpeed;
-                float ySpeed = Input.GetAxis("Horizontal") * speed * speedBoost * Time.deltaTime;
+                float ySpeed = move.x * speed * speedBoost * Time.deltaTime;
                 movement += transform.right * ySpeed;
             }
             

@@ -248,6 +248,7 @@ GameObject:
   - component: {fileID: 2829570126778046109}
   - component: {fileID: 2829570126778046108}
   - component: {fileID: 2829570126778046110}
+  - component: {fileID: 9110086484419949779}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Player
@@ -312,6 +313,7 @@ MonoBehaviour:
     m_Bits: 256
   body: {fileID: 2829570126015051469}
   doubleJumpMaterial: {fileID: 2100000, guid: b39e33c5266ba4057b1af8d601e03a1f, type: 2}
+  switchCamera: {fileID: 9110086484419949779}
   speed: 5
   verticalSpeed: 0
   Gravity: -9.8
@@ -333,3 +335,18 @@ MonoBehaviour:
   player: {fileID: 2829570126778046114}
   force: 0.5
   bounceForce: 10
+--- !u!114 &9110086484419949779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2829570126778046114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea57849d616cc453f9f1eb84a7ee7da5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera1: {fileID: 0}
+  camera2: {fileID: 0}
+  spacePub: 1

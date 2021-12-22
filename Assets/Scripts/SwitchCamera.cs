@@ -18,10 +18,10 @@ public class SwitchCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && space)
-        {
-            Switch();
-        }
+        //if (Input.GetKeyDown(KeyCode.Space) && space)
+        //{
+        //    Switch();
+        //}
     }
 
     public void Switch()
