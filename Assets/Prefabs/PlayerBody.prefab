@@ -303,6 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48bbdd8a716b64758a80a92b48ca2aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  switchCamera: {fileID: 9110086484419949779}
   skyboxMat: {fileID: 2100000, guid: 6c750fd9ed62d4f9fb59c0822068a5c5, type: 2}
   levelSong: {fileID: 0}
   cc: {fileID: 2829570126778046109}
@@ -313,7 +314,6 @@ MonoBehaviour:
     m_Bits: 256
   body: {fileID: 2829570126015051469}
   doubleJumpMaterial: {fileID: 2100000, guid: b39e33c5266ba4057b1af8d601e03a1f, type: 2}
-  switchCamera: {fileID: 9110086484419949779}
   speed: 5
   verticalSpeed: 0
   Gravity: -9.8

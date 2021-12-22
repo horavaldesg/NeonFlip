@@ -47,7 +47,6 @@ public class moveCharacter : MonoBehaviour
         controls.Player.Move.canceled += tgb => move = Vector2.zero;
 
         controls.Player.SwitchCamera.performed += tgb => switchCamera.Switch();
-        controls.Player.SwitchCamera.performed += tgb => Debug.Log("CameraSwitch");
         AudioManager.sceneAudio = levelSong;
         RenderSettings.skybox = skyboxMat;
     }

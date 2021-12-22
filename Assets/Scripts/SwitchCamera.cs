@@ -7,10 +7,15 @@ public class SwitchCamera : MonoBehaviour
     public GameObject camera1;
     public GameObject camera2;
     public static bool space;
+    GameObject[] cameras;
     [SerializeField] bool spacePub;
     // Start is called before the first frame update
     void Start()
     {
+        cameras = GameObject.FindGameObjectsWithTag("MainCamera");
+        camera1 = cameras[0];
+        camera2 = cameras[1];
+        camera2.SetActive(false);
         spacePub = true;
         space = spacePub;
     }

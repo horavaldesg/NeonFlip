@@ -11,6 +11,7 @@ TagManager:
   - Collectable
   - Audio
   - Elevator
+  - CamerSwitch
   layers:
   - Default
   - TransparentFX

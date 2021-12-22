@@ -1877,16 +1877,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9110086484419949779, guid: 5cd8fdbca10ec4473bfba3628246091f,
-        type: 3}
-      propertyPath: camera1
-      value: 
-      objectReference: {fileID: 757241968}
-    - target: {fileID: 9110086484419949779, guid: 5cd8fdbca10ec4473bfba3628246091f,
-        type: 3}
-      propertyPath: camera2
-      value: 
-      objectReference: {fileID: 757241967}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5cd8fdbca10ec4473bfba3628246091f, type: 3}
 --- !u!1 &657789769 stripped
@@ -6272,7 +6262,7 @@ GameObject:
   - component: {fileID: 2098442814}
   m_Layer: 0
   m_Name: SwitchCamera
-  m_TagString: Untagged
+  m_TagString: CamerSwitch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
