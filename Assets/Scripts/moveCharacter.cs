@@ -50,7 +50,7 @@ public class moveCharacter : MonoBehaviour
         controls.Player.Move.performed += tgb => move = tgb.ReadValue<Vector2>();
         controls.Player.Move.canceled += tgb => move = Vector2.zero;
         controls.Player.Jump.started += tgb => Jump();
-        controls.Player.Jump.canceled += tgb => jump = false;
+        //controls.Player.Jump.canceled += tgb => jump = false;
 
         controls.Player.SwitchCamera.performed += tgb => switchCamera.Switch();
         AudioManager.sceneAudio = levelSong;
