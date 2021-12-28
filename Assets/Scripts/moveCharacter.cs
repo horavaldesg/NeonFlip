@@ -50,7 +50,7 @@ public class moveCharacter : MonoBehaviour
         controls.Player.Move.performed += tgb => move = tgb.ReadValue<Vector2>();
         controls.Player.Move.canceled += tgb => move = Vector2.zero;
         controls.Player.Jump.started += tgb => Jump();
-        //controls.Player.Jump.canceled += tgb => jump = false;
+        controls.Player.Jump.canceled += tgb => jump = false;
 
         controls.Player.SwitchCamera.performed += tgb => switchCamera.Switch();
         AudioManager.sceneAudio = levelSong;
@@ -107,8 +107,10 @@ public class moveCharacter : MonoBehaviour
         movement = Vector3.zero;
     if (sideView)
     {
-
-        float ySpeed = move.x * speed * speedBoost * Time.deltaTime;
+            Debug.Log("Jump: "+jump);
+            Debug.Log("Grounded: " + grounded);
+            Debug.Log("Double Jump: " + doubleJump);
+            float ySpeed = move.x * speed * speedBoost * Time.deltaTime;
         movement += transform.right * ySpeed;
             if (doubleJump)
             {
@@ -117,25 +119,27 @@ public class moveCharacter : MonoBehaviour
                 {
                     jumpCt++;
                     verticalSpeed = jumpSpeed;
-
+                    jump = false;
                 }
                 if (jumpCt == 2)
                 {
                     doubleJump = false;
+                    jump = false;
 
                 }
             }
-            else if (doubleJump == false)
+            else if (!doubleJump)
             {
                 body.gameObject.GetComponent<Renderer>().material = orgMaterial;
                 jumpCt = 0;
+                if (jump && grounded && !doubleJump)
+                {
+                    //jumpCt = 0;
+                    verticalSpeed = jumpSpeed;
+                    jump = false;
+                }
             }
-            if (jump && grounded && doubleJump == false)
-            {
-                //jumpCt = 0;
-                verticalSpeed = jumpSpeed;
-                jump = false;
-            }
+           
         }
         else if (topView)
         {
