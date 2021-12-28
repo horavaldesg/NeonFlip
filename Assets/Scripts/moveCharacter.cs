@@ -38,6 +38,10 @@ public class moveCharacter : MonoBehaviour
     Vector3 checkPoint;
     Vector3 initialPos;
     public Vector3 movement = Vector3.zero;
+    public InputHandler ctScheme;
+
+    public float joysStickDeadzone = 0.25f;
+    bool jump;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -45,6 +49,8 @@ public class moveCharacter : MonoBehaviour
 
         controls.Player.Move.performed += tgb => move = tgb.ReadValue<Vector2>();
         controls.Player.Move.canceled += tgb => move = Vector2.zero;
+        controls.Player.Jump.started += tgb => Jump();
+        controls.Player.Jump.canceled += tgb => jump = false;
 
         controls.Player.SwitchCamera.performed += tgb => switchCamera.Switch();
         AudioManager.sceneAudio = levelSong;
@@ -65,29 +71,49 @@ public class moveCharacter : MonoBehaviour
         checkPoint = gameObject.transform.position;
         initialPos = gameObject.transform.position;
     }
-    void JumpWhileSide()
+    void Jump()
     {
+        jump = true;
+            
         
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if (ctScheme.controlScheme == InputHandler.controlSchemes.Gamepad)
+        {
+            InputBinding actionMask = new InputBinding { groups = "Gamepad" };
+            
+            controls.bindingMask = actionMask;
+        }
+        else if (ctScheme.controlScheme == InputHandler.controlSchemes.Keyboard)
+        {
+            InputBinding actionMask = new InputBinding { groups = "Keyboard&Mouse" };
+            
+            controls.bindingMask = actionMask;
+        }
+        else if(ctScheme.controlScheme == InputHandler.controlSchemes.Touch)
+        {
+            InputBinding actionMask = new InputBinding { groups = "Touch" };
+
+            controls.bindingMask = actionMask;
+        }
+
         //if (Input.GetKey(KeyCode.LeftShift))
         //{
         //   speedBoost = boostMultiplier;
         //}
         //movement
         movement = Vector3.zero;
-        if (sideView)
-        {
-            
-            float ySpeed = move.x * speed * speedBoost * Time.deltaTime;
-            movement += transform.right * ySpeed;
+    if (sideView)
+    {
+
+        float ySpeed = move.x * speed * speedBoost * Time.deltaTime;
+        movement += transform.right * ySpeed;
             if (doubleJump)
             {
                 body.gameObject.GetComponent<Renderer>().material = doubleJumpMaterial;
-                if (move.y > 0 && jumpCt != 2)
+                if (jump && jumpCt != 2)
                 {
                     jumpCt++;
                     verticalSpeed = jumpSpeed;
@@ -99,16 +125,16 @@ public class moveCharacter : MonoBehaviour
 
                 }
             }
-            else if(doubleJump == false)
+            else if (doubleJump == false)
             {
                 body.gameObject.GetComponent<Renderer>().material = orgMaterial;
                 jumpCt = 0;
             }
-            if (move.y >0 && grounded && doubleJump == false)
+            if (jump && grounded && doubleJump == false)
             {
                 //jumpCt = 0;
                 verticalSpeed = jumpSpeed;
-
+                jump = false;
             }
         }
         else if (topView)

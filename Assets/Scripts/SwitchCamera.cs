@@ -12,9 +12,9 @@ public class SwitchCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        cameras = GameObject.FindGameObjectsWithTag("MainCamera");
-        camera1 = cameras[0];
-        camera2 = cameras[1];
+        
+        camera1 = GameObject.FindGameObjectWithTag("MainCamera");
+        camera2 = GameObject.FindGameObjectWithTag("MainCamera2");
         camera2.SetActive(false);
         spacePub = true;
         space = spacePub;
