@@ -18,10 +18,10 @@ public class SwitchScene : MonoBehaviour
     void Update()
     {
         sceneLevel = scene;
-        if(SceneManager.GetActiveScene().buildIndex > 5)
-        {
-            levelIndex = 0;
-        }
+        //if(SceneManager.GetActiveScene().buildIndex > 5)
+        //{
+        //    levelIndex = 0;
+        //}
         //sceneLevel =
            
     }
@@ -49,7 +49,7 @@ public class SwitchScene : MonoBehaviour
     {
         moveCharacter.currentObj = null;
         levelIndex++;
-        PlayerPrefs.SetInt("LevelIndex", levelIndex);
+        PlayerPrefs.SetInt("LevelIndex", SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadScene(scene);
         //Debug.Log(levelIndex);
         
