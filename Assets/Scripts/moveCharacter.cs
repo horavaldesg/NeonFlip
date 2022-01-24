@@ -242,7 +242,8 @@ public class moveCharacter : MonoBehaviour
         {
             currentObj = null;
             //Debug.Log(currentObj);
-            SceneManager.LoadScene(changeScene);
+            //SceneManager.LoadScene(changeScene);
+            GetComponent<SwitchScene>().ChangeLevel(changeScene);
         }
 
         if (hit.transform.CompareTag("Elevator"))

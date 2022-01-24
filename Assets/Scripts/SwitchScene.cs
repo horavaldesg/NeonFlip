@@ -6,30 +6,53 @@ public class SwitchScene : MonoBehaviour
 {
     public string scene;
     public static string sceneLevel;
+    int levelIndex = 0;
+   
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
     void Update()
     {
         sceneLevel = scene;
+        if(SceneManager.GetActiveScene().buildIndex > 5)
+        {
+            levelIndex = 0;
+        }
         //sceneLevel =
            
     }
     public void ChangeScene()
     {
+        levelIndex++;
         SceneManager.LoadScene(scene);
-        
+        Debug.Log(levelIndex);
+
+
     }
-    public static void ChangeLevel()
+
+    public void LoadLevel()
+    {
+        int i = PlayerPrefs.GetInt("LevelIndex");
+        if(i == 0)
+        {
+            i ++;
+        }
+        SceneManager.LoadScene(i);
+        //Debug.Log(levelIndex);
+
+    }
+    public void ChangeLevel(string scene)
     {
         moveCharacter.currentObj = null;
-        
-        SceneManager.LoadScene(sceneLevel);
-        Debug.Log(moveCharacter.currentObj);
+        levelIndex++;
+        PlayerPrefs.SetInt("LevelIndex", levelIndex);
+        SceneManager.LoadScene(scene);
+        //Debug.Log(levelIndex);
         
     }
+    
 }

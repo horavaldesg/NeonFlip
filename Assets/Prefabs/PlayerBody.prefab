@@ -554,6 +554,7 @@ GameObject:
   - component: {fileID: 2829570126778046108}
   - component: {fileID: 2829570126778046110}
   - component: {fileID: 9110086484419949779}
+  - component: {fileID: 8770949653565416685}
   m_Layer: 0
   m_Name: PlayerBody
   m_TagString: Player
@@ -659,6 +660,19 @@ MonoBehaviour:
   camera1: {fileID: 0}
   camera2: {fileID: 0}
   spacePub: 1
+--- !u!114 &8770949653565416685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2829570126778046114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a8e0bbc5ad654d02874145da9b75254, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scene: 
 --- !u!1 &3213580579245906975
 GameObject:
   m_ObjectHideFlags: 0
@@ -2373,6 +2387,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224091927000801720, guid: f77f88b14a477764bb65a49d28c02d33,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 224091927000801720, guid: f77f88b14a477764bb65a49d28c02d33,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f77f88b14a477764bb65a49d28c02d33, type: 3}
