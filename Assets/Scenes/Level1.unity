@@ -6321,11 +6321,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 62194283823071747, guid: 0a34b8bddb3454fec8e6b7e318429e42,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 127236547805198137, guid: 0a34b8bddb3454fec8e6b7e318429e42,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -6961,11 +6956,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 65.38701
       objectReference: {fileID: 0}
-    - target: {fileID: 5908128026174555559, guid: 0a34b8bddb3454fec8e6b7e318429e42,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6040923652567234337, guid: 0a34b8bddb3454fec8e6b7e318429e42,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -7181,11 +7171,6 @@ PrefabInstance:
       propertyPath: m_IsOn
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6044913237389941422, guid: 0a34b8bddb3454fec8e6b7e318429e42,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6044913237527880880, guid: 0a34b8bddb3454fec8e6b7e318429e42,
         type: 3}
       propertyPath: m_IsActive
@@ -7205,16 +7190,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.099975586
-      objectReference: {fileID: 0}
-    - target: {fileID: 6044913237648057187, guid: 0a34b8bddb3454fec8e6b7e318429e42,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6044913237706043374, guid: 0a34b8bddb3454fec8e6b7e318429e42,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6044913237710422701, guid: 0a34b8bddb3454fec8e6b7e318429e42,
         type: 3}
@@ -7425,21 +7400,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 70.517006
-      objectReference: {fileID: 0}
-    - target: {fileID: 7488580919256908726, guid: 0a34b8bddb3454fec8e6b7e318429e42,
-        type: 3}
-      propertyPath: m_enableAutoSizing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7488580919256908726, guid: 0a34b8bddb3454fec8e6b7e318429e42,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 27.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7760542365147509645, guid: 0a34b8bddb3454fec8e6b7e318429e42,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7772119312992100877, guid: 0a34b8bddb3454fec8e6b7e318429e42,
         type: 3}

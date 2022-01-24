@@ -621,7 +621,7 @@ MonoBehaviour:
     m_Bits: 256
   body: {fileID: 2829570126015051469}
   doubleJumpMaterial: {fileID: 2100000, guid: b39e33c5266ba4057b1af8d601e03a1f, type: 2}
-  speed: 5
+  speed: 7.5
   verticalSpeed: 0
   Gravity: -9.8
   jumpSpeed: 8
