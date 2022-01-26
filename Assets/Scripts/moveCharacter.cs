@@ -104,9 +104,10 @@ public class moveCharacter : MonoBehaviour
         //   speedBoost = boostMultiplier;
         //}
         //movement
-        movement = Vector3.zero;
     if (sideView)
     {
+            movement = Vector3.zero;
+
             Debug.Log("Jump: "+jump);
             Debug.Log("Grounded: " + grounded);
             Debug.Log("Double Jump: " + doubleJump);
@@ -143,6 +144,8 @@ public class moveCharacter : MonoBehaviour
         }
         else if (topView)
         {
+            movement = Vector3.zero;
+
             if (FollowPlayer.gravityChange)
             {
                 float xSpeed = move.y * speed * speedBoost * Time.deltaTime;
