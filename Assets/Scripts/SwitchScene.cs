@@ -27,7 +27,17 @@ public class SwitchScene : MonoBehaviour
     }
     public void ChangeScene()
     {
-        levelIndex++;
+        if(SceneManager.GetActiveScene().name == "BetaText")
+        {
+            levelIndex = 0;
+            PlayerPrefs.SetInt("LevelIndex", SceneManager.GetActiveScene().buildIndex);
+        }
+        else
+        {
+            levelIndex++;
+            PlayerPrefs.SetInt("LevelIndex", SceneManager.GetActiveScene().buildIndex);
+
+        }
         SceneManager.LoadScene(scene);
         Debug.Log(levelIndex);
 
