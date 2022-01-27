@@ -11,7 +11,8 @@ public class SwitchScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
+        UnityEngine.iOS.Device.hideHomeButton = true;
+        UnityEngine.iOS.Device.deferSystemGesturesMode = UnityEngine.iOS.SystemGestureDeferMode.All;
     }
 
     // Update is called once per frame
