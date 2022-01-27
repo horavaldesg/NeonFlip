@@ -4,6 +4,7 @@ using UnityEngine.Advertisements;
 
 public class BannerAd : MonoBehaviour
 {
+    /*
     // For the purpose of this example, these buttons are for functionality testing:
     [SerializeField] Button _loadBannerButton;
     [SerializeField] Button _showBannerButton;
@@ -98,4 +99,5 @@ public class BannerAd : MonoBehaviour
         _showBannerButton.onClick.RemoveAllListeners();
         _hideBannerButton.onClick.RemoveAllListeners();
     }
+    */
 }

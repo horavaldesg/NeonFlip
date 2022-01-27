@@ -2687,6 +2687,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 657789769}
+    - target: {fileID: 5635991905175553575, guid: 80a77a3dfb3754009b1b6493df496d52,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80a77a3dfb3754009b1b6493df496d52, type: 3}
 --- !u!1 &757241967 stripped
@@ -5412,12 +5417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93820f2f8f4834e73867a1168de3dfda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _loadBannerButton: {fileID: 996221624}
-  _showBannerButton: {fileID: 996221624}
-  _hideBannerButton: {fileID: 996221624}
-  _bannerPosition: 4
-  _androidAdUnitId: Banner_Android
-  _iOsAdUnitId: Banner_iOS
 --- !u!4 &1734213022
 Transform:
   m_ObjectHideFlags: 0

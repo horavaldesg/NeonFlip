@@ -78,7 +78,7 @@ public class moveCharacter : MonoBehaviour
         
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (ctScheme.controlScheme == InputHandler.controlSchemes.Gamepad)
         {
@@ -104,15 +104,16 @@ public class moveCharacter : MonoBehaviour
         //   speedBoost = boostMultiplier;
         //}
         //movement
-    if (sideView)
-    {
-            movement = Vector3.zero;
+        movement = Vector3.zero;
 
-            Debug.Log("Jump: "+jump);
-            Debug.Log("Grounded: " + grounded);
-            Debug.Log("Double Jump: " + doubleJump);
+        if (sideView)
+        {
+
+            //Debug.Log("Jump: "+jump);
+            //Debug.Log("Grounded: " + grounded);
+            //Debug.Log("Double Jump: " + doubleJump);
             float ySpeed = move.x * speed * speedBoost * Time.deltaTime;
-        movement += transform.right * ySpeed;
+            movement += transform.right * ySpeed;
             if (doubleJump)
             {
                 body.gameObject.GetComponent<Renderer>().material = doubleJumpMaterial;
@@ -140,11 +141,10 @@ public class moveCharacter : MonoBehaviour
                     jump = false;
                 }
             }
-           
+
         }
         else if (topView)
         {
-            movement = Vector3.zero;
 
             if (FollowPlayer.gravityChange)
             {
@@ -155,14 +155,14 @@ public class moveCharacter : MonoBehaviour
                 //Debug.Log("G");
 
             }
-            else if(FollowPlayer.gravityChange == false)
+            else if (FollowPlayer.gravityChange == false)
             {
-                float xSpeed = move.y * speed * speedBoost * Time.deltaTime;
-                movement += transform.forward * xSpeed;
-                float ySpeed = move.x * speed * speedBoost * Time.deltaTime;
-                movement += transform.right * ySpeed;
+                float forwardSpeed = move.y * speed * speedBoost * Time.deltaTime;
+                movement += transform.forward * forwardSpeed;
+                float sideSpeed = move.x * speed * speedBoost * Time.deltaTime;
+                movement += transform.right * sideSpeed;
             }
-            
+
         }
        
 
