@@ -248,6 +248,11 @@ PrefabInstance:
       propertyPath: m_margin.z
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 7605786238719847785, guid: 019c443f48dbe4ad8a4ea77e975bcd49,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 019c443f48dbe4ad8a4ea77e975bcd49, type: 3}
 --- !u!224 &7465906497006812193 stripped
@@ -417,6 +422,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_margin.z
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6967487188199134871, guid: 2d153f6ba07c04d2fbf1677ef41e5c19,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6967487188871205379, guid: 2d153f6ba07c04d2fbf1677ef41e5c19,
         type: 3}

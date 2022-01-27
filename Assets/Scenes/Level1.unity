@@ -7185,11 +7185,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6044913237786483296, guid: 0a34b8bddb3454fec8e6b7e318429e42,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6293417117843244200, guid: 0a34b8bddb3454fec8e6b7e318429e42,
         type: 3}
       propertyPath: m_AnchorMin.y
