@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d37db1dc19e24b06904e42eb1c437da, type: 3}
   m_Name: ControlSchemes
   m_EditorClassIdentifier: 
-  controlScheme: 0
+  controlScheme: 2
