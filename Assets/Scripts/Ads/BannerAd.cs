@@ -23,7 +23,14 @@ public class BannerAd : MonoBehaviour
             StartCoroutine(ShowBannerWhenReady());
         }
     }
-    
+    void FixedUpdate()
+    {
+        if(PlayerPrefs.GetInt("Ads") == 1)
+        {
+            StartCoroutine(ShowBannerWhenReady());
+ 
+        }
+    }
     IEnumerator ShowBannerWhenReady()
     {
         while (!Advertisement.IsReady(placementId))

@@ -20,7 +20,7 @@ public class AdDestructionManager : MonoBehaviour
     {
         foreach(GameObject ad in adsToDestroy)
         {
-            Destroy(ad);
+            //Destroy(ad);
         }
     }
 }
