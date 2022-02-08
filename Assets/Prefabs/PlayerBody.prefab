@@ -1555,6 +1555,7 @@ GameObject:
   - component: {fileID: 7401532499235841476}
   - component: {fileID: 7213744214328312741}
   - component: {fileID: 5280519485629098134}
+  - component: {fileID: 5001469152961841526}
   m_Layer: 5
   m_Name: Mobile Input
   m_TagString: Untagged
@@ -1607,7 +1608,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &7213744214328312741
 MonoBehaviour:
@@ -1648,6 +1649,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5001469152961841526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9173307424912913103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33c2e66d79b64aee81cf4665683267f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &294518109657885597
 PrefabInstance:
   m_ObjectHideFlags: 0
