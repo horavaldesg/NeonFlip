@@ -15,6 +15,7 @@ TagManager:
   - MainCamera2
   - Ads
   - UICamera
+  - HelpText
   layers:
   - Default
   - TransparentFX

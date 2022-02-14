@@ -13,6 +13,11 @@ public class SwitchScene : MonoBehaviour
     {
         //UnityEngine.iOS.Device.hideHomeButton = true;
         //UnityEngine.iOS.Device.deferSystemGesturesMode = UnityEngine.iOS.SystemGestureDeferMode.All;
+        if (SceneManager.GetActiveScene().name == "BetaText")
+        {
+            levelIndex = 0;
+            PlayerPrefs.SetInt("LevelIndex", SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     // Update is called once per frame
@@ -28,17 +33,12 @@ public class SwitchScene : MonoBehaviour
     }
     public void ChangeScene()
     {
-        if(SceneManager.GetActiveScene().name == "BetaText")
-        {
-            levelIndex = 0;
-            PlayerPrefs.SetInt("LevelIndex", SceneManager.GetActiveScene().buildIndex);
-        }
-        else
-        {
+       
+        
             levelIndex++;
             PlayerPrefs.SetInt("LevelIndex", SceneManager.GetActiveScene().buildIndex);
 
-        }
+        
         SceneManager.LoadScene(scene);
         Debug.Log(levelIndex);
 

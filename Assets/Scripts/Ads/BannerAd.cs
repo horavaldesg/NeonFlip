@@ -30,6 +30,10 @@ public class BannerAd : MonoBehaviour
             StartCoroutine(ShowBannerWhenReady());
  
         }
+        else if(PlayerPrefs.GetInt("Ads") == 0)
+        {
+            Advertisement.Banner.Hide();
+        }
     }
     IEnumerator ShowBannerWhenReady()
     {
