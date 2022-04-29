@@ -22,7 +22,6 @@ public class moveCharacter : MonoBehaviour
     Material orgMaterial;
     public static string currentObj;
 
-    //public Transform camTransform;
     public float speed = 5f;
     public float verticalSpeed = 0;
     public float Gravity = -9.8f;
@@ -42,7 +41,7 @@ public class moveCharacter : MonoBehaviour
 
     public float joysStickDeadzone = 0.25f;
     bool jump;
-    // Start is called before the first frame update
+    
     private void Awake()
     {
         controls = new PlayerControls();
@@ -77,7 +76,7 @@ public class moveCharacter : MonoBehaviour
             
         
     }
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         if (ctScheme.controlScheme == InputHandler.controlSchemes.Gamepad)
@@ -98,20 +97,11 @@ public class moveCharacter : MonoBehaviour
 
             controls.bindingMask = actionMask;
         }
-
-        //if (Input.GetKey(KeyCode.LeftShift))
-        //{
-        //   speedBoost = boostMultiplier;
-        //}
         //movement
         movement = Vector3.zero;
 
         if (sideView)
         {
-
-            //Debug.Log("Jump: "+jump);
-            //Debug.Log("Grounded: " + grounded);
-            //Debug.Log("Double Jump: " + doubleJump);
             float ySpeed = move.x * speed * speedBoost * Time.deltaTime;
             movement += transform.right * ySpeed;
             if (doubleJump)
@@ -141,11 +131,9 @@ public class moveCharacter : MonoBehaviour
                     jump = false;
                 }
             }
-
         }
         else if (topView)
         {
-
             if (FollowPlayer.gravityChange)
             {
                 float xSpeed = move.y * speed * speedBoost * Time.deltaTime;
@@ -162,10 +150,8 @@ public class moveCharacter : MonoBehaviour
                 float sideSpeed = move.x * speed * speedBoost * Time.deltaTime;
                 movement += transform.right * sideSpeed;
             }
-
         }
        
-
         //Gravtity
         verticalSpeed += Gravity * Time.deltaTime;
 
@@ -178,12 +164,9 @@ public class moveCharacter : MonoBehaviour
             grounded = true;
             verticalSpeed = 0;
             jumpCt = 0;
-
-
         }
         else
         {
-
             grounded = false;
         }
 
@@ -204,9 +187,6 @@ public class moveCharacter : MonoBehaviour
             }
             FollowPlayer.gravityChange = false;
             resetPlayer = false;
-            //Debug.Log("ResetPlayer");
-
-
         }
 
         if (RespawnInteractables.respawn)
@@ -226,10 +206,7 @@ public class moveCharacter : MonoBehaviour
         }
 
         cc.Move(movement);
-        
-
     }
-   
     
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
@@ -244,17 +221,12 @@ public class moveCharacter : MonoBehaviour
         if (hit.transform.CompareTag("Finish"))
         {
             currentObj = null;
-            //Debug.Log(currentObj);
-            //SceneManager.LoadScene(changeScene);
             GetComponent<SwitchScene>().ChangeLevel(changeScene);
         }
 
         if (hit.transform.CompareTag("Elevator"))
-        {
-           
+        {  
             verticalSpeed = Time.deltaTime;
-
         }
-        //Debug.Log(checkPoint);
     }
 }
