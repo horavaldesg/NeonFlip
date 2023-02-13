@@ -50,13 +50,8 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if(SideView) SideWaysMove();
-        else
-        {
-            FreeMove();
-        }
-        
-       
+        (SideView ? (Action)SideWaysMove : FreeMove)();
+
     }
 
     private void FreeMove()
