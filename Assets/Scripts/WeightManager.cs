@@ -19,6 +19,7 @@ public class WeightManager : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if(!PlayerController.SideView) return;
         if (other.gameObject.layer != 6) return;
         if(!_playerController._canDetectCollisions) return;
         var whereToRotate = Vector3.Dot(transform.up, Vector3.down) > 0 ? 90 : -90;

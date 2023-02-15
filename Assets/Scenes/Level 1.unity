@@ -349,7 +349,6 @@ Transform:
   - {fileID: 2038115058}
   - {fileID: 950454943}
   - {fileID: 122389538}
-  - {fileID: 1709482115}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -367,6 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jump: 0
   _grounded: 0
+  _canDetectCollisions: 0
   checkPos: {fileID: 2038115058}
   groundMask:
     serializedVersion: 2
@@ -824,13 +824,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709482114}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7, y: 3.85, z: -7.4030004}
+  m_LocalPosition: {x: -0.7, y: 7.12, z: -8.7560005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 963194228}
   - {fileID: 1969390563}
-  m_Father: {fileID: 476397694}
+  m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1709482116
@@ -855,7 +855,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709482114}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acd2d6822f63cf040b1d5f7a751a527d, type: 3}
   m_Name: 
@@ -865,7 +865,7 @@ MonoBehaviour:
   cam1Rotation: {x: 0.083271876, y: 0.17242695, z: -0.014630826, w: 0.9813871}
   cam2OffSet: {x: -2.3, y: 2.27, z: -5}
   cam1OffSet: {x: 0, y: 2, z: -5}
-  dampSpeed: 0.3
+  dampSpeed: 0.2
 --- !u!1 &1969390560
 GameObject:
   m_ObjectHideFlags: 0

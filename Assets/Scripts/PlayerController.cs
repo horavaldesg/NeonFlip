@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Lerp(initialRot, rot, t);
             yield return null;
         }
-        yield return new WaitForSeconds(1);
+       // yield return new WaitForSeconds(1);
         _canDetectCollisions = true;
 
     }
