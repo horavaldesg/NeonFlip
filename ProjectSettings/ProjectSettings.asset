@@ -178,7 +178,7 @@ PlayerSettings:
   buildNumber:
     iPhone: 25
   AndroidBundleVersionCode: 2
-  AndroidMinSdkVersion: 30
+  AndroidMinSdkVersion: 25
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
   aotOptions: 
@@ -255,8 +255,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 2
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: '{inproject}: Android/user.keystore'
-  AndroidKeyaliasName: horavaldesg
+  AndroidKeystoreName: '{inproject}: Android/user2.keystore'
+  AndroidKeyaliasName: neonflip
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1

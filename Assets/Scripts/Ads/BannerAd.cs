@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Advertisements;
@@ -9,6 +10,22 @@ public class BannerAd : MonoBehaviour
     public string gameId = "4530066";
     public string placementId = "Banner_iOS";
     public bool testMode = true;
+
+#if UNITY_IOS
+ private void Awake()
+    {
+        gameId = "4530066";
+
+        placementId = "Banner_Android";
+
+    }
+#elif UNITY_ANDROID
+    private void Awake()
+    {
+        gameId = "4530067";
+        placementId = "Banner_Android";
+    }
+#endif
 
     void Start()
     {

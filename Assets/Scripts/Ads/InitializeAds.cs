@@ -7,6 +7,18 @@ public class InitializeAds : MonoBehaviour
 {
     string gameId = "4530066";
     bool testMode = true;
+#if UNITY_IOS
+ private void Awake()
+    {
+        gameId = "4530066";
+
+    }
+#elif UNITY_ANDROID
+    private void Awake()
+    {
+        gameId = "4530067";
+    }
+#endif
     void Start()
     {
         if (PlayerPrefs.GetInt("Ads") == 1)
