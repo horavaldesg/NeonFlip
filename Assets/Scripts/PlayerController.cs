@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private float _gravity = -9.8f;
     public bool _grounded;
 
-    [HideInInspector] public bool _canDetectCollisions;
+    public static bool _canDetectCollisions;
     [SerializeField] private Transform checkPos;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float jumpSpeed = 9;
@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        (SideView ? (Action)SideWaysMove : FreeMove)();
+        (SideView ? (Action)FreeMove : SideWaysMove)();
         
         /*else if (Physics.Raycast(weightLeft.position, Vector3.down, out var hit2, Mathf.Infinity))
         {
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         cc.Move(_movement);
     }
 
-    private void FreeMove()
+    private void SideWaysMove()
     {
         _movement = Vector3.zero;
        
@@ -106,8 +106,7 @@ public class PlayerController : MonoBehaviour
         }
         
     }
-
-    private void SideWaysMove()
+    private void FreeMove()
     {
         
         _movement = Vector3.zero;
@@ -115,7 +114,7 @@ public class PlayerController : MonoBehaviour
         _movement += transform.forward * xSpeed;
         var ySpeed = _move.x * playerSpeed * Time.deltaTime;
         _movement += transform.right * ySpeed;
-        /*
+        /*if(!_grounded) return;
         if(!_canDetectCollisions) return;
         if (Physics.Raycast(weightRight.position, transform.TransformDirection(Vector3.down), out var hit))
         {
@@ -131,13 +130,15 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-        //    _canDetectCollisions = false;
-            var whereToRotate = Vector3.Dot(transform.up, Vector3.down) > 0 ? -90 : 90;
+            _canDetectCollisions = false;
+            /*var whereToRotate = Vector3.Dot(transform.up, Vector3.down) > 0 ? -90 : 90;
             if (Vector3.Dot(-transform.right, Vector3.down) > 0)
             {
                 whereToRotate = 90;
-            }
-         //   StartCoroutine(WaitToRotate(whereToRotate));
+            }#1#
+            const float whereToRotate = -90;
+
+           StartCoroutine(WaitToRotate(whereToRotate));
         }
         if (Physics.Raycast(weightLeft.position, transform.TransformDirection(Vector3.down), out var hit1))
         {
@@ -153,16 +154,16 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-         //   _canDetectCollisions = false;
-            var whereToRotate = Vector3.Dot(transform.up, Vector3.down) > 0 ? 90 : -90;
+            _canDetectCollisions = false;
+            /*var whereToRotate = Vector3.Dot(transform.up, Vector3.down) > 0 ? 90 : -90;
 
             if (Vector3.Dot(-transform.right, Vector3.down) > 0)
             {
                 whereToRotate = -90;
-            }
-           // StartCoroutine(WaitToRotate(whereToRotate));
-        }
-        */
+            }#1#
+            const float whereToRotate = 90;
+            StartCoroutine(WaitToRotate(whereToRotate));
+        }*/
     }
 
     public IEnumerator WaitToRotate(float xRot)
@@ -184,7 +185,7 @@ public class PlayerController : MonoBehaviour
         var totalAdded = 0.0f;
         while (totalAdded < Mathf.Abs(xRot))
         {
-            var increment = Time.deltaTime * 80;
+            var increment = Time.deltaTime * 80 * rotSpeed;
             transform.Rotate(new Vector3(Mathf.Sign(xRot) * increment, 0, 0));
             totalAdded += increment;
             yield return null;
