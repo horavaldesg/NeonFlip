@@ -377,7 +377,7 @@ MonoBehaviour:
   switchCamera: {fileID: 1709482116}
   weightRight: {fileID: 950454943}
   weightLeft: {fileID: 122389538}
-  rotSpeed: 1
+  rotSpeed: 90
 --- !u!143 &476397696
 CharacterController:
   m_ObjectHideFlags: 0

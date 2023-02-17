@@ -167,7 +167,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator WaitToRotate(float xRot)
     {
-      //  RotatePlayer(90);
+        /*
         Debug.DrawRay(weightRight.position, transform.TransformDirection(Vector3.down), Color.green);
         // while (transform.rotation != Quaternion.Euler(transform.eulerAngles.x - xRot, transform.rotation.y, transform.rotation.z)) yield return null;
         var initialRot = transform.rotation;
@@ -178,7 +178,19 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
        // yield return new WaitForSeconds(1);
+       
         _canDetectCollisions = true;
+        */
+        var totalAdded = 0.0f;
+        while (totalAdded < Mathf.Abs(xRot))
+        {
+            var increment = Time.deltaTime * 80;
+            transform.Rotate(new Vector3(Mathf.Sign(xRot) * increment, 0, 0));
+            totalAdded += increment;
+            yield return null;
+        }
+        _canDetectCollisions = true;
+
 
     }
    
