@@ -16,7 +16,7 @@ public class BannerAd : MonoBehaviour
     {
         gameId = "4530066";
 
-        placementId = "Banner_Android";
+        placementId = "Banner_iOS";
 
     }
 #elif UNITY_ANDROID
