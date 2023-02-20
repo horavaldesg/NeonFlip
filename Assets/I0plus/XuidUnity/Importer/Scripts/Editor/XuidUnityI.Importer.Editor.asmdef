@@ -3,7 +3,9 @@
     "references": [
         "Unity.TextMeshPro",
         "Sirenix.OdinInspector.CompatibilityLayer.Editor",
-        "XuidUnity.Runtime"
+        "XuidUnity.Runtime",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
     ],
     "includePlatforms": [
         "Editor"

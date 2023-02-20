@@ -373,7 +373,7 @@ MonoBehaviour:
   jumpSpeed: 9
   cc: {fileID: 476397696}
   playerSpeed: 5
-  switchCamera: {fileID: 1709482116}
+  switchCamera: {fileID: 1709482117}
   weightRight: {fileID: 950454943}
   weightLeft: {fileID: 122389538}
   rotSpeed: 2.5
@@ -523,17 +523,28 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_PointAction: {fileID: 1054132383583890850, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MoveAction: {fileID: 3710738434707379630, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_SubmitAction: {fileID: 2064916234097673511, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_CancelAction: {fileID: -1967631576421560919, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MiddleClickAction: {fileID: 3279352641294131588, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_RightClickAction: {fileID: 3837173908680883260, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 4502412055082496612, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 4754684134866288074, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 1025543830046995696, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
@@ -565,7 +576,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &880620251
 GameObject:
@@ -663,7 +674,7 @@ RectTransform:
   - {fileID: 9203021629157038891}
   - {fileID: 3214960478554555745}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -982,14 +993,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.03952532, y: 0.21870257, z: 0.00886639, w: 0.97495043}
-  m_LocalPosition: {x: 0.48, y: -1.25, z: 0.92}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1709482115}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 4.197, y: 25.36, z: 1.987}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1709482114
 GameObject:
   m_ObjectHideFlags: 0
@@ -1015,15 +1026,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709482114}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.7, y: 7.12, z: -8.7560005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 963194228}
   - {fileID: 1969390563}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1709482116
 MonoBehaviour:
@@ -1034,12 +1045,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1709482114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dbd625bd4f627514095e66cfbb4445b8, type: 3}
+  m_Script: {fileID: 11500000, guid: b153587b2aab5492f82c42ebe6944b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera1: {fileID: 1969390560}
-  camera2: {fileID: 963194225}
-  spacePub: 0
+  player: {fileID: 476397690}
+  cam2Rotation: {x: 0, y: 0, z: 0, w: 0}
+  cam1Rotation: {x: 0.14574188, y: 0.10613946, z: -0.012310378, w: 0.9835355}
+  cam2OffSet: {x: -2.11, y: 4, z: -6.3}
+  cam1OffSet: {x: 0, y: 2, z: -9.5}
+  dampSpeed: 0.2
 --- !u!114 &1709482117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1049,15 +1063,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1709482114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: acd2d6822f63cf040b1d5f7a751a527d, type: 3}
+  m_Script: {fileID: 11500000, guid: ea57849d616cc453f9f1eb84a7ee7da5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 476397690}
-  cam2Rotation: {x: 0, y: 0, z: 0, w: 1}
-  cam1Rotation: {x: 0.083271876, y: 0.17242695, z: -0.014630826, w: 0.9813871}
-  cam2OffSet: {x: -2.3, y: 2.27, z: -5}
-  cam1OffSet: {x: 0, y: 2, z: -5}
-  dampSpeed: 0.2
+  camera1: {fileID: 0}
+  camera2: {fileID: 0}
+  spacePub: 0
 --- !u!1 &1969390560
 GameObject:
   m_ObjectHideFlags: 0

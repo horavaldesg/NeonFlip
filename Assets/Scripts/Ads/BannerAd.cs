@@ -52,13 +52,13 @@ public class BannerAd : MonoBehaviour
             Advertisement.Banner.Hide();
         }
     }
+
     IEnumerator ShowBannerWhenReady()
     {
-        while (!Advertisement.IsReady(placementId))
-        {
-            yield return new WaitForSeconds(0.5f);
-        }
+
+        yield return new WaitForSeconds(0.5f);
+
         Advertisement.Banner.Show(placementId);
     }
-   
+
 }

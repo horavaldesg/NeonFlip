@@ -10,13 +10,13 @@ public class InterstitialAds : MonoBehaviour
 #if UNITY_IOS
  private void Awake()
     {
-        gameId = "4530066";
+        gameId = "Interstitial_iOS";
 
     }
 #elif UNITY_ANDROID
     private void Awake()
     {
-        gameId = "4530067";
+        gameId = "Rewarded_Android";
     }
 #endif
     // Initialize the Ads service:
@@ -33,7 +33,7 @@ public class InterstitialAds : MonoBehaviour
     public void ShowAd()
     {
         if(PlayerPrefs.GetInt("Ads") == 1)
-            Advertisement.Show();
+            Advertisement.Show(gameId);
         
 
     }

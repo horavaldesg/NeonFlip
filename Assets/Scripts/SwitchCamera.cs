@@ -32,20 +32,18 @@ public class SwitchCamera : MonoBehaviour
     public void Switch()
     {
         //Top View
-        if (camera1.activeSelf == true)
+        if (camera1.activeSelf)
         {
             camera2.SetActive(true);
             camera1.SetActive(false);
-            moveCharacter.topView = true;
-            moveCharacter.sideView = false;
+            PlayerController.SideView = false;
         }
         //Side View
-        else if(camera2.activeSelf == true)
+        else if(camera2.activeSelf)
         {
             camera1.SetActive(true);
             camera2.SetActive(false);
-            moveCharacter.sideView = true;
-            moveCharacter.topView = false;
+            PlayerController.SideView = true;
         }
         
         
