@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 public class SwitchCamera : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class SwitchCamera : MonoBehaviour
     GameObject[] cameras;
     [SerializeField] bool spacePub;
     // Start is called before the first frame update
-    private void Awake()
+    void Start()
     {
         
         camera1 = GameObject.FindGameObjectWithTag("MainCamera");
@@ -33,18 +32,20 @@ public class SwitchCamera : MonoBehaviour
     public void Switch()
     {
         //Top View
-        if (camera1.activeSelf)
+        if (camera1.activeSelf == true)
         {
             camera2.SetActive(true);
             camera1.SetActive(false);
-            PlayerController.SideView = false;
+            moveCharacter.topView = true;
+            moveCharacter.sideView = false;
         }
         //Side View
-        else if(camera2.activeSelf)
+        else if(camera2.activeSelf == true)
         {
             camera1.SetActive(true);
             camera2.SetActive(false);
-            PlayerController.SideView = true;
+            moveCharacter.sideView = true;
+            moveCharacter.topView = false;
         }
         
         
