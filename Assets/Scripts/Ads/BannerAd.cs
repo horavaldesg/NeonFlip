@@ -34,7 +34,6 @@ public class BannerAd : MonoBehaviour
 
 
             // Initialize the SDK if you haven't already done so:
-            Advertisement.Initialize(gameId, testMode);
             Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
 
             StartCoroutine(ShowBannerWhenReady());
@@ -55,8 +54,9 @@ public class BannerAd : MonoBehaviour
 
     IEnumerator ShowBannerWhenReady()
     {
-
-        yield return new WaitForSeconds(0.5f);
+        Advertisement.Banner.Load(placementId);
+        while (!Advertisement.Banner.isLoaded)
+            yield return null;
 
         Advertisement.Banner.Show(placementId);
     }
