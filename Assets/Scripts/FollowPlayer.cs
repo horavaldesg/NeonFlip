@@ -46,6 +46,7 @@ public class FollowPlayer : MonoBehaviour
         var playerPos = player.transform.position + cam2OffSet;
         _switchCamera.camera1.transform.localRotation = cam1Rotation;
         transform.position = Vector3.SmoothDamp(transform.position, playerPos, ref speed, dampSpeed);
+
         
     } 
     private void Camera2()

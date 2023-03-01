@@ -4,22 +4,14 @@ using UnityEngine;
 
 public class Reset : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.CompareTag("Player"))
         {
-            moveCharacter.resetPlayer = true;
+            other.TryGetComponent(out PlayerController playerController);
+            playerController.RespawnPlayer();
+           // moveCharacter.resetPlayer = true;
         }
        
         //Debug.Log("Reset");

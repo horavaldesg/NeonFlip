@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SwitchCamera : MonoBehaviour
 {
+    public static event Action<bool> ChangePerspective;
     public GameObject camera1;
     public GameObject camera2;
     public static bool space;
@@ -37,6 +39,7 @@ public class SwitchCamera : MonoBehaviour
             camera2.SetActive(true);
             camera1.SetActive(false);
             PlayerController.SideView = false;
+            ChangePerspective.Invoke(PlayerController.SideView);
         }
         //Side View
         else if(camera2.activeSelf)
@@ -44,9 +47,10 @@ public class SwitchCamera : MonoBehaviour
             camera1.SetActive(true);
             camera2.SetActive(false);
             PlayerController.SideView = true;
+            ChangePerspective.Invoke(PlayerController.SideView);
         }
-        
-        
+
+
     }
     
     public static void CanUseSpace()

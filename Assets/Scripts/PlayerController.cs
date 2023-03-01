@@ -8,10 +8,11 @@ public class PlayerController : MonoBehaviour
     private static PlayerControls controls;
     public static bool TopView = false;
     public static bool SideView = true;
-    private Vector2 _move;
+    public static Vector2 _move;
     public bool _jump;
     private Vector3 _movement;
-    
+    private Vector3 checkPoint;
+
     private float _verticalSpeed = 0;
     private float _gravity = -9.8f;
     public bool _grounded;
@@ -26,6 +27,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform weightRight;
     [SerializeField] private Transform weightLeft;
     [SerializeField] private float rotSpeed;
+    [SerializeField] RectTransform indicatorTransform;
+ 
     private void Awake()
     {
         _canDetectCollisions = true;
@@ -34,6 +37,10 @@ public class PlayerController : MonoBehaviour
         controls.Player.Move.performed += tgb => _move = tgb.ReadValue<Vector2>();
         controls.Player.Move.canceled += tgb => _move = Vector2.zero;
         controls.Player.Jump.started += tgb => Jump();
+        controls.Player.RotateRight.performed += tgb => StartCoroutine(WaitToRotate(-90));
+        controls.Player.LeftRotate.performed += tgb => StartCoroutine(WaitToRotate(90));
+        controls.Player.RotateRight.performed -= tgb => StartCoroutine(WaitToRotate(-90));
+        controls.Player.LeftRotate.performed -= tgb => StartCoroutine(WaitToRotate(90));
         controls.Player.Jump.canceled += tgb => _jump = false;
 
         controls.Player.SwitchCamera.performed += tgb => switchCamera.Switch();
@@ -165,9 +172,11 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(WaitToRotate(whereToRotate));
         }*/
     }
+    
 
     public IEnumerator WaitToRotate(float xRot)
     {
+        if (!SideView) yield break;
         /*
         Debug.DrawRay(weightRight.position, transform.TransformDirection(Vector3.down), Color.green);
         // while (transform.rotation != Quaternion.Euler(transform.eulerAngles.x - xRot, transform.rotation.y, transform.rotation.z)) yield return null;
@@ -187,12 +196,29 @@ public class PlayerController : MonoBehaviour
         {
             var increment = Time.deltaTime * 80 * rotSpeed;
             transform.Rotate(new Vector3(Mathf.Sign(xRot) * increment, 0, 0));
+            indicatorTransform.Rotate(new Vector3(0, 0, Mathf.Sign(xRot) * increment));
             totalAdded += increment;
             yield return null;
         }
+
         _canDetectCollisions = true;
 
 
     }
-   
+
+    public void RespawnPlayer()
+    {
+        cc.enabled = false;
+        cc.transform.position = checkPoint;
+        cc.enabled = true;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        
+        FollowPlayer.gravityChange = false;
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        checkPoint = gameObject.transform.position;
+    }
+
 }

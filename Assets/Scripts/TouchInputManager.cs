@@ -2,15 +2,36 @@ using UnityEngine;
 
 public class TouchInputManager : MonoBehaviour
 {
-#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR_WIN
-    private void Awake()
+    [SerializeField] GameObject jumpButton;
+    [SerializeField] GameObject rotateButtons;
+
+//#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR_WIN
+  /*  private void Awake()
     {
         gameObject.SetActive(false);
-    }
-#else 
+    }*/
+//#else 
     private void Awake()
     {
         gameObject.SetActive(true);
+        ChangePerspective(PlayerController.SideView);
     }
-#endif
+
+    private void OnEnable()
+    {
+        SwitchCamera.ChangePerspective += ChangePerspective;
+    }
+
+    private void OnDisable()
+    {
+        SwitchCamera.ChangePerspective -= ChangePerspective;
+    }
+
+    private void ChangePerspective(bool state)
+    {
+        jumpButton.SetActive(!state);
+        rotateButtons.SetActive(state);
+    }
+
+    //#endif
 }
