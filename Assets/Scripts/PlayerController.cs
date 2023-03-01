@@ -12,12 +12,13 @@ public class PlayerController : MonoBehaviour
     public bool _jump;
     private Vector3 _movement;
     private Vector3 checkPoint;
-
+    private SwitchScene _switchScene;
     private float _verticalSpeed = 0;
     private float _gravity = -9.8f;
     public bool _grounded;
 
     public static bool _canDetectCollisions;
+    [SerializeField] private string _nextLevelName;
     [SerializeField] private Transform checkPos;
     [SerializeField] private LayerMask groundMask;
     [SerializeField] private float jumpSpeed = 9;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _canDetectCollisions = true;
+        TryGetComponent(out _switchScene);
         controls = new PlayerControls();
         
         controls.Player.Move.performed += tgb => _move = tgb.ReadValue<Vector2>();
@@ -219,6 +221,10 @@ public class PlayerController : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         checkPoint = gameObject.transform.position;
+        if (hit.transform.CompareTag("Finish"))
+        {
+            _switchScene.ChangeLevel(_nextLevelName);
+        }
     }
 
 }

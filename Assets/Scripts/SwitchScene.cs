@@ -61,7 +61,7 @@ public class SwitchScene : MonoBehaviour
         moveCharacter.currentObj = null;
         levelIndex++;
         PlayerPrefs.SetInt("LevelIndex", SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene(scene);
+        SceneManager.LoadScene(this.scene);
         //Debug.Log(levelIndex);
         
     }

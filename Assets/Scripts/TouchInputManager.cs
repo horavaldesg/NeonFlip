@@ -5,12 +5,12 @@ public class TouchInputManager : MonoBehaviour
     [SerializeField] GameObject jumpButton;
     [SerializeField] GameObject rotateButtons;
 
-//#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR_WIN
-  /*  private void Awake()
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR_WIN
+    private void Awake()
     {
         gameObject.SetActive(false);
-    }*/
-//#else 
+    }
+#else 
     private void Awake()
     {
         gameObject.SetActive(true);
@@ -33,5 +33,5 @@ public class TouchInputManager : MonoBehaviour
         rotateButtons.SetActive(state);
     }
 
-    //#endif
+#endif
 }
