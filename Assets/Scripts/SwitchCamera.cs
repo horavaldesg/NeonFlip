@@ -39,7 +39,7 @@ public class SwitchCamera : MonoBehaviour
             camera2.SetActive(true);
             camera1.SetActive(false);
             PlayerController.SideView = false;
-            ChangePerspective.Invoke(PlayerController.SideView);
+            ChangePerspective?.Invoke(PlayerController.SideView);
         }
         //Side View
         else if(camera2.activeSelf)
@@ -47,10 +47,8 @@ public class SwitchCamera : MonoBehaviour
             camera1.SetActive(true);
             camera2.SetActive(false);
             PlayerController.SideView = true;
-            ChangePerspective.Invoke(PlayerController.SideView);
+            ChangePerspective?.Invoke(PlayerController.SideView);
         }
-
-
     }
     
     public static void CanUseSpace()

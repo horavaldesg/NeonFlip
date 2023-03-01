@@ -31,21 +31,20 @@ public class BannerAd : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("Ads") == 1)
         {
-
-
             // Initialize the SDK if you haven't already done so:
             Advertisement.Banner.SetPosition(BannerPosition.BOTTOM_CENTER);
 
             StartCoroutine(ShowBannerWhenReady());
         }
     }
+    
     void FixedUpdate()
     {
         if(PlayerPrefs.GetInt("Ads") == 1)
         {
             StartCoroutine(ShowBannerWhenReady());
- 
         }
+        
         else if(PlayerPrefs.GetInt("Ads") == 0)
         {
             Advertisement.Banner.Hide();

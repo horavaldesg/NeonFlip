@@ -11,7 +11,8 @@ public class PlayerController : MonoBehaviour
     public static Vector2 _move;
     public bool _jump;
     private Vector3 _movement;
-    private Vector3 checkPoint;
+    private Vector3 _checkPoint;
+    private Vector3 _initialPos;
     private SwitchScene _switchScene;
     private float _verticalSpeed = 0;
     private float _gravity = -9.8f;
@@ -46,12 +47,18 @@ public class PlayerController : MonoBehaviour
         controls.Player.Jump.canceled += tgb => _jump = false;
 
         controls.Player.SwitchCamera.performed += tgb => switchCamera.Switch();
-       
     }
+
+    private void Start()
+    {
+        _initialPos = transform.position;
+    }
+
     private void OnEnable()
     {
         controls.Player.Enable();
     }
+    
     private void OnDisable()
     {
         controls.Player.Disable(); 
@@ -95,6 +102,7 @@ public class PlayerController : MonoBehaviour
         {
             _grounded = false;
         }
+        
         cc.Move(_movement);
     }
 
@@ -115,9 +123,9 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+    
     private void FreeMove()
     {
-        
         _movement = Vector3.zero;
         var xSpeed = _move.y * playerSpeed * Time.deltaTime;
         _movement += transform.forward * xSpeed;
@@ -204,27 +212,36 @@ public class PlayerController : MonoBehaviour
         }
 
         _canDetectCollisions = true;
-
-
     }
 
     public void RespawnPlayer()
     {
         cc.enabled = false;
-        cc.transform.position = checkPoint;
+        cc.transform.position = _checkPoint;
         cc.enabled = true;
         transform.rotation = Quaternion.Euler(0, 0, 0);
+        indicatorTransform.localRotation = Quaternion.Euler(0, 0, 0);
         
+        FollowPlayer.gravityChange = false;
+    }
+
+    public void RestartPlayer()
+    {
+        cc.enabled = false;
+        cc.transform.position = _initialPos;
+        cc.enabled = true;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+        indicatorTransform.localRotation = Quaternion.Euler(0, 0, 0);
+
         FollowPlayer.gravityChange = false;
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        checkPoint = gameObject.transform.position;
+        _checkPoint = gameObject.transform.position;
         if (hit.transform.CompareTag("Finish"))
         {
             _switchScene.ChangeLevel(_nextLevelName);
         }
     }
-
 }

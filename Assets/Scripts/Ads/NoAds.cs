@@ -30,8 +30,6 @@ public class NoAds : MonoBehaviour
                 colorsHide.normalColor = Color.red;
                 colorsHide.selectedColor = Color.red;
                 hideAdsButton.colors = colorsHide;
-
-
             }
             else if (PlayerPrefs.GetInt("Ads") == 0)
             {
@@ -46,11 +44,10 @@ public class NoAds : MonoBehaviour
                 colorsHide.selectedColor = Color.green;
                 colorsHide.normalColor = Color.green;
                 hideAdsButton.colors = colorsHide;
-
-
             }
         }
     }
+    
     public void HideAds(int adValue)
     {
         showAds = adValue;
