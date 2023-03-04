@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private static PlayerControls controls;
+    public static PlayerControls controls;
     public static bool TopView = false;
     public static bool SideView = true;
     public static Vector2 _move;

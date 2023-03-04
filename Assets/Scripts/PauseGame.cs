@@ -1,20 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PauseGame : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject pauseButtonPanel;
+
+    private void Awake()
     {
-        
+        PlayerController.controls.Player.Escape.performed += tgb => PauseMenu();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PauseMenu()
     {
-        
+        pauseMenu.SetActive(!pauseMenu.activeSelf);
+        pauseButtonPanel.SetActive(!pauseButtonPanel.activeSelf);
+        OptionsPause();
     }
+    
     public void OptionsPause()
     {
         if(Time.timeScale == 1)

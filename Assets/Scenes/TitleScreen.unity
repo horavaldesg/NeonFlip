@@ -124,6 +124,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &641160843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1341305884282287721, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
+    type: 3}
+  m_PrefabInstance: {fileID: 3591705067638415690}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &684839559
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
+  m_FirstSelected: {fileID: 641160843}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
 --- !u!4 &684839562
@@ -673,6 +679,11 @@ PrefabInstance:
       propertyPath: m_Colors.m_DisabledColor.r
       value: 0.6117647
       objectReference: {fileID: 0}
+    - target: {fileID: 1131265984716162483, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3520698383663503973, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -682,6 +693,41 @@ PrefabInstance:
         type: 3}
       propertyPath: scene
       value: Level 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591705066925759694, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.b
+      value: 0.8113208
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591705066925759694, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.g
+      value: 0.8113208
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591705066925759694, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
+        type: 3}
+      propertyPath: m_Colors.m_NormalColor.r
+      value: 0.8113208
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591705066925759695, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591705066925759695, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591705066925759695, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591705066925759695, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3591705066993146584, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
         type: 3}
