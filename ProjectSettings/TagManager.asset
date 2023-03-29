@@ -16,6 +16,7 @@ TagManager:
   - Ads
   - UICamera
   - HelpText
+  - PickupCoin
   layers:
   - Default
   - TransparentFX
