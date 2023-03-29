@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     public static PlayerControls controls;
     public static event Action ToggleLevelCam;
     
-    public static bool TopView = false;
     public static bool SideView = true;
     public static Vector2 _move;
     public bool _jump;
@@ -18,8 +17,9 @@ public class PlayerController : MonoBehaviour
     private SwitchScene _switchScene;
     private float _verticalSpeed = 0;
     private float _gravity = -9.8f;
+    private int m_JumpCt;
     public bool _grounded;
-
+    [HideInInspector] public bool doubleJump;
     public static bool _canDetectCollisions;
     [SerializeField] private string _nextLevelName;
     [SerializeField] private Transform checkPos;
@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         _initialPos = transform.position;
+        m_JumpCt = 0;
     }
 
     private void OnEnable()
@@ -103,13 +104,32 @@ public class PlayerController : MonoBehaviour
         
         //Grounded
         
-        if (_jump && _grounded)
+        switch (doubleJump)
         {
-            //jumpCt = 0;
-            _verticalSpeed = jumpSpeed;
-            _jump = false;
+            case true:
+            {
+                if (_jump && m_JumpCt != 2)
+                {
+                    m_JumpCt++;
+                    _verticalSpeed = jumpSpeed;
+                    _jump = false;
+                }
+
+                if (m_JumpCt != 2) return;
+                doubleJump = false;
+                _jump = false;
+                break;
+            }
+            case false:
+            {
+                m_JumpCt = 0;
+                if (!_jump || !_grounded || doubleJump) return;
+                //jumpCt = 0;
+                _verticalSpeed = jumpSpeed;
+                _jump = false;
+                break;
+            }
         }
-        
     }
     
     private void FreeMove()
@@ -166,6 +186,13 @@ public class PlayerController : MonoBehaviour
         if (hit.transform.CompareTag("Finish"))
         {
             _switchScene.ChangeLevel(_nextLevelName);
+        }
+
+        if (hit.collider.CompareTag("Collectable"))
+        {
+            doubleJump = true;
+            hit.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            hit.gameObject.GetComponent<Collider>().enabled = false;
         }
     }
 }
