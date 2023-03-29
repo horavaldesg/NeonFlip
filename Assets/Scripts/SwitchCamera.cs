@@ -19,7 +19,8 @@ public class SwitchCamera : MonoBehaviour
     private Camera _currentCameraSelected;
     private Camera cam1;
     private Camera cam2;
-
+    private Transform m_PlayerTransForm;
+    
     private GameObject levelCamera;
 
     // Start is called before the first frame update
@@ -28,6 +29,8 @@ public class SwitchCamera : MonoBehaviour
         camera1 = GameObject.FindGameObjectWithTag("MainCamera");
         camera2 = GameObject.FindGameObjectWithTag("MainCamera2");
         levelCamera = GameObject.FindGameObjectWithTag("LevelCam");
+        m_PlayerTransForm = GameObject.FindGameObjectWithTag("Player").transform;
+        
         camera1.TryGetComponent(out cam1);
         camera2.TryGetComponent(out cam2);
         levelCamera.SetActive(false);
@@ -54,9 +57,9 @@ public class SwitchCamera : MonoBehaviour
                 out var hit, 100.0f, layerMask))
         {
             if (layerMask == LayerMask.NameToLayer("Player")) return;
-            hit.collider.gameObject.TryGetComponent(out _currentMeshRenderer);
-            // _currentMeshRenderer.material = transparentGround;
-            Debug.Log(hit.collider.gameObject.name + "Collided With Ground");
+            hit.collider.gameObject.TryGetComponent(out _currentMeshRenderer); 
+            _currentMeshRenderer.material = transparentGround;
+            //Debug.Log(hit.collider.gameObject.name + "Collided With Ground");
         }
         else
         {
@@ -71,6 +74,7 @@ public class SwitchCamera : MonoBehaviour
         if (camera1.activeSelf)
         {
             camera2.SetActive(true);
+            camera2.transform.LookAt(m_PlayerTransForm.transform.position);
             camera1.SetActive(false);
             PlayerController.SideView = false;
             SetCurrentCameraTransform(cam2);
@@ -81,6 +85,7 @@ public class SwitchCamera : MonoBehaviour
         {
             camera1.SetActive(true);
             camera2.SetActive(false);
+            camera1.transform.LookAt(m_PlayerTransForm.transform.position);
             PlayerController.SideView = true;
             SetCurrentCameraTransform(cam1);
             ChangePerspective?.Invoke(PlayerController.SideView);
