@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerControls controls;
+    public static event Action ToggleLevelCam;
+    
     public static bool TopView = false;
     public static bool SideView = true;
     public static Vector2 _move;
@@ -46,6 +48,8 @@ public class PlayerController : MonoBehaviour
         controls.Player.LeftRotate.performed -= tgb => StartCoroutine(WaitToRotate(90));
         controls.Player.Jump.canceled += tgb => _jump = false;
 
+        controls.Player.LevelCam.performed += tgb => ToggleLevelCam?.Invoke();
+
         controls.Player.SwitchCamera.performed += tgb => switchCamera.Switch();
     }
 
@@ -73,22 +77,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         (SideView ? (Action)FreeMove : SideWaysMove)();
-        
-        /*else if (Physics.Raycast(weightLeft.position, Vector3.down, out var hit2, Mathf.Infinity))
-        {
-            if (hit2.collider.transform.gameObject.layer != 6 && _grounded)
-            {
-                Debug.Log("Off");
-                //_playerController.RotatePlayer(yRot);
-                Debug.DrawRay(weightLeft.position, transform.TransformDirection(Vector3.down), Color.green);
-
-            }
-            else
-            {
-                Debug.DrawRay(weightLeft.position, transform.TransformDirection(Vector3.down), Color.red);
-
-            }
-        }*/
         //Gravity
         _verticalSpeed += _gravity * Time.deltaTime;
 
@@ -131,76 +119,12 @@ public class PlayerController : MonoBehaviour
         _movement += transform.forward * xSpeed;
         var ySpeed = _move.x * playerSpeed * Time.deltaTime;
         _movement += transform.right * ySpeed;
-        /*if(!_grounded) return;
-        if(!_canDetectCollisions) return;
-        if (Physics.Raycast(weightRight.position, transform.TransformDirection(Vector3.down), out var hit))
-        {
-            if (hit.collider.gameObject.layer == 6 && _grounded)
-            {
-                Debug.Log("on");
-
-                //_playerController.RotatePlayer(yRot);
-                Debug.DrawRay(weightRight.position, transform.TransformDirection(Vector3.down), Color.red);
-
-            }
-           
-        }
-        else
-        {
-            _canDetectCollisions = false;
-            /*var whereToRotate = Vector3.Dot(transform.up, Vector3.down) > 0 ? -90 : 90;
-            if (Vector3.Dot(-transform.right, Vector3.down) > 0)
-            {
-                whereToRotate = 90;
-            }#1#
-            const float whereToRotate = -90;
-
-           StartCoroutine(WaitToRotate(whereToRotate));
-        }
-        if (Physics.Raycast(weightLeft.position, transform.TransformDirection(Vector3.down), out var hit1))
-        {
-            if (hit1.collider.gameObject.layer == 6 && _grounded)
-            {
-                Debug.Log("on");
-
-                //_playerController.RotatePlayer(yRot);
-                Debug.DrawRay(weightLeft.position, transform.TransformDirection(Vector3.down), Color.red);
-
-            }
-           
-        }
-        else
-        {
-            _canDetectCollisions = false;
-            /*var whereToRotate = Vector3.Dot(transform.up, Vector3.down) > 0 ? 90 : -90;
-
-            if (Vector3.Dot(-transform.right, Vector3.down) > 0)
-            {
-                whereToRotate = -90;
-            }#1#
-            const float whereToRotate = 90;
-            StartCoroutine(WaitToRotate(whereToRotate));
-        }*/
     }
     
 
     public IEnumerator WaitToRotate(float xRot)
     {
         if (!SideView) yield break;
-        /*
-        Debug.DrawRay(weightRight.position, transform.TransformDirection(Vector3.down), Color.green);
-        // while (transform.rotation != Quaternion.Euler(transform.eulerAngles.x - xRot, transform.rotation.y, transform.rotation.z)) yield return null;
-        var initialRot = transform.rotation;
-        var rot = Quaternion.Euler(transform.eulerAngles.x - xRot, transform.rotation.y, transform.rotation.z);
-        for (var t = 0f; t < 1; t += Time.deltaTime / rotSpeed)
-        {
-            transform.rotation = Quaternion.Lerp(initialRot, rot, t);
-            yield return null;
-        }
-       // yield return new WaitForSeconds(1);
-       
-        _canDetectCollisions = true;
-        */
         var totalAdded = 0.0f;
         while (totalAdded < Mathf.Abs(xRot))
         {

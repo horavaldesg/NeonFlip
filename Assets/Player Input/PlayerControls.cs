@@ -98,6 +98,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LevelCam"",
+                    ""type"": ""Button"",
+                    ""id"": ""d8ccfb12-ffba-4879-97e2-fcc3a88bdd6e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -483,6 +492,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9cac52bf-9246-4ddf-80d9-3f9bbca70f12"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""LevelCam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""236b0e58-7cf5-4dea-a0c2-4bd6392e5113"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad;Touch;Joystick"",
+                    ""action"": ""LevelCam"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1078,6 +1109,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_RotateRight = m_Player.FindAction("RotateRight", throwIfNotFound: true);
         m_Player_LeftRotate = m_Player.FindAction("LeftRotate", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
+        m_Player_LevelCam = m_Player.FindAction("LevelCam", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1157,6 +1189,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_RotateRight;
     private readonly InputAction m_Player_LeftRotate;
     private readonly InputAction m_Player_Escape;
+    private readonly InputAction m_Player_LevelCam;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1169,6 +1202,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @RotateRight => m_Wrapper.m_Player_RotateRight;
         public InputAction @LeftRotate => m_Wrapper.m_Player_LeftRotate;
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
+        public InputAction @LevelCam => m_Wrapper.m_Player_LevelCam;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1202,6 +1236,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Escape.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
                 @Escape.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
                 @Escape.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnEscape;
+                @LevelCam.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelCam;
+                @LevelCam.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelCam;
+                @LevelCam.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelCam;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1230,6 +1267,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Escape.started += instance.OnEscape;
                 @Escape.performed += instance.OnEscape;
                 @Escape.canceled += instance.OnEscape;
+                @LevelCam.started += instance.OnLevelCam;
+                @LevelCam.performed += instance.OnLevelCam;
+                @LevelCam.canceled += instance.OnLevelCam;
             }
         }
     }
@@ -1394,6 +1434,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnRotateRight(InputAction.CallbackContext context);
         void OnLeftRotate(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
+        void OnLevelCam(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

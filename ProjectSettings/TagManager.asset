@@ -17,6 +17,7 @@ TagManager:
   - UICamera
   - HelpText
   - PickupCoin
+  - LevelCam
   layers:
   - Default
   - TransparentFX
@@ -30,7 +31,7 @@ TagManager:
   - BoxWall
   - Player
   - Ads
-  - 
+  - Objective
   - 
   - 
   - 
