@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScreen.unity
     guid: dacdf88e516ba4cd7af0683949cf766c
   - enabled: 1
-    path: Assets/Scenes/Level 1.unity
+    path: Assets/Scenes/NfLevel 1.unity
     guid: 8677fb9cb978b604abe03fd154cc37e0
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 9437f3d772f664aad8c38e954b1c2d7a,
