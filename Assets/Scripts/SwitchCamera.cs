@@ -85,7 +85,6 @@ public class SwitchCamera : MonoBehaviour
         {
             camera1.SetActive(true);
             camera2.SetActive(false);
-            camera1.transform.LookAt(m_PlayerTransForm.transform.position);
             PlayerController.SideView = true;
             SetCurrentCameraTransform(cam1);
             ChangePerspective?.Invoke(PlayerController.SideView);
