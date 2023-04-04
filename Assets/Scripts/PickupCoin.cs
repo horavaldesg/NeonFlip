@@ -10,8 +10,7 @@ public class PickupCoin : MonoBehaviour
 
     private void Awake()
     {
-        m_PickUpCoinsPath = Resources.Load<StringVal>("ScriptableObjects/CoinsCollectedPath");
-        m_PickUpCoinsPath.val = "PickUpCoins" + SceneManager.GetActiveScene().name;
+        m_PickUpCoinsPath = Resources.Load<StringVal>("ScriptableObjects/Paths/CoinsCollectedPath");
     }
 
     private void OnTriggerEnter(Collider other)

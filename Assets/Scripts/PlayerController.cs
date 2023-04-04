@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerControls controls;
     public static event Action ToggleLevelCam;
+    public static event Action LevelEnded;
+    public static event Action ShowOptions;
     
     public static bool SideView = true;
     public static Vector2 _move;
@@ -51,12 +53,15 @@ public class PlayerController : MonoBehaviour
         controls.Player.LevelCam.performed += tgb => ToggleLevelCam?.Invoke();
 
         controls.Player.SwitchCamera.performed += tgb => switchCamera.Switch();
+        
+        controls.Player.Escape.performed += tgb => ShowOptions?.Invoke();
     }
 
     private void Start()
     {
         _initialPos = transform.position;
         m_JumpCt = 0;
+        Time.timeScale = 1;
     }
 
     private void OnEnable()
@@ -185,7 +190,7 @@ public class PlayerController : MonoBehaviour
         _checkPoint = gameObject.transform.position;
         if (hit.transform.CompareTag("Finish"))
         {
-            _switchScene.ChangeLevel(_nextLevelName);
+            LevelEnded?.Invoke();
         }
 
         if (hit.collider.CompareTag("Collectable"))

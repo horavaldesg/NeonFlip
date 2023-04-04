@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class SwitchScene : MonoBehaviour
 {
     public string scene;
-    public static string sceneLevel;
     int levelIndex = 0;
-   
-    // Start is called before the first frame update
-    void Start()
+
+    private void Start()
     {
         //UnityEngine.iOS.Device.hideHomeButton = true;
         //UnityEngine.iOS.Device.deferSystemGesturesMode = UnityEngine.iOS.SystemGestureDeferMode.All;
@@ -19,51 +18,39 @@ public class SwitchScene : MonoBehaviour
             PlayerPrefs.SetInt("LevelIndex", SceneManager.GetActiveScene().buildIndex);
         }
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        sceneLevel = scene;
-        //if(SceneManager.GetActiveScene().buildIndex > 5)
-        //{
-        //    levelIndex = 0;
-        //}
-        //sceneLevel =
-           
-    }
+    
     public void ChangeScene()
     {
-       
-        
-            levelIndex++;
-            PlayerPrefs.SetInt("LevelIndex", SceneManager.GetActiveScene().buildIndex);
+        levelIndex++;
+        PlayerPrefs.SetInt("LevelIndex", SceneManager.GetActiveScene().buildIndex);
 
-        
         SceneManager.LoadScene(scene);
         Debug.Log(levelIndex);
-
-
     }
 
     public void LoadLevel()
     {
-        int i = PlayerPrefs.GetInt("LevelIndex");
-        if(i == 0)
+        var i = PlayerPrefs.GetInt("LevelIndex");
+        if (i == 0)
         {
-            i ++;
+            i++;
         }
+        
         SceneManager.LoadScene(i);
         //Debug.Log(levelIndex);
-
     }
-    public void ChangeLevel(string scene)
+
+    public void ChangeLevel()
     {
         moveCharacter.currentObj = null;
         levelIndex++;
         PlayerPrefs.SetInt("LevelIndex", SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene(this.scene);
+        SceneManager.LoadScene(scene);
         //Debug.Log(levelIndex);
-        
     }
-    
+
+    public void GoToMain()
+    {
+        SceneManager.LoadScene("TitleScreen");
+    }
 }

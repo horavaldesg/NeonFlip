@@ -221,7 +221,7 @@ public class moveCharacter : MonoBehaviour
         if (hit.transform.CompareTag("Finish"))
         {
             currentObj = null;
-            GetComponent<SwitchScene>().ChangeLevel(changeScene);
+            GetComponent<SwitchScene>().ChangeLevel();
         }
 
         if (hit.transform.CompareTag("Elevator"))
