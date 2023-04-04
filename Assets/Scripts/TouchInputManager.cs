@@ -4,13 +4,14 @@ public class TouchInputManager : MonoBehaviour
 {
     [SerializeField] GameObject jumpButton;
     [SerializeField] GameObject rotateButtons;
-
+    [SerializeField] private bool showInputsWindows;
+    
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR_WIN
     private void Awake()
     {
-        gameObject.SetActive(false);
+        gameObject.SetActive(showInputsWindows);
     }
-#else 
+#else
     private void Awake()
     {
         gameObject.SetActive(true);
