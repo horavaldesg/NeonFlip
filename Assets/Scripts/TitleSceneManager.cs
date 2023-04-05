@@ -15,8 +15,7 @@ public class TitleSceneManager : MonoBehaviour
         for (var i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             var sceneName = Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i));
-            var editedSceneName = sceneName.Replace("Nf","");
-            m_LevelNames.Add(editedSceneName);
+            m_LevelNames.Add(sceneName);
         }
     }
 
@@ -31,7 +30,7 @@ public class TitleSceneManager : MonoBehaviour
     private void CreateLevelMenu(string levelName)
     {
         var levelButton = Instantiate(levelSelectButton, selectorParent);
-        levelButton.transform.parent = selectorParent;
+        levelButton.transform.SetParent(selectorParent);
         levelButton.TryGetComponent(out LevelSelectorButton levelSelectorButtonComp);
         levelSelectorButtonComp.SetText(levelName);
     }

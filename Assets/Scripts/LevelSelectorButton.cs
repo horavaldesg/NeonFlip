@@ -11,7 +11,8 @@ public class LevelSelectorButton : MonoBehaviour
    
    public void SetText(string levelName)
    {
-      levelNameText.SetText(levelName);
+      var editedSceneName = levelName.Replace("Nf","");
+      levelNameText.SetText(editedSceneName);
       SetLevelName(levelName);
    }
 
