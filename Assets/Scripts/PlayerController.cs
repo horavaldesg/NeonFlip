@@ -34,13 +34,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform weightLeft;
     [SerializeField] private float rotSpeed;
     [SerializeField] RectTransform indicatorTransform;
- 
+
+    [SerializeField] private Transform playerModelTransform;
+    
+
+    private Animator m_Animator;
+    
     private void Awake()
     {
         _canDetectCollisions = true;
         TryGetComponent(out _switchScene);
+        TryGetComponent(out m_Animator);
         controls = new PlayerControls();
         
+        controls.Player.Move.performed += tgb => _move = tgb.ReadValue<Vector2>();
         controls.Player.Move.performed += tgb => _move = tgb.ReadValue<Vector2>();
         controls.Player.Move.canceled += tgb => _move = Vector2.zero;
         controls.Player.Jump.started += tgb => Jump();
@@ -95,6 +102,25 @@ public class PlayerController : MonoBehaviour
         else
         {
             _grounded = false;
+        }
+
+        var movementMag = _move.normalized;
+        if (movementMag.x > 0)
+        {
+            m_Animator.SetBool("isWalking", true);
+            m_Animator.SetBool("isIdle", false);
+            playerModelTransform.localRotation = Quaternion.Euler(transform.localRotation.y, 180, transform.localRotation.z);
+        }
+        else if (movementMag.x < 0)
+        {
+            m_Animator.SetBool("isWalking", true);
+            m_Animator.SetBool("isIdle", false);
+            playerModelTransform.localRotation = Quaternion.Euler(transform.localRotation.y, 0, transform.localRotation.z);
+        }
+        else
+        {
+            m_Animator.SetBool("isWalking", false);
+            m_Animator.SetBool("isIdle", true);
         }
         
         cc.Move(_movement);

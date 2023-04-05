@@ -518,6 +518,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3149199146982290239, guid: eb5165af3f579854892ec4c9edd0cffc,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 5837175477900835520, guid: eb5165af3f579854892ec4c9edd0cffc,
         type: 3}
       propertyPath: scene
