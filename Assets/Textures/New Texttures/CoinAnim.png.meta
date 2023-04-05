@@ -144,10 +144,10 @@ TextureImporter:
       name: CoinAnim_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 348
-        height: 450
+        x: 7
+        y: 14
+        width: 341
+        height: 411
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -165,10 +165,10 @@ TextureImporter:
       name: CoinAnim_1
       rect:
         serializedVersion: 2
-        x: 348
-        y: 0
-        width: 348
-        height: 450
+        x: 399
+        y: 13
+        width: 279
+        height: 412
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -176,7 +176,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40f9be55c9704d14e81f0944a81fa819
+      spriteID: 6bffdf6e745ebb247b57ba8bfbf63d1f
       internalID: 705083844
       vertices: []
       indices: 
@@ -186,10 +186,10 @@ TextureImporter:
       name: CoinAnim_2
       rect:
         serializedVersion: 2
-        x: 696
-        y: 0
-        width: 348
-        height: 450
+        x: 794
+        y: 10
+        width: 212
+        height: 414
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,7 +197,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 12bee2872b6d9f04e82a4ec6119b4043
+      spriteID: bd6841f0ac1879444bb4f941018ac78e
       internalID: -1440612888
       vertices: []
       indices: 
@@ -207,10 +207,10 @@ TextureImporter:
       name: CoinAnim_3
       rect:
         serializedVersion: 2
-        x: 1044
-        y: 0
-        width: 348
-        height: 450
+        x: 1205
+        y: 13
+        width: 106
+        height: 412
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -218,7 +218,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ccf80e97ab336d44854906c82285949
+      spriteID: 79e0bd0559cb5a44f976fe4d5f520b02
       internalID: 238505802
       vertices: []
       indices: 
@@ -228,10 +228,10 @@ TextureImporter:
       name: CoinAnim_4
       rect:
         serializedVersion: 2
-        x: 1392
-        y: 0
-        width: 348
-        height: 450
+        x: 1586
+        y: 11
+        width: 64
+        height: 411
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -239,7 +239,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 469ee02b0f305ef4eaea08abbf218755
+      spriteID: df5a965563a37564fa677d50df010f1c
       internalID: -304290551
       vertices: []
       indices: 
