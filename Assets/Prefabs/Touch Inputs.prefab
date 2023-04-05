@@ -575,8 +575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799c50fe4a992ab4183a9e3db45b2fca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpButton: {fileID: 6557973638672049658}
-  rotateButtons: {fileID: 6557973637313213395}
+  jumpButton: {fileID: 6557973637313213395}
+  rotateButtons: {fileID: 6557973638672049658}
   showInputsWindows: 0
 --- !u!1 &6557973638511917140
 GameObject:
@@ -1462,10 +1462,10 @@ RectTransform:
   m_Father: {fileID: 6557973638318199670}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.095000006, y: 0.187}
-  m_AnchorMax: {x: 0.095000006, y: 0.187}
-  m_AnchoredPosition: {x: 58, y: 39}
-  m_SizeDelta: {x: 137, y: 109}
+  m_AnchorMin: {x: 0.107562505, y: 0.20988894}
+  m_AnchorMax: {x: 0.24325003, y: 0.44340745}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8616896244071785544
 CanvasRenderer:
