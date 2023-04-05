@@ -13,10 +13,6 @@ AnimationClip:
   m_UseHighQualityCurve: 1
   m_RotationCurves: []
   m_CompressedRotationCurves: []
-<<<<<<< Updated upstream
-  m_EulerCurves: []
-  m_PositionCurves: []
-=======
   m_EulerCurves:
   - curve:
       serializedVersion: 2
@@ -1023,19 +1019,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     path: Flipp/FlippRig/Root/Head/Body.L/Plug.L
->>>>>>> Stashed changes
-  m_ScaleCurves: []
-  m_FloatCurves: []
-  m_PPtrCurves: []
-  m_SampleRate: 60
-  m_WrapMode: 0
-  m_Bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  m_ClipBindingConstant:
-<<<<<<< Updated upstream
-    genericBindings: []
-=======
+
     genericBindings:
     - serializedVersion: 2
       path: 1962646410
@@ -1177,18 +1161,9 @@ AnimationClip:
       typeID: 4
       customType: 4
       isPPtrCurve: 0
->>>>>>> Stashed changes
-    pptrCurveMapping: []
-  m_AnimationClipSettings:
-    serializedVersion: 2
-    m_AdditiveReferencePoseClip: {fileID: 0}
-    m_AdditiveReferencePoseTime: 0
-    m_StartTime: 0
-<<<<<<< Updated upstream
+
     m_StopTime: 1
-=======
-    m_StopTime: 2
->>>>>>> Stashed changes
+
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -1203,10 +1178,7 @@ AnimationClip:
     m_KeepOriginalPositionXZ: 0
     m_HeightFromFeet: 0
     m_Mirror: 0
-<<<<<<< Updated upstream
-  m_EditorCurves: []
-  m_EulerEditorCurves: []
-=======
+
   m_EditorCurves:
   - curve:
       serializedVersion: 2
@@ -4881,7 +4853,3 @@ AnimationClip:
     path: Flipp/FlippRig/Root/Head/Body.R/Plug.R/UpperArm.R/MidArm.R/LowerArm.R/LowestArm.R
     classID: 4
     script: {fileID: 0}
->>>>>>> Stashed changes
-  m_HasGenericRootTransform: 0
-  m_HasMotionFloatCurves: 0
-  m_Events: []
