@@ -276,6 +276,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 2178633101124650088}
+<<<<<<< Updated upstream
     m_Position: {x: 190, y: 160, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 8784083788499745695}
@@ -283,6 +284,12 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -8261569802574994947}
     m_Position: {x: 440, y: 160, z: 0}
+=======
+    m_Position: {x: 200, y: 0, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 6016360258114252780}
+    m_Position: {x: 235, y: 65, z: 0}
+>>>>>>> Stashed changes
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -292,20 +299,32 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
+<<<<<<< Updated upstream
   m_DefaultState: {fileID: 8784083788499745695}
 --- !u!1102 &8784083788499745695
+=======
+  m_DefaultState: {fileID: 2178633101124650088}
+--- !u!1102 &6016360258114252780
+>>>>>>> Stashed changes
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
   m_Name: New State
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -4641148984218240714}
   - {fileID: 1547641230735178178}
+=======
+  m_Name: FlippIdle
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+>>>>>>> Stashed changes
   m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
@@ -315,7 +334,11 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
+<<<<<<< Updated upstream
   m_Motion: {fileID: 0}
+=======
+  m_Motion: {fileID: 7400000, guid: 6221f1b5063b3e541a971908d519b87e, type: 2}
+>>>>>>> Stashed changes
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
