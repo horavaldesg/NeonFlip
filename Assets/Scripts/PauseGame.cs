@@ -30,7 +30,6 @@ public class PauseGame : MonoBehaviour
     {
         m_BestScoreText = Resources.Load<StringVal>("ScriptableObjects/Paths/BestCoinsCollectedPath");
         m_BestTimeText = Resources.Load<StringVal>("ScriptableObjects/Paths/BestTimePath");
-        PlayerPrefs.SetInt(m_BestScoreText.val, 5);
         ShowNumberOfCoins(m_BestScoreText,coinsPanel, coinSprite);
         pauseMenu.SetActive(false);
     }

@@ -1737,7 +1737,7 @@ MonoBehaviour:
   currentTime: {fileID: 831185181480912617}
   bestCoinsPanel: {fileID: 831185180836862985}
   currentCoinsPanel: {fileID: 831185181022324817}
-  coinSprite: {fileID: 21300000, guid: 579d5c93548d776479d5c8fa6ccb8921, type: 3}
+  coinSprite: {fileID: -1522066551, guid: 03edec328da76b543af3307407e67074, type: 3}
 --- !u!114 &831185181893135800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1751,7 +1751,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: NfLevel 1
-  sceneLevel: 
 --- !u!1 &831185182056964489
 GameObject:
   m_ObjectHideFlags: 0

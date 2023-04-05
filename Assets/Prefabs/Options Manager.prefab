@@ -1248,7 +1248,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: TitleScreen
-  sceneLevel: 
 --- !u!1 &734777041139853161
 GameObject:
   m_ObjectHideFlags: 0
@@ -14936,7 +14935,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: TitleScreen
-  sceneLevel: MainMenu
 --- !u!114 &7299335516013320591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14953,7 +14951,7 @@ MonoBehaviour:
   pauseButtonPanel: {fileID: 6782528068472319436}
   bestTime: {fileID: 991840682178670026}
   coinsPanel: {fileID: 991840682341986813}
-  coinSprite: {fileID: 21300000, guid: 579d5c93548d776479d5c8fa6ccb8921, type: 3}
+  coinSprite: {fileID: -1522066551, guid: 03edec328da76b543af3307407e67074, type: 3}
 --- !u!1 &6782528069307783634
 GameObject:
   m_ObjectHideFlags: 0

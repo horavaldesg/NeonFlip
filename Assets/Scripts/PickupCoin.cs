@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PickupCoin : MonoBehaviour
 {
     private StringVal m_PickUpCoinsPath;
+    
 
     private void Awake()
     {

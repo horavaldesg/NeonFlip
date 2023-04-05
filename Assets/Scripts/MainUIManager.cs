@@ -16,6 +16,7 @@ public class MainUIManager : MonoBehaviour
     private StringVal m_BestCurrentTime;
     private float m_T;
     private int m_AmountOfCollectables;
+    private GameObject[] m_CoinCollectables;
 
 
     private void Awake()
@@ -40,8 +41,28 @@ public class MainUIManager : MonoBehaviour
         PlayerPrefs.GetInt(m_BestPickUpCoinsPath.val, 0);
 
         PlayerPrefs.GetFloat(m_BestCurrentTime.val, 0);
-        
-        m_AmountOfCollectables = GameObject.FindGameObjectsWithTag("PickupCoin").Length;
+
+        m_CoinCollectables = GameObject.FindGameObjectsWithTag("PickupCoin");
+        m_AmountOfCollectables = m_CoinCollectables.Length;
+    }
+
+    private void OnEnable()
+    {
+        SwitchCamera.ChangePerspective += TurnOnCoins;
+    }
+
+    private void OnDisable()
+    {
+        SwitchCamera.ChangePerspective += TurnOnCoins;
+    }
+
+    private void TurnOnCoins(bool state)
+    {
+        foreach (var coin in m_CoinCollectables)
+        {
+            if(coin)
+                coin.SetActive(state);
+        }
     }
 
     private void Update()

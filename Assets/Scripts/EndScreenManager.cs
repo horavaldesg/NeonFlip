@@ -55,7 +55,7 @@ public class EndScreenManager : MonoBehaviour
         var bestCoinsVal = PlayerPrefs.GetInt(m_BestPickUpCoinsPath.val);
         var bestTimeVal = PlayerPrefs.GetFloat(m_BestTimePath.val);
 
-        if (currentCoinsVal > bestCoinsVal)
+        if (currentCoinsVal >= bestCoinsVal)
         {
             PlayerPrefs.SetInt(m_BestPickUpCoinsPath.val, currentCoinsVal);
         }

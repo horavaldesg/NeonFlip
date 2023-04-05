@@ -78,7 +78,7 @@ public class SwitchCamera : MonoBehaviour
             camera1.SetActive(false);
             PlayerController.SideView = false;
             SetCurrentCameraTransform(cam2);
-            ChangePerspective?.Invoke(PlayerController.SideView);
+            ChangePerspective?.Invoke(!PlayerController.SideView);
         }
         //Side View
         else if (camera2.activeSelf)
@@ -87,7 +87,7 @@ public class SwitchCamera : MonoBehaviour
             camera2.SetActive(false);
             PlayerController.SideView = true;
             SetCurrentCameraTransform(cam1);
-            ChangePerspective?.Invoke(PlayerController.SideView);
+            ChangePerspective?.Invoke(!PlayerController.SideView);
         }
     }
 
