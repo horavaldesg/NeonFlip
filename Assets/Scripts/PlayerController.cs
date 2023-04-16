@@ -2,27 +2,30 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerControls controls;
+    public PlayerInput controls;
+    public static InputActionMap ActionMap;
+    
     public static event Action ToggleLevelCam;
     public static event Action LevelEnded;
     public static event Action ShowOptions;
     
     public static bool SideView = true;
-    public static Vector2 _move;
+    private static Vector2 _move;
     public bool _jump;
-    private Vector3 _movement;
-    private Vector3 _checkPoint;
-    private Vector3 _initialPos;
+    private Vector3 m_Movement;
+    private Vector3 m_CheckPoint;
+    private Vector3 m_InitialPos;
     private SwitchScene _switchScene;
-    private float _verticalSpeed = 0;
-    private float _gravity = -9.8f;
+    private float m_VerticalSpeed;
+    private const float Gravity = -9.8f;
     private int m_JumpCt;
     public bool _grounded;
     [HideInInspector] public bool doubleJump;
-    public static bool _canDetectCollisions;
+    public static bool CanDetectCollisions;
     [SerializeField] private string _nextLevelName;
     [SerializeField] private Transform checkPos;
     [SerializeField] private LayerMask groundMask;
@@ -33,52 +36,55 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform weightRight;
     [SerializeField] private Transform weightLeft;
     [SerializeField] private float rotSpeed;
-    [SerializeField] RectTransform indicatorTransform;
+    [SerializeField] private RectTransform indicatorTransform;
 
     [SerializeField] private Transform playerModelTransform;
     
 
     private Animator m_Animator;
-    
+    private static readonly int IsWalking = Animator.StringToHash("isWalking");
+    private static readonly int IsIdle = Animator.StringToHash("isIdle");
+
     private void Awake()
     {
-        _canDetectCollisions = true;
+        //Controls = new PlayerControls();
+        TryGetComponent(out controls);
+        ActionMap = controls.actions.FindActionMap("Player");
+        CanDetectCollisions = true;
         TryGetComponent(out _switchScene);
         TryGetComponent(out m_Animator);
-        controls = new PlayerControls();
         
-        controls.Player.Move.performed += tgb => _move = tgb.ReadValue<Vector2>();
-        controls.Player.Move.performed += tgb => _move = tgb.ReadValue<Vector2>();
-        controls.Player.Move.canceled += tgb => _move = Vector2.zero;
-        controls.Player.Jump.started += tgb => Jump();
-        controls.Player.RotateRight.performed += tgb => StartCoroutine(WaitToRotate(-90));
-        controls.Player.LeftRotate.performed += tgb => StartCoroutine(WaitToRotate(90));
-        controls.Player.RotateRight.performed -= tgb => StartCoroutine(WaitToRotate(-90));
-        controls.Player.LeftRotate.performed -= tgb => StartCoroutine(WaitToRotate(90));
-        controls.Player.Jump.canceled += tgb => _jump = false;
-
-        controls.Player.LevelCam.performed += tgb => ToggleLevelCam?.Invoke();
-
-        controls.Player.SwitchCamera.performed += tgb => switchCamera.Switch();
         
-        controls.Player.Escape.performed += tgb => ShowOptions?.Invoke();
+        ActionMap.FindAction("Move").performed += tgb => { _move = tgb.ReadValue<Vector2>(); };
+        //Controls.Player.Move.performed += tgb => { _move = tgb.ReadValue<Vector2>(); };
+        ActionMap.FindAction("Move").canceled += tgb => { _move = Vector2.zero; };
+        ActionMap.FindAction("Jump").started += tgb => Jump();
+        ActionMap.FindAction("RotateRight").performed += tgb => StartCoroutine(WaitToRotate(-90));
+        ActionMap.FindAction("LeftRotate").performed += tgb => StartCoroutine(WaitToRotate(90));
+        ActionMap.FindAction("Jump").canceled += tgb => { _jump = false; };
+
+        ActionMap.FindAction("LevelCam").performed += tgb => ToggleLevelCam?.Invoke();
+
+        ActionMap.FindAction("SwitchCamera").performed += tgb => switchCamera.Switch();
+        
+        ActionMap.FindAction("Escape").performed += tgb => ShowOptions?.Invoke();
     }
 
     private void Start()
     {
-        _initialPos = transform.position;
+        m_InitialPos = transform.position;
         m_JumpCt = 0;
         Time.timeScale = 1;
     }
 
     private void OnEnable()
     {
-        controls.Player.Enable();
+        ActionMap.Enable();
     }
     
     private void OnDisable()
     {
-        controls.Player.Disable(); 
+        ActionMap.Disable(); 
     }
     
     private void Jump()
@@ -91,13 +97,13 @@ public class PlayerController : MonoBehaviour
     {
         (SideView ? (Action)FreeMove : SideWaysMove)();
         //Gravity
-        _verticalSpeed += _gravity * Time.deltaTime;
+        m_VerticalSpeed += Gravity * Time.deltaTime;
 
-        _movement += transform.up * (_verticalSpeed * Time.deltaTime);
-        if (Physics.CheckSphere(checkPos.position,0.5f, groundMask) && _verticalSpeed <= 0)
+        m_Movement += transform.up * (m_VerticalSpeed * Time.deltaTime);
+        if (Physics.CheckSphere(checkPos.position,0.5f, groundMask) && m_VerticalSpeed <= 0)
         {
             _grounded = true;
-            _verticalSpeed = 0;
+            m_VerticalSpeed = 0;
         }
         else
         {
@@ -107,31 +113,31 @@ public class PlayerController : MonoBehaviour
         var movementMag = _move.normalized;
         if (movementMag.x > 0)
         {
-            m_Animator.SetBool("isWalking", true);
-            m_Animator.SetBool("isIdle", false);
+            m_Animator.SetBool(IsWalking, true);
+            m_Animator.SetBool(IsIdle, false);
             playerModelTransform.localRotation = Quaternion.Euler(transform.localRotation.y, 180, transform.localRotation.z);
         }
         else if (movementMag.x < 0)
         {
-            m_Animator.SetBool("isWalking", true);
-            m_Animator.SetBool("isIdle", false);
+            m_Animator.SetBool(IsWalking, true);
+            m_Animator.SetBool(IsIdle, false);
             playerModelTransform.localRotation = Quaternion.Euler(transform.localRotation.y, 0, transform.localRotation.z);
         }
         else
         {
-            m_Animator.SetBool("isWalking", false);
-            m_Animator.SetBool("isIdle", true);
+            m_Animator.SetBool(IsWalking, false);
+            m_Animator.SetBool(IsIdle, true);
         }
         
-        cc.Move(_movement);
+        cc.Move(m_Movement);
     }
 
     private void SideWaysMove()
     {
-        _movement = Vector3.zero;
+        m_Movement = Vector3.zero;
        
         var ySpeed = _move.x * playerSpeed * Time.deltaTime;
-        _movement += transform.right * ySpeed;
+        m_Movement += transform.right * ySpeed;
         
         //Grounded
         
@@ -142,7 +148,7 @@ public class PlayerController : MonoBehaviour
                 if (_jump && m_JumpCt != 2)
                 {
                     m_JumpCt++;
-                    _verticalSpeed = jumpSpeed;
+                    m_VerticalSpeed = jumpSpeed;
                     _jump = false;
                 }
 
@@ -156,7 +162,7 @@ public class PlayerController : MonoBehaviour
                 m_JumpCt = 0;
                 if (!_jump || !_grounded || doubleJump) return;
                 //jumpCt = 0;
-                _verticalSpeed = jumpSpeed;
+                m_VerticalSpeed = jumpSpeed;
                 _jump = false;
                 break;
             }
@@ -165,11 +171,11 @@ public class PlayerController : MonoBehaviour
     
     private void FreeMove()
     {
-        _movement = Vector3.zero;
+        m_Movement = Vector3.zero;
         var xSpeed = _move.y * playerSpeed * Time.deltaTime;
-        _movement += transform.forward * xSpeed;
+        m_Movement += transform.forward * xSpeed;
         var ySpeed = _move.x * playerSpeed * Time.deltaTime;
-        _movement += transform.right * ySpeed;
+        m_Movement += transform.right * ySpeed;
     }
     
 
@@ -186,13 +192,13 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
 
-        _canDetectCollisions = true;
+        CanDetectCollisions = true;
     }
 
     public void RespawnPlayer()
     {
         cc.enabled = false;
-        cc.transform.position = _checkPoint;
+        cc.transform.position = m_CheckPoint;
         cc.enabled = true;
         transform.rotation = Quaternion.Euler(0, 0, 0);
         indicatorTransform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -203,7 +209,7 @@ public class PlayerController : MonoBehaviour
     public void RestartPlayer()
     {
         cc.enabled = false;
-        cc.transform.position = _initialPos;
+        cc.transform.position = m_InitialPos;
         cc.enabled = true;
         transform.rotation = Quaternion.Euler(0, 0, 0);
         indicatorTransform.localRotation = Quaternion.Euler(0, 0, 0);
@@ -213,17 +219,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        _checkPoint = gameObject.transform.position;
+        m_CheckPoint = gameObject.transform.position;
         if (hit.transform.CompareTag("Finish"))
         {
             LevelEnded?.Invoke();
         }
 
-        if (hit.collider.CompareTag("Collectable"))
-        {
-            doubleJump = true;
-            hit.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            hit.gameObject.GetComponent<Collider>().enabled = false;
-        }
+        if (!hit.collider.CompareTag("Collectable")) return;
+        doubleJump = true;
+        hit.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        hit.gameObject.GetComponent<Collider>().enabled = false;
     }
 }

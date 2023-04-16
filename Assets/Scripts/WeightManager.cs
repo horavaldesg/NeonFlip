@@ -16,7 +16,7 @@ public class WeightManager : MonoBehaviour
     {
         if(!PlayerController.SideView) return;
         if (other.gameObject.layer != 6) return;
-        if(!PlayerController._canDetectCollisions) return;
+        if(!PlayerController.CanDetectCollisions) return;
         /*var whereToRotate = Vector3.Dot(transform.up, Vector3.down) > 0 ? 90 : -90;
         
         if (Vector3.Dot(-transform.right, Vector3.down) > 0)
@@ -25,7 +25,7 @@ public class WeightManager : MonoBehaviour
         }
         */
         var whereToRotate = 90.0f;
-        PlayerController._canDetectCollisions = false;
+        PlayerController.CanDetectCollisions = false;
         StartCoroutine(_playerController.WaitToRotate(whereToRotate));
     }
 }

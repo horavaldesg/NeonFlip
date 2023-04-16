@@ -238,6 +238,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         {
             if (!ResolveActionAndBinding(out var action, out var bindingIndex))
                 return;
+            
+            action.actionMap.Disable();
 
             // If the binding is a composite, we need to rebind each part in turn.
             if (action.bindings[bindingIndex].isComposite)
@@ -250,6 +252,8 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             {
                 PerformInteractiveRebind(action, bindingIndex);
             }
+            
+            action.actionMap.Enable();
         }
 
         private void PerformInteractiveRebind(InputAction action, int bindingIndex, bool allCompositeParts = false)

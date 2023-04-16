@@ -7,12 +7,21 @@ using UnityEngine.UI;
 
 public class PauseGame : MonoBehaviour
 {
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
+    [SerializeField] private GameObject rebindMenu;
+    #elif UNITY_ANDROID || UNITY_IOS
+    [SerializeField] private GameObject rebindButton;
+    private void Awake()
+    {
+        Destroy(rebindButton);
+    }
+#endif
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject pauseButtonPanel;
     [SerializeField] private TextMeshProUGUI bestTime;
     [SerializeField] private Transform coinsPanel;
     [SerializeField] private Sprite coinSprite;
-    
+
     private StringVal m_BestScoreText;
     private StringVal m_BestTimeText;
 
@@ -30,22 +39,45 @@ public class PauseGame : MonoBehaviour
     {
         m_BestScoreText = Resources.Load<StringVal>("ScriptableObjects/Paths/BestCoinsCollectedPath");
         m_BestTimeText = Resources.Load<StringVal>("ScriptableObjects/Paths/BestTimePath");
-        ShowNumberOfCoins(m_BestScoreText,coinsPanel, coinSprite);
+        ShowNumberOfCoins(m_BestScoreText, coinsPanel, coinSprite);
         pauseMenu.SetActive(false);
     }
 
     public void PauseMenu()
     {
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX 
+        if (rebindMenu.activeSelf)
+        {
+            rebindMenu.SetActive(false);
+            pauseMenu.SetActive(false);
+        }
+        else
+        {
+            pauseMenu.SetActive(!pauseMenu.activeSelf);
+        }
+#else
         pauseMenu.SetActive(!pauseMenu.activeSelf);
+#endif
         pauseButtonPanel.SetActive(!pauseButtonPanel.activeSelf);
         bestTime.SetText(PlayerPrefs.GetFloat(m_BestTimeText.val).ToString("##"));
         OptionsPause();
     }
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
+    public void ShowRebinds(bool state)
+    {
+        rebindMenu.SetActive(state);
+    }
+#endif
+    public void ShowOptions(bool state)
+    {
+        pauseMenu.SetActive(state);
+    }
+
 
     public static void ShowNumberOfCoins(StringVal m_BestScoreText, Transform coinsPanel, Sprite coinSprite)
     {
         var numberOfCoins = PlayerPrefs.GetInt(m_BestScoreText.val);
-        for(var i = 0; i < numberOfCoins; i++)
+        for (var i = 0; i < numberOfCoins; i++)
         {
             var coinsCollected = new GameObject("coinsCollected");
             coinsCollected.transform.parent = coinsPanel.transform;
@@ -60,11 +92,11 @@ public class PauseGame : MonoBehaviour
             coinsCollected.GetComponent<Image>().sprite = coinSprite;
         }
     }
-    
-    
+
+
     public void OptionsPause()
     {
-        if(Time.timeScale == 1)
+        if (Time.timeScale == 1)
         {
             Time.timeScale = 0;
         }
