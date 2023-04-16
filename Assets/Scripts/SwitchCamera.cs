@@ -22,6 +22,7 @@ public class SwitchCamera : MonoBehaviour
     private Transform m_PlayerTransForm;
     
     private GameObject levelCamera;
+    private static readonly int Mode = Shader.PropertyToID("_Mode");
 
     // Start is called before the first frame update
     private void Start()
@@ -57,13 +58,20 @@ public class SwitchCamera : MonoBehaviour
                 out var hit, 100.0f, layerMask))
         {
             if (layerMask == LayerMask.NameToLayer("Player")) return;
-            hit.collider.gameObject.TryGetComponent(out _currentMeshRenderer); 
+            hit.collider.gameObject.TryGetComponent(out _currentMeshRenderer);
+            _currentMeshRenderer.material.SetFloat(Mode, 2);
+            transparentGround = _currentMeshRenderer.material;
+            transparentGround.color = new Color(transparentGround.color.r, transparentGround.color.g,
+                transparentGround.color.b, 0.5f);
             _currentMeshRenderer.material = transparentGround;
             //Debug.Log(hit.collider.gameObject.name + "Collided With Ground");
         }
         else
         {
             if (!_currentMeshRenderer) return;
+            solidGround = _currentMeshRenderer.material;
+            solidGround.color = new Color(solidGround.color.r, solidGround.color.g,
+                solidGround.color.b, 1);
             _currentMeshRenderer.material = solidGround;
         }
     }
