@@ -179,7 +179,12 @@ public class SwitchCamera : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(y, x, 0);
         if (m_MouseDown)
         {
-            PlayerController.ActionMap.FindAction("Look").performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
+PlayerController.ActionMap.FindAction("Look").performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
+#else
+            PlayerController.controls.Player.Look.performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
+            #endif
+            
             x += m_CameraInput.x * xRotSpeed * 0.02f;
             y -= m_CameraInput.y * yRotSpeed * 0.02f;
             y = ClampAngle(y, -45, 45);

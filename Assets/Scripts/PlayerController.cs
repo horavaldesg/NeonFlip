@@ -7,16 +7,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public PlayerInput controls;
-    public static InputActionMap ActionMap;
-    
     public static event Action ToggleLevelCam;
     public static event Action LevelEnded;
     public static event Action ShowOptions;
     public static event Action SwitchCamera;
 
     public static event Action MouseDown;
-     public static event Action MouseUp;
+    public static event Action MouseUp;
     
     public static bool SideView = true;
     private static Vector2 _move;
@@ -60,7 +57,11 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsIdle = Animator.StringToHash("isIdle");
     private static readonly int IsJumping = Animator.StringToHash("isJumping");
     private static readonly int landed = Animator.StringToHash("landed");
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
 
+    public PlayerInput controls;
+    public static InputActionMap ActionMap;
+   
 
     private InputAction m_Move;
     private InputAction m_JumpAction;
@@ -70,7 +71,7 @@ public class PlayerController : MonoBehaviour
     private InputAction m_SwitchCamera;
     private InputAction m_Escape;
     private InputAction m_LookStart;
-
+    
     private void Awake()
     {
         //Controls = new PlayerControls();
@@ -87,6 +88,8 @@ public class PlayerController : MonoBehaviour
         m_SwitchCamera = ActionMap.FindAction("SwitchCamera");
         m_Escape = ActionMap.FindAction("Escape");
         m_LookStart = ActionMap.FindAction("LookStart");
+        m_Move.performed += tgb => { _move = tgb.ReadValue<Vector2>(); };
+        m_Move.canceled += tgb => { _move = Vector2.zero; };
     }
 
     private void Start()
@@ -102,9 +105,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         ActionMap.Enable();
-        m_Move.performed += tgb => { _move = tgb.ReadValue<Vector2>(); };
-        //Controls.Player.Move.performed += tgb => { _move = tgb.ReadValue<Vector2>(); };
-        m_Move.canceled += tgb => { _move = Vector2.zero; };
+       
         m_JumpAction.started += tgb => Jump();
         m_RotateRight.performed += tgb => StartCoroutine(WaitToRotate(-90));
         m_LeftRotate.performed += tgb => StartCoroutine(WaitToRotate(90));
@@ -134,6 +135,57 @@ public class PlayerController : MonoBehaviour
         m_LookStart.Disable();
         ActionMap.Disable();
     }
+#else
+    public static PlayerControls controls;
+    private void Awake()
+    {
+        var playerInput = GetComponent<PlayerInput>();
+        Destroy(playerInput);
+        CanDetectCollisions = true;
+        TryGetComponent(out _switchScene);
+        TryGetComponent(out m_Animator);
+        controls = new PlayerControls();
+        
+        controls.Player.Move.performed += tgb => _move = tgb.ReadValue<Vector2>();
+        controls.Player.Move.canceled += tgb => _move = Vector2.zero;
+        controls.Player.Jump.started += tgb => Jump();
+        controls.Player.RotateRight.performed += tgb => StartCoroutine(WaitToRotate(-90));
+        controls.Player.LeftRotate.performed += tgb => StartCoroutine(WaitToRotate(90));
+        controls.Player.RotateRight.performed -= tgb => StartCoroutine(WaitToRotate(-90));
+        controls.Player.LeftRotate.performed -= tgb => StartCoroutine(WaitToRotate(90));
+        //controls.Player.Jump.canceled += tgb => { _jump = false; };
+
+        controls.Player.LevelCam.performed += tgb => ToggleLevelCam?.Invoke();
+
+        controls.Player.SwitchCamera.performed += tgb => switchCamera.Switch();
+        
+        controls.Player.Escape.performed += tgb => ShowOptions?.Invoke();
+        controls.Player.LookStart.performed += tgb => MouseDown?.Invoke();
+        controls.Player.LookStart.canceled += tgb => MouseUp?.Invoke();
+    }
+
+    private void Start()
+    {
+        m_InitialPos = transform.position;
+        m_JumpCt = 0;
+        Time.timeScale = 1;
+        m_CanRotate = true;
+        m_CurrentRotates = 0;
+        rotateCount.SetText(amountOfRotates.ToString());
+    }
+
+    private void OnEnable()
+    {
+        controls.Player.Enable();
+    }
+    
+    private void OnDisable()
+    {
+        controls.Player.Disable(); 
+    }
+#endif
+ 
+  
 
     public void TriggerJump()
     {
@@ -176,64 +228,44 @@ public class PlayerController : MonoBehaviour
         }
 
         var movementMag = _move.normalized;
-      
-        switch (movementMag.x)
-        {
-            case > 0 when movementMag.y == 0:
-                RotatePlayer(180);
-                break;
-            case < 0 when movementMag.y == 0:
-                RotatePlayer(0);
-                break;
-            default:
-            {
-                switch (movementMag.y)
-                {
-                    //Side Rotation
-                    case > 0 when movementMag.x == 0:
-                        if(SideView) RotatePlayer(90);
-                        break;
-                    case < 0 when movementMag.x == 0:
-                        if(SideView) RotatePlayer(-90);
-                        break;
-                    case < 0 when movementMag.x > 0:
-                    {
-                        if(SideView) RotatePlayer(-145);
-                        break;
-                    }
-                    
-                    case < 0 when movementMag.x < 0:
-                    {
-                        if(SideView) RotatePlayer(-45);
-                        break;
-                    }
-                    case > 0 when movementMag.x > 0:
-                    {
-                        if(SideView) RotatePlayer(145);
-                        break;
-                    }
-                    case > 0 when movementMag.x < 0:
-                    {
-                        if(SideView) RotatePlayer(45);
-                        break;
-                    }
-                    default:
-                        m_Animator.SetBool(IsWalking, false);
-                        m_Animator.SetBool(IsIdle, true);
-                        break;
-                }
+      Debug.Log(movementMag);
+      if(!SideView)
+      {
+          switch (movementMag.x)
+          {
+              case > 0 when movementMag.y < 0.2f:
+                  RotatePlayer(180);
+                  break;
+              case < 0 when movementMag.y < 0.2f:
+                  RotatePlayer(0);
+                  break;
+          }
+      }
+      else
+      {
+          playerModelTransform.transform.localRotation = 
+              Quaternion.Slerp(playerModelTransform.transform.localRotation, 
+                  Quaternion.LookRotation(new Vector3(movementMag.y, 0, -movementMag.x)), Time.deltaTime * 40f);
+      }
 
-                break;
-            }
-        }
+      if (movementMag.magnitude == 0)
+      {
+          m_Animator.SetBool(IsWalking, false);
+          m_Animator.SetBool(IsIdle, true);
+          playerModelTransform.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+      }
+      else
+      {
+          m_Animator.SetBool(IsWalking, true);
+          m_Animator.SetBool(IsIdle, false);
+      }
+   
 
         cc.Move(m_Movement);
     }
 
     private void RotatePlayer(float rot)
     {
-        m_Animator.SetBool(IsWalking, true);
-        m_Animator.SetBool(IsIdle, false);
         playerModelTransform.localRotation =
                 Quaternion.Euler(transform.localRotation.y, rot, transform.localRotation.z);
     }
