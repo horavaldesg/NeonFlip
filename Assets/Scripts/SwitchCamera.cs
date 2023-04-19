@@ -80,6 +80,7 @@ public class SwitchCamera : MonoBehaviour
         PlayerController.MouseDown += MouseDown;
         PlayerController.MouseUp += MouseUp;
         PlayerController.SwitchCamera += Switch;
+        RotateCameraButton.ButtonDown += PointerHandler;
     }
 
     private void OnDisable()
@@ -88,6 +89,7 @@ public class SwitchCamera : MonoBehaviour
         PlayerController.MouseDown -= MouseDown;
         PlayerController.MouseUp -= MouseUp;
         PlayerController.SwitchCamera -= Switch;
+        RotateCameraButton.ButtonDown -= PointerHandler;
     }
 
     private void MouseDown()
@@ -200,5 +202,13 @@ public class SwitchCamera : MonoBehaviour
         if (angle < -360) angle += 360;
         if (angle > 360) angle -= 360;
         return Mathf.Clamp(angle, min, max);
+    }
+
+    private void PointerHandler(bool state)
+    {
+        m_MouseDown = state;
+        if (m_MouseDown) return;
+        transform.localRotation = m_InitialRotation;
+        transform.localPosition = m_InitialPosition;
     }
 }

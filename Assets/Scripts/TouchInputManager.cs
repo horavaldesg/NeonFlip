@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TouchInputManager : MonoBehaviour
 {
     [SerializeField] GameObject jumpButton;
     [SerializeField] GameObject rotateButtons;
+    [SerializeField] GameObject panButton;
     [SerializeField] private bool showInputsWindows;
     
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX || UNITY_EDITOR_WIN
@@ -27,11 +30,12 @@ public class TouchInputManager : MonoBehaviour
     {
         SwitchCamera.ChangePerspective -= ChangePerspective;
     }
-
+    
     private void ChangePerspective(bool state)
     {
         jumpButton.SetActive(!state);
         rotateButtons.SetActive(state);
+        panButton.SetActive(!state);
     }
 
 #endif

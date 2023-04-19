@@ -1580,50 +1580,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6707523040042468506, guid: 46d9b5e02e82f0c44b28840d888b75f9,
+    - target: {fileID: 7178541658199737281, guid: 46d9b5e02e82f0c44b28840d888b75f9,
         type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.9642494
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707523040042468506, guid: 46d9b5e02e82f0c44b28840d888b75f9,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.7032592
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707523040042468506, guid: 46d9b5e02e82f0c44b28840d888b75f9,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.86524975
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707523040042468506, guid: 46d9b5e02e82f0c44b28840d888b75f9,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5392447
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707523040042468506, guid: 46d9b5e02e82f0c44b28840d888b75f9,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707523040042468506, guid: 46d9b5e02e82f0c44b28840d888b75f9,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707523040042468506, guid: 46d9b5e02e82f0c44b28840d888b75f9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6707523040042468506, guid: 46d9b5e02e82f0c44b28840d888b75f9,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8953710650840493778, guid: 46d9b5e02e82f0c44b28840d888b75f9,
         type: 3}
       propertyPath: m_Name
       value: Right Stick
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953710650840493778, guid: 46d9b5e02e82f0c44b28840d888b75f9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46d9b5e02e82f0c44b28840d888b75f9, type: 3}

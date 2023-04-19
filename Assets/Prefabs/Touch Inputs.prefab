@@ -713,7 +713,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpButton: {fileID: 6557973637313213395}
   rotateButtons: {fileID: 6557973638672049658}
+  panButton: {fileID: 8953710650840493778}
   showInputsWindows: 0
+  rotateButton: {fileID: 0}
 --- !u!1 &6557973638511917140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1667,8 +1669,9 @@ GameObject:
   - component: {fileID: 5731817479085107901}
   - component: {fileID: 296354018729952869}
   - component: {fileID: 9024541308237199961}
+  - component: {fileID: 7067398387071683170}
   m_Layer: 5
-  m_Name: LeftStick (1)
+  m_Name: Right Stick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1690,8 +1693,8 @@ RectTransform:
   m_Father: {fileID: 6557973638318199670}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.107562505, y: 0.20988894}
-  m_AnchorMax: {x: 0.24325003, y: 0.44340745}
+  m_AnchorMin: {x: 0.86524975, y: 0.5392447}
+  m_AnchorMax: {x: 0.9642494, y: 0.7032592}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1747,3 +1750,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MovementRange: 30
   m_ControlPath: <Gamepad>/rightStick
+--- !u!114 &7067398387071683170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8953710650840493778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33188774b906aeb4abfce97ded393998, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
