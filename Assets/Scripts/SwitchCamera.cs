@@ -82,7 +82,6 @@ public class SwitchCamera : MonoBehaviour
         if (camera1.activeSelf)
         {
             camera2.SetActive(true);
-            camera2.transform.LookAt(m_PlayerTransForm.transform.position);
             camera1.SetActive(false);
             PlayerController.SideView = false;
             SetCurrentCameraTransform(cam2);
