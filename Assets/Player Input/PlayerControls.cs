@@ -561,9 +561,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9fdcb5b0-1360-4911-9f1a-7c0c59654b0b"",
-                    ""path"": ""<Touchscreen>/touch*/Press"",
-                    ""interactions"": ""Hold"",
+                    ""id"": ""16f9be65-f21f-4630-a231-58b1b683ee6b"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad;Touch"",
                     ""action"": ""LookStart"",
@@ -572,8 +572,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""16f9be65-f21f-4630-a231-58b1b683ee6b"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""id"": ""9bf9d361-68c9-493f-b7b7-0499fc097e76"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad;Touch"",

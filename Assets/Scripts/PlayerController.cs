@@ -61,8 +61,7 @@ public class PlayerController : MonoBehaviour
 
     public PlayerInput controls;
     public static InputActionMap ActionMap;
-   
-
+    
     private InputAction m_Move;
     private InputAction m_JumpAction;
     private InputAction m_RotateRight;
@@ -162,6 +161,7 @@ public class PlayerController : MonoBehaviour
         controls.Player.Escape.performed += tgb => ShowOptions?.Invoke();
         controls.Player.LookStart.performed += tgb => MouseDown?.Invoke();
         controls.Player.LookStart.canceled += tgb => MouseUp?.Invoke();
+        
     }
 
     private void Start()
@@ -252,7 +252,7 @@ public class PlayerController : MonoBehaviour
       {
           m_Animator.SetBool(IsWalking, false);
           m_Animator.SetBool(IsIdle, true);
-          playerModelTransform.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+          playerModelTransform.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
       }
       else
       {
