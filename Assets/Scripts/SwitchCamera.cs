@@ -79,6 +79,7 @@ public class SwitchCamera : MonoBehaviour
         PlayerController.ToggleLevelCam += ToggleLevelCam;
         PlayerController.MouseDown += MouseDown;
         PlayerController.MouseUp += MouseUp;
+        PlayerController.SwitchCamera += Switch;
     }
 
     private void OnDisable()
@@ -86,6 +87,7 @@ public class SwitchCamera : MonoBehaviour
         PlayerController.ToggleLevelCam -= ToggleLevelCam;
         PlayerController.MouseDown -= MouseDown;
         PlayerController.MouseUp -= MouseUp;
+        PlayerController.SwitchCamera -= Switch;
     }
 
     private void MouseDown()

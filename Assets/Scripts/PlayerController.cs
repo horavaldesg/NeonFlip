@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public static event Action ToggleLevelCam;
     public static event Action LevelEnded;
     public static event Action ShowOptions;
+    public static event Action SwitchCamera;
 
     public static event Action MouseDown;
      public static event Action MouseUp;
@@ -48,6 +49,15 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int IsIdle = Animator.StringToHash("isIdle");
 
+    private InputAction m_Move;
+    private InputAction m_JumpAction;
+    private InputAction m_RotateRight;
+    private InputAction m_LeftRotate;
+    private InputAction m_LevelCam;
+    private InputAction m_SwitchCamera;
+    private InputAction m_Escape;
+    private InputAction m_LookStart;
+    
     private void Awake()
     {
         //Controls = new PlayerControls();
@@ -56,25 +66,14 @@ public class PlayerController : MonoBehaviour
         CanDetectCollisions = true;
         TryGetComponent(out _switchScene);
         TryGetComponent(out m_Animator);
-        
-        
-        ActionMap.FindAction("Move").performed += tgb => { _move = tgb.ReadValue<Vector2>(); };
-        //Controls.Player.Move.performed += tgb => { _move = tgb.ReadValue<Vector2>(); };
-        ActionMap.FindAction("Move").canceled += tgb => { _move = Vector2.zero; };
-        ActionMap.FindAction("Jump").started += tgb => Jump();
-        ActionMap.FindAction("RotateRight").performed += tgb => StartCoroutine(WaitToRotate(-90));
-        ActionMap.FindAction("LeftRotate").performed += tgb => StartCoroutine(WaitToRotate(90));
-        ActionMap.FindAction("Jump").canceled += tgb => { _jump = false; };
-
-        ActionMap.FindAction("LevelCam").performed += tgb => ToggleLevelCam?.Invoke();
-
-        ActionMap.FindAction("SwitchCamera").performed += tgb => switchCamera.Switch();
-        
-        ActionMap.FindAction("Escape").performed += tgb => ShowOptions?.Invoke();
-
-        ActionMap.FindAction("LookStart").performed += tgb => MouseDown?.Invoke();
-        
-        ActionMap.FindAction("LookStart").canceled += tgb => MouseUp?.Invoke();
+        m_Move = ActionMap.FindAction("Move");
+        m_JumpAction = ActionMap.FindAction("Jump");
+        m_RotateRight = ActionMap.FindAction("RotateRight");
+        m_LeftRotate = ActionMap.FindAction("LeftRotate");
+        m_LevelCam = ActionMap.FindAction("LevelCam");
+        m_SwitchCamera = ActionMap.FindAction("SwitchCamera");
+        m_Escape = ActionMap.FindAction("Escape");
+        m_LookStart = ActionMap.FindAction("LookStart");
     }
 
     private void Start()
@@ -87,13 +86,39 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         ActionMap.Enable();
+        m_Move.performed += tgb => { _move = tgb.ReadValue<Vector2>(); };
+        //Controls.Player.Move.performed += tgb => { _move = tgb.ReadValue<Vector2>(); };
+        m_Move.canceled += tgb => { _move = Vector2.zero; };
+        m_JumpAction.started += tgb => Jump();
+        m_RotateRight.performed += tgb => StartCoroutine(WaitToRotate(-90));
+        m_LeftRotate.performed += tgb => StartCoroutine(WaitToRotate(90));
+        m_JumpAction.canceled += tgb => { _jump = false; };
+
+        m_LevelCam.performed += tgb => ToggleLevelCam?.Invoke();
+
+        m_SwitchCamera.performed += tgb => SwitchCamera?.Invoke();
+        
+        m_Escape.performed += tgb => ShowOptions?.Invoke();
+
+        m_LookStart.performed += tgb => MouseDown?.Invoke();
+        
+        m_LookStart.canceled += tgb => MouseUp?.Invoke();
     }
-    
+
     private void OnDisable()
     {
-        ActionMap.Disable(); 
+        m_Move.Disable();
+        m_JumpAction.Disable();
+        m_RotateRight.Disable();
+        m_LeftRotate.Disable();
+        m_JumpAction.Disable();
+        m_LevelCam.Disable();
+        m_SwitchCamera.Disable();
+        m_Escape.Disable();
+        m_LookStart.Disable();
+        ActionMap.Disable();
     }
-    
+
     private void Jump()
     {
         if(SideView) return;
@@ -241,7 +266,7 @@ public class PlayerController : MonoBehaviour
             totalAdded += increment;
             yield return null;
         }
-
+        
         CanDetectCollisions = true;
     }
 
