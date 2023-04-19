@@ -67,7 +67,8 @@ public class PlayerController : MonoBehaviour
     private InputAction m_SwitchCamera;
     private InputAction m_Escape;
     private InputAction m_LookStart;
-    
+    private static readonly int IsJumping = Animator.StringToHash("isJumping");
+
     private void Awake()
     {
         //Controls = new PlayerControls();
@@ -94,7 +95,6 @@ public class PlayerController : MonoBehaviour
         m_CanRotate = true;
         m_CurrentRotates = 0;
         rotateCount.SetText(amountOfRotates.ToString());
-
     }
 
     private void OnEnable()
@@ -133,10 +133,21 @@ public class PlayerController : MonoBehaviour
         ActionMap.Disable();
     }
 
-    private void Jump()
+    public void TriggerJump()
     {
         if(SideView) return;
         _jump = true;
+    }
+
+    public void JumpEnded()
+    {
+        _jump = false;
+        m_Animator.SetBool(IsJumping, false);
+    }
+    
+    private void Jump()
+    {
+        m_Animator.SetBool(IsJumping, true);
     }
 
     private void Update()

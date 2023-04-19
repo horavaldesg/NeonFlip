@@ -953,11 +953,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6137984394545944292, guid: eb5165af3f579854892ec4c9edd0cffc,
-        type: 3}
-      propertyPath: rotateCoolDown
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 6137984394545944293, guid: eb5165af3f579854892ec4c9edd0cffc,
         type: 3}
       propertyPath: m_RootOrder
