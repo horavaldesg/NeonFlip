@@ -39,7 +39,8 @@ public class SwitchCamera : MonoBehaviour
 
     private Quaternion m_InitialRotation;
     private Vector3 m_InitialPosition;
-    
+
+    [SerializeField] private Renderer renderer;
     // Start is called before the first frame update
     private void Start()
     {
@@ -47,7 +48,6 @@ public class SwitchCamera : MonoBehaviour
         camera2 = GameObject.FindGameObjectWithTag("MainCamera2");
         levelCamera = GameObject.FindGameObjectWithTag("LevelCam");
         m_PlayerTransForm = GameObject.FindGameObjectWithTag("Player").transform;
-        
         camera1.TryGetComponent(out cam1);
         camera2.TryGetComponent(out cam2);
         levelCamera.SetActive(false);
@@ -107,7 +107,7 @@ public class SwitchCamera : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Physics.Raycast(_currentCameraSelected.transform.position, _currentCameraSelected.transform.forward,
+        if (Physics.Raycast(CurrentCamera().transform.position, target.transform.position,
                 out var hit, 100.0f, layerMask))
         {
             if (layerMask == LayerMask.NameToLayer("Player")) return;
@@ -123,6 +123,8 @@ public class SwitchCamera : MonoBehaviour
         {
             if (!_currentMeshRenderer) return;
             solidGround = _currentMeshRenderer.material;
+            _currentMeshRenderer.material.SetFloat(Mode, 0);
+
             solidGround.color = new Color(solidGround.color.r, solidGround.color.g,
                 solidGround.color.b, 1);
             _currentMeshRenderer.material = solidGround;
@@ -172,6 +174,11 @@ public class SwitchCamera : MonoBehaviour
     private void SetCurrentCameraTransform(Camera cameraTransform)
     {
         _currentCameraSelected = cameraTransform;
+    }
+
+    private Camera CurrentCamera()
+    {
+        return _currentCameraSelected;
     }
     
     private void LateUpdate()

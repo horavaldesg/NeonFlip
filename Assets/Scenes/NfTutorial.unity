@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.36952332, g: 0.33752155, b: 0.26303315, a: 1}
+  m_IndirectSpecularColor: {r: 0.3701535, g: 0.33742556, b: 0.2634121, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1167,12 +1167,12 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 1
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1565,21 +1565,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6137984393849648670, guid: eb5165af3f579854892ec4c9edd0cffc,
-        type: 3}
-      propertyPath: target
-      value: 
-      objectReference: {fileID: 2087281852}
-    - target: {fileID: 6137984393849648670, guid: eb5165af3f579854892ec4c9edd0cffc,
-        type: 3}
-      propertyPath: xRotSpeed
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 6137984393849648670, guid: eb5165af3f579854892ec4c9edd0cffc,
-        type: 3}
-      propertyPath: yRotSpeed
-      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6137984394141690288, guid: eb5165af3f579854892ec4c9edd0cffc,
         type: 3}
@@ -2004,11 +1989,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6557973638318199625, guid: 46d9b5e02e82f0c44b28840d888b75f9,
-        type: 3}
-      propertyPath: showInputsWindows
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6557973638318199666, guid: 46d9b5e02e82f0c44b28840d888b75f9,
         type: 3}
       propertyPath: m_Name
@@ -3719,12 +3699,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1980410175}
   m_CullTransparentMesh: 1
---- !u!4 &2087281852 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6137984394545944293, guid: eb5165af3f579854892ec4c9edd0cffc,
-    type: 3}
-  m_PrefabInstance: {fileID: 714723616}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2110812761
 GameObject:
   m_ObjectHideFlags: 0
