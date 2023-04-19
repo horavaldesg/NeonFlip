@@ -85,6 +85,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LookStart",
+                    "type": "Button",
+                    "id": "039fd574-9167-435b-bda0-a5d6d6aaecbb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -503,6 +512,17 @@
                     "processors": "",
                     "groups": "Gamepad;Touch;Joystick",
                     "action": "LevelCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fbde2ddc-f4bf-4328-bca1-8dd62acc8a25",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LookStart",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

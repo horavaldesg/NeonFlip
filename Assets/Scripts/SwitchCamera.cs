@@ -24,6 +24,22 @@ public class SwitchCamera : MonoBehaviour
     private GameObject levelCamera;
     private static readonly int Mode = Shader.PropertyToID("_Mode");
 
+    
+    [SerializeField] private Transform target;
+    [SerializeField] private float xRotSpeed = 250f;
+    [SerializeField] private float yRotSpeed = 120f;
+
+    private Vector3 offset;
+    private float x;
+    private float y;
+
+    private bool m_MouseDown;
+
+    private Vector2 m_CameraInput;
+
+    private Quaternion m_InitialRotation;
+    private Vector3 m_InitialPosition;
+    
     // Start is called before the first frame update
     private void Start()
     {
@@ -39,16 +55,49 @@ public class SwitchCamera : MonoBehaviour
         Switch();
         spacePub = true;
         space = spacePub;
+        
+        //setup offset and angles
+        offset = transform.position - target.position;
+        Vector3 angles = transform.eulerAngles;
+        x = angles.y;
+        y = angles.x;
+
+        //set initial transform position and rotation
+        Quaternion rotation = Quaternion.Euler(y, x, 0);
+        transform.position = target.position + rotation * offset;
+        transform.LookAt(target.position);
+
+        m_MouseDown = false;
+        m_InitialRotation = transform.localRotation;
+        m_InitialPosition = transform.localPosition;
+        Debug.Log(m_InitialRotation);
+        Debug.Log(m_InitialPosition);
     }
 
     private void OnEnable()
     {
         PlayerController.ToggleLevelCam += ToggleLevelCam;
+        PlayerController.MouseDown += MouseDown;
+        PlayerController.MouseUp += MouseUp;
     }
 
     private void OnDisable()
     {
         PlayerController.ToggleLevelCam -= ToggleLevelCam;
+        PlayerController.MouseDown -= MouseDown;
+        PlayerController.MouseUp -= MouseUp;
+    }
+
+    private void MouseDown()
+    {
+        m_MouseDown = true;
+    }
+
+    private void MouseUp()
+    {
+        m_MouseDown = false;
+        transform.localRotation = m_InitialRotation;
+        transform.localPosition = m_InitialPosition;
     }
 
     // Update is called once per frame
@@ -119,5 +168,30 @@ public class SwitchCamera : MonoBehaviour
     private void SetCurrentCameraTransform(Camera cameraTransform)
     {
         _currentCameraSelected = cameraTransform;
+    }
+    
+    private void LateUpdate()
+    {
+        if(!PlayerController.SideView) return;
+        //rotate around target with mouse button
+        Quaternion rotation = Quaternion.Euler(y, x, 0);
+        if (m_MouseDown)
+        {
+            PlayerController.ActionMap.FindAction("Look").performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
+            x += m_CameraInput.x * xRotSpeed * 0.02f;
+            y -= m_CameraInput.y * yRotSpeed * 0.02f;
+            y = ClampAngle(y, -45, 45);
+            x = ClampAngle(x, -90, 90);
+            rotation = Quaternion.Euler(y, x, 0);
+            transform.position = target.position + rotation * offset;
+            transform.LookAt(target.position);
+        }
+    }
+
+    private static float ClampAngle(float angle, float min, float max)
+    {
+        if (angle < -360) angle += 360;
+        if (angle > 360) angle -= 360;
+        return Mathf.Clamp(angle, min, max);
     }
 }

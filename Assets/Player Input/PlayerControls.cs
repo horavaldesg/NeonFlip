@@ -107,6 +107,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LookStart"",
+                    ""type"": ""Button"",
+                    ""id"": ""039fd574-9167-435b-bda0-a5d6d6aaecbb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -525,6 +534,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad;Touch;Joystick"",
                     ""action"": ""LevelCam"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fbde2ddc-f4bf-4328-bca1-8dd62acc8a25"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LookStart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1121,6 +1141,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_LeftRotate = m_Player.FindAction("LeftRotate", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         m_Player_LevelCam = m_Player.FindAction("LevelCam", throwIfNotFound: true);
+        m_Player_LookStart = m_Player.FindAction("LookStart", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1201,6 +1222,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LeftRotate;
     private readonly InputAction m_Player_Escape;
     private readonly InputAction m_Player_LevelCam;
+    private readonly InputAction m_Player_LookStart;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1214,6 +1236,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @LeftRotate => m_Wrapper.m_Player_LeftRotate;
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
         public InputAction @LevelCam => m_Wrapper.m_Player_LevelCam;
+        public InputAction @LookStart => m_Wrapper.m_Player_LookStart;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1250,6 +1273,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @LevelCam.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelCam;
                 @LevelCam.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelCam;
                 @LevelCam.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLevelCam;
+                @LookStart.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookStart;
+                @LookStart.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookStart;
+                @LookStart.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookStart;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1281,6 +1307,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @LevelCam.started += instance.OnLevelCam;
                 @LevelCam.performed += instance.OnLevelCam;
                 @LevelCam.canceled += instance.OnLevelCam;
+                @LookStart.started += instance.OnLookStart;
+                @LookStart.performed += instance.OnLookStart;
+                @LookStart.canceled += instance.OnLookStart;
             }
         }
     }
@@ -1446,6 +1475,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnLeftRotate(InputAction.CallbackContext context);
         void OnEscape(InputAction.CallbackContext context);
         void OnLevelCam(InputAction.CallbackContext context);
+        void OnLookStart(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

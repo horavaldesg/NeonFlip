@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     public static event Action ToggleLevelCam;
     public static event Action LevelEnded;
     public static event Action ShowOptions;
+
+    public static event Action MouseDown;
+     public static event Action MouseUp;
     
     public static bool SideView = true;
     private static Vector2 _move;
@@ -68,6 +71,10 @@ public class PlayerController : MonoBehaviour
         ActionMap.FindAction("SwitchCamera").performed += tgb => switchCamera.Switch();
         
         ActionMap.FindAction("Escape").performed += tgb => ShowOptions?.Invoke();
+
+        ActionMap.FindAction("LookStart").performed += tgb => MouseDown?.Invoke();
+        
+        ActionMap.FindAction("LookStart").canceled += tgb => MouseUp?.Invoke();
     }
 
     private void Start()
@@ -100,7 +107,7 @@ public class PlayerController : MonoBehaviour
         m_VerticalSpeed += Gravity * Time.deltaTime;
 
         m_Movement += transform.up * (m_VerticalSpeed * Time.deltaTime);
-        if (Physics.CheckSphere(checkPos.position,0.5f, groundMask) && m_VerticalSpeed <= 0)
+        if (Physics.CheckSphere(checkPos.position, 0.5f, groundMask) && m_VerticalSpeed <= 0)
         {
             _grounded = true;
             m_VerticalSpeed = 0;
@@ -111,27 +118,70 @@ public class PlayerController : MonoBehaviour
         }
 
         var movementMag = _move.normalized;
-        if (movementMag.x > 0)
-        {
-            m_Animator.SetBool(IsWalking, true);
-            m_Animator.SetBool(IsIdle, false);
-            playerModelTransform.localRotation = Quaternion.Euler(transform.localRotation.y, 180, transform.localRotation.z);
-        }
-        else if (movementMag.x < 0)
-        {
-            m_Animator.SetBool(IsWalking, true);
-            m_Animator.SetBool(IsIdle, false);
-            playerModelTransform.localRotation = Quaternion.Euler(transform.localRotation.y, 0, transform.localRotation.z);
-        }
-        else
-        {
-            m_Animator.SetBool(IsWalking, false);
-            m_Animator.SetBool(IsIdle, true);
-        }
+        Debug.Log(movementMag.x);
+        Debug.Log(movementMag.y);
         
+        switch (movementMag.x)
+        {
+            case > 0 when movementMag.y == 0:
+                RotatePlayer(180);
+                break;
+            case < 0 when movementMag.y == 0:
+                RotatePlayer(0);
+                break;
+            default:
+            {
+                switch (movementMag.y)
+                {
+                    //Side Rotation
+                    case > 0 when movementMag.x == 0:
+                        if(SideView) RotatePlayer(90);
+                        break;
+                    case < 0 when movementMag.x == 0:
+                        if(SideView) RotatePlayer(-90);
+                        break;
+                    case < 0 when movementMag.x > 0:
+                    {
+                        if(SideView) RotatePlayer(-145);
+                        break;
+                    }
+                    
+                    case < 0 when movementMag.x < 0:
+                    {
+                        if(SideView) RotatePlayer(-45);
+                        break;
+                    }
+                    case > 0 when movementMag.x > 0:
+                    {
+                        if(SideView) RotatePlayer(145);
+                        break;
+                    }
+                    case > 0 when movementMag.x < 0:
+                    {
+                        if(SideView) RotatePlayer(45);
+                        break;
+                    }
+                    default:
+                        m_Animator.SetBool(IsWalking, false);
+                        m_Animator.SetBool(IsIdle, true);
+                        break;
+                }
+
+                break;
+            }
+        }
+
         cc.Move(m_Movement);
     }
 
+    private void RotatePlayer(float rot)
+    {
+        m_Animator.SetBool(IsWalking, true);
+        m_Animator.SetBool(IsIdle, false);
+        playerModelTransform.localRotation =
+                Quaternion.Euler(transform.localRotation.y, rot, transform.localRotation.z);
+    }
+    
     private void SideWaysMove()
     {
         m_Movement = Vector3.zero;
