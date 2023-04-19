@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -43,8 +44,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private RectTransform indicatorTransform;
 
     [SerializeField] private Transform playerModelTransform;
-    
 
+    [SerializeField] private RectTransform coolDownThatGoesDown;
+    [SerializeField] private TextMeshProUGUI rotateCount;
+
+    [SerializeField] private int amountOfRotates;
+    
+    [SerializeField] private float rotateCoolDown;
+
+    private bool m_CanRotate;
+    private int m_CurrentRotates;
+    
     private Animator m_Animator;
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int IsIdle = Animator.StringToHash("isIdle");
@@ -81,6 +91,10 @@ public class PlayerController : MonoBehaviour
         m_InitialPos = transform.position;
         m_JumpCt = 0;
         Time.timeScale = 1;
+        m_CanRotate = true;
+        m_CurrentRotates = 0;
+        rotateCount.SetText(amountOfRotates.ToString());
+
     }
 
     private void OnEnable()
@@ -143,9 +157,7 @@ public class PlayerController : MonoBehaviour
         }
 
         var movementMag = _move.normalized;
-        Debug.Log(movementMag.x);
-        Debug.Log(movementMag.y);
-        
+      
         switch (movementMag.x)
         {
             case > 0 when movementMag.y == 0:
@@ -256,6 +268,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator WaitToRotate(float xRot)
     {
+        if(!m_CanRotate) yield break;
         if (!SideView) yield break;
         var totalAdded = 0.0f;
         while (totalAdded < Mathf.Abs(xRot))
@@ -268,6 +281,25 @@ public class PlayerController : MonoBehaviour
         }
         
         CanDetectCollisions = true;
+        m_CurrentRotates++;
+        if (m_CurrentRotates >= amountOfRotates)
+        {
+            m_CanRotate = false;
+
+
+            coolDownThatGoesDown.localScale = new Vector3(0, 1, 1);
+            while (coolDownThatGoesDown.localScale.x < 1)
+            {
+                coolDownThatGoesDown.localScale = new Vector3(coolDownThatGoesDown.localScale.x + 0.1f, 1, 1);
+                yield return new WaitForSeconds(rotateCoolDown);
+            }
+            
+            m_CanRotate = true;
+            m_CurrentRotates = 0;
+        }
+
+        var rotateRemaining = amountOfRotates - m_CurrentRotates;
+        rotateCount.SetText(rotateRemaining.ToString());
     }
 
     public void RespawnPlayer()
