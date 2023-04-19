@@ -68,9 +68,9 @@ public class EndScreenManager : MonoBehaviour
         {
             PlayerPrefs.SetFloat(m_BestTimePath.val, currentTimeVal);
         }
-        
-        PauseGame.ShowNumberOfCoins(m_BestPickUpCoinsPath, bestCoinsPanel.transform, coinSprite);
-        PauseGame.ShowNumberOfCoins(m_PickUpCoinsPath, currentCoinsPanel.transform, coinSprite);
+
+        PauseGame.ShowNumberOfCoins(m_BestPickUpCoinsPath, PauseGame.PauseGameComp.totalCoinImages);
+        PauseGame.ShowNumberOfCoins(m_PickUpCoinsPath, PauseGame.PauseGameComp.totalCoinImages);
 
         bestTime.SetText(PlayerPrefs.GetFloat(m_BestTimePath.val).ToString("##"));
         currentTime.SetText(PlayerPrefs.GetFloat(m_CurrentTimePath.val).ToString("##"));

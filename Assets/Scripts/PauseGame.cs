@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class PauseGame : MonoBehaviour
@@ -16,12 +17,15 @@ public class PauseGame : MonoBehaviour
         Destroy(rebindButton);
     }
 #endif
+    public static PauseGame PauseGameComp;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject pauseButtonPanel;
     [SerializeField] private TextMeshProUGUI bestTime;
     [SerializeField] private Transform coinsPanel;
     [SerializeField] private Sprite coinSprite;
 
+    public List<Image> totalCoinImages = new();
+    private int m_totalCoins;
     private StringVal m_BestScoreText;
     private StringVal m_BestTimeText;
 
@@ -39,8 +43,10 @@ public class PauseGame : MonoBehaviour
     {
         m_BestScoreText = Resources.Load<StringVal>("ScriptableObjects/Paths/BestCoinsCollectedPath");
         m_BestTimeText = Resources.Load<StringVal>("ScriptableObjects/Paths/BestTimePath");
-        ShowNumberOfCoins(m_BestScoreText, coinsPanel, coinSprite);
         pauseMenu.SetActive(false);
+        m_totalCoins = GameObject.FindGameObjectsWithTag("PickupCoin").Length;
+        ShowTotalCoins();
+        ShowNumberOfCoins(m_BestScoreText, totalCoinImages);
     }
 
     public void PauseMenu()
@@ -73,11 +79,9 @@ public class PauseGame : MonoBehaviour
         pauseMenu.SetActive(state);
     }
 
-
-    public static void ShowNumberOfCoins(StringVal m_BestScoreText, Transform coinsPanel, Sprite coinSprite)
+    public void ShowTotalCoins()
     {
-        var numberOfCoins = PlayerPrefs.GetInt(m_BestScoreText.val);
-        for (var i = 0; i < numberOfCoins; i++)
+        for (var i = 0; i < m_totalCoins; i++)
         {
             var coinsCollected = new GameObject("coinsCollected");
             coinsCollected.transform.parent = coinsPanel.transform;
@@ -89,7 +93,24 @@ public class PauseGame : MonoBehaviour
             coinsCollected.AddComponent<CanvasRenderer>();
             coinsCollected.GetComponent<CanvasRenderer>().cullTransparentMesh = true;
             coinsCollected.AddComponent<Image>();
-            coinsCollected.GetComponent<Image>().sprite = coinSprite;
+            coinsCollected.TryGetComponent(out Image coinImage);
+            coinImage.sprite = coinSprite;
+            var color = coinImage.color;
+            color.a = 0.25f;
+            coinImage.color = color;
+            totalCoinImages.Add(coinImage);
+        }
+    }
+
+    public static void ShowNumberOfCoins(StringVal m_BestScoreText, List<Image> coinImages)
+    {
+        var numberOfCoins = PlayerPrefs.GetInt(m_BestScoreText.val);
+        Debug.Log(numberOfCoins);
+        for (var i = 0; i < numberOfCoins; i++)
+        {
+            var color = coinImages[i].color;
+            color.a = 1;
+            coinImages[i].color = color;
         }
     }
 

@@ -641,7 +641,7 @@ PrefabInstance:
     - target: {fileID: 3149199146982290239, guid: eb5165af3f579854892ec4c9edd0cffc,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3149199146982290239, guid: eb5165af3f579854892ec4c9edd0cffc,
         type: 3}
@@ -651,7 +651,7 @@ PrefabInstance:
     - target: {fileID: 3149199146982290239, guid: eb5165af3f579854892ec4c9edd0cffc,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3149199146982290239, guid: eb5165af3f579854892ec4c9edd0cffc,
         type: 3}
@@ -661,8 +661,14 @@ PrefabInstance:
     - target: {fileID: 3149199146982290239, guid: eb5165af3f579854892ec4c9edd0cffc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 4170734888044526147, guid: eb5165af3f579854892ec4c9edd0cffc,
+        type: 3}
+      propertyPath: coinImage
+      value: 
+      objectReference: {fileID: 2443345658748565566, guid: 534f1d0264522c24ca3da5b3db3d1b4b,
+        type: 3}
     - target: {fileID: 4383322676666123219, guid: eb5165af3f579854892ec4c9edd0cffc,
         type: 3}
       propertyPath: m_IsActive

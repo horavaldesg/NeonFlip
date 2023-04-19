@@ -58,6 +58,9 @@ public class PlayerController : MonoBehaviour
     private Animator m_Animator;
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int IsIdle = Animator.StringToHash("isIdle");
+    private static readonly int IsJumping = Animator.StringToHash("isJumping");
+    private static readonly int landed = Animator.StringToHash("landed");
+
 
     private InputAction m_Move;
     private InputAction m_JumpAction;
@@ -67,7 +70,6 @@ public class PlayerController : MonoBehaviour
     private InputAction m_SwitchCamera;
     private InputAction m_Escape;
     private InputAction m_LookStart;
-    private static readonly int IsJumping = Animator.StringToHash("isJumping");
 
     private void Awake()
     {
@@ -143,11 +145,16 @@ public class PlayerController : MonoBehaviour
     {
         _jump = false;
         m_Animator.SetBool(IsJumping, false);
+        m_Animator.SetBool(landed, false);
     }
     
     private void Jump()
     {
+        if(SideView) return;
         m_Animator.SetBool(IsJumping, true);
+        m_Animator.SetBool(IsWalking, false);
+        m_Animator.SetBool(IsIdle, false);
+        m_Animator.SetBool(landed, false);
     }
 
     private void Update()
@@ -161,6 +168,7 @@ public class PlayerController : MonoBehaviour
         {
             _grounded = true;
             m_VerticalSpeed = 0;
+            m_Animator.SetBool(landed, true);
         }
         else
         {
@@ -253,6 +261,8 @@ public class PlayerController : MonoBehaviour
                 if (m_JumpCt != 2) return;
                 doubleJump = false;
                 _jump = false;
+               // m_Animator.SetBool(landed, true);
+
                 break;
             }
             case false:
