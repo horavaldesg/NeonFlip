@@ -885,9 +885,9 @@ MonoBehaviour:
   spacePub: 0
   solidGround: {fileID: 2100000, guid: 131830aea911d4448b8768bbe1a883f3, type: 2}
   transparentGround: {fileID: 2100000, guid: 619572e9ef60f4248aba271cec514f81, type: 2}
-  target: {fileID: 0}
-  xRotSpeed: 250
-  yRotSpeed: 120
+  target: {fileID: 6137984394545944293}
+  xRotSpeed: 25
+  yRotSpeed: 15
 --- !u!1 &6137984394059791466
 GameObject:
   m_ObjectHideFlags: 0

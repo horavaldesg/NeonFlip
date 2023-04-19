@@ -8,9 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity
     guid: dacdf88e516ba4cd7af0683949cf766c
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/NfTutorial.unity
+    guid: 01e087aea45a6174c88734b18c53c5b9
   - enabled: 1
     path: Assets/Scenes/NfDouble Jump.unity
     guid: b73b684af452f3a4598783cb565a2da8

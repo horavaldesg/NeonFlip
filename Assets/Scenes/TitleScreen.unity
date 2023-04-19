@@ -2413,7 +2413,7 @@ PrefabInstance:
     - target: {fileID: 3591705066925759693, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
         type: 3}
       propertyPath: scene
-      value: NfLevel 1
+      value: NfTutorial
       objectReference: {fileID: 0}
     - target: {fileID: 3591705066925759694, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
         type: 3}
@@ -2539,6 +2539,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3591705068501285633, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
+        type: 3}
+      propertyPath: scene
+      value: NfTutorial
       objectReference: {fileID: 0}
     - target: {fileID: 3591705068505231826, guid: 77d60ecc8e26d41d88d82e11a97f3a34,
         type: 3}
