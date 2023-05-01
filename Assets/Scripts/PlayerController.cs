@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -43,7 +44,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform playerModelTransform;
 
     [SerializeField] private RectTransform coolDownThatGoesDown;
-    [SerializeField] private TextMeshProUGUI rotateCount;
 
     [SerializeField] private int amountOfRotates;
     
@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
     private bool m_CanRotate;
     private int m_CurrentRotates;
+    private int m_DownRotate;
     
     private Animator m_Animator;
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
@@ -98,7 +99,7 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 1;
         m_CanRotate = true;
         m_CurrentRotates = 0;
-        rotateCount.SetText(amountOfRotates.ToString());
+        m_DownRotate = amountOfRotates;
     }
 
     private void OnEnable()
@@ -172,6 +173,8 @@ public class PlayerController : MonoBehaviour
         m_CanRotate = true;
         m_CurrentRotates = 0;
         rotateCount.SetText(amountOfRotates.ToString());
+        m_DownRotate = amountOfRotates;
+
     }
 
     private void OnEnable()
@@ -228,7 +231,6 @@ public class PlayerController : MonoBehaviour
         }
 
         var movementMag = _move.normalized;
-      Debug.Log(movementMag);
       if(!SideView)
       {
           switch (movementMag.x)
@@ -317,44 +319,43 @@ public class PlayerController : MonoBehaviour
         var ySpeed = _move.x * playerSpeed * Time.deltaTime;
         m_Movement += transform.right * ySpeed;
     }
-    
+
 
     public IEnumerator WaitToRotate(float xRot)
     {
-        if(!m_CanRotate) yield break;
+        if (!m_CanRotate) yield break;
         if (!SideView) yield break;
         var totalAdded = 0.0f;
         while (totalAdded < Mathf.Abs(xRot))
         {
-            var increment = Time.deltaTime * 80 * rotSpeed;
-            transform.Rotate(new Vector3(Mathf.Sign(xRot) * increment, 0, 0));
-            indicatorTransform.Rotate(new Vector3(0, 0, Mathf.Sign(xRot) * increment));
+            var increment = Time.deltaTime * 90 * rotSpeed;
+            transform.Rotate(new Vector3((int)Mathf.Sign(xRot) * increment, 0, 0));
+            indicatorTransform.Rotate(new Vector3(0, 0, (int)Mathf.Sign(xRot) * increment));
             totalAdded += increment;
             yield return null;
         }
         
         CanDetectCollisions = true;
         m_CurrentRotates++;
-        if (m_CurrentRotates >= amountOfRotates)
+        m_DownRotate--;
+        var downBar = (float)m_DownRotate / amountOfRotates;
+        coolDownThatGoesDown.localScale = new Vector3(downBar, 1, 1);
+
+        if (m_CurrentRotates < amountOfRotates) yield break;
+        m_CanRotate = false;
+        coolDownThatGoesDown.localScale = new Vector3(0, 1, 1);
+        yield return new WaitForSeconds(0.2f);
+        while (coolDownThatGoesDown.localScale.x < 1)
         {
-            m_CanRotate = false;
-
-
-            coolDownThatGoesDown.localScale = new Vector3(0, 1, 1);
-            while (coolDownThatGoesDown.localScale.x < 1)
-            {
-                coolDownThatGoesDown.localScale = new Vector3(coolDownThatGoesDown.localScale.x + 0.1f, 1, 1);
-                yield return new WaitForSeconds(rotateCoolDown);
-            }
-            
-            m_CanRotate = true;
-            m_CurrentRotates = 0;
+            coolDownThatGoesDown.localScale = new Vector3(coolDownThatGoesDown.localScale.x + 0.1f, 1, 1);
+            yield return new WaitForSeconds(rotateCoolDown);
         }
 
-        var rotateRemaining = amountOfRotates - m_CurrentRotates;
-        rotateCount.SetText(rotateRemaining.ToString());
+        m_DownRotate = amountOfRotates;
+        m_CanRotate = true;
+        m_CurrentRotates = 0;
     }
-
+    
     public void RespawnPlayer()
     {
         cc.enabled = false;

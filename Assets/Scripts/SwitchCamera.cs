@@ -70,8 +70,6 @@ public class SwitchCamera : MonoBehaviour
         m_MouseDown = false;
         m_InitialRotation = transform.localRotation;
         m_InitialPosition = transform.localPosition;
-        Debug.Log(m_InitialRotation);
-        Debug.Log(m_InitialPosition);
     }
 
     private void OnEnable()

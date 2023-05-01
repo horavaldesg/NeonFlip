@@ -105,7 +105,6 @@ public class PauseGame : MonoBehaviour
     public static void ShowNumberOfCoins(StringVal m_BestScoreText, List<Image> coinImages)
     {
         var numberOfCoins = PlayerPrefs.GetInt(m_BestScoreText.val);
-        Debug.Log(numberOfCoins);
         for (var i = 0; i < numberOfCoins; i++)
         {
             var color = coinImages[i].color;
