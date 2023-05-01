@@ -385,7 +385,7 @@ public class PlayerController : MonoBehaviour
         {
             LevelEnded?.Invoke();
         }
-
+        
         if (!hit.collider.CompareTag("Collectable")) return;
         doubleJump = true;
         hit.gameObject.GetComponent<MeshRenderer>().enabled = false;
