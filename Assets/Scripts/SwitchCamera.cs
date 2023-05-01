@@ -194,8 +194,8 @@ public class SwitchCamera : MonoBehaviour
             
             x += m_CameraInput.x * xRotSpeed * 0.02f;
             y -= m_CameraInput.y * yRotSpeed * 0.02f;
-            y = ClampAngle(y, -45, 45);
-            x = ClampAngle(x, -90, 90);
+         //   y = ClampAngle(y, -45, 45);
+           // x = ClampAngle(x, -90, 90);
             rotation = Quaternion.Euler(y, x, 0);
             transform.position = target.position + rotation * offset;
             transform.LookAt(target.position);
