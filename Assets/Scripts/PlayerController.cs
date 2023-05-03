@@ -235,7 +235,7 @@ public class PlayerController : MonoBehaviour
         }
 
         var movementMag = _move.normalized;
-      if(!SideView)
+      /*if(!SideView)
       {
           switch (movementMag.x)
           {
@@ -252,13 +252,62 @@ public class PlayerController : MonoBehaviour
           playerModelTransform.transform.localRotation = 
               Quaternion.Slerp(playerModelTransform.transform.localRotation, 
                   Quaternion.LookRotation(new Vector3(movementMag.y, 0, -movementMag.x)), Time.deltaTime * 40f);
-      }
+      }*/
+      switch (movementMag.x)
+      {
+          case > 0 when movementMag.y == 0:
+              RotatePlayer(180);
+              break;
+          case < 0 when movementMag.y == 0:
+              RotatePlayer(0);
+              break;
+          default:
+          {
+              switch (movementMag.y)
+              {
+                  //Side Rotation
+                  case > 0 when movementMag.x == 0:
+                      if(SideView) RotatePlayer(90);
+                      break;
+                  case < 0 when movementMag.x == 0:
+                      if(SideView) RotatePlayer(-90);
+                      break;
+                  case < 0 when movementMag.x > 0:
+                  {
+                      if(SideView) RotatePlayer(-145);
+                      break;
+                  }
+                    
+                  case < 0 when movementMag.x < 0:
+                  {
+                      if(SideView) RotatePlayer(-45);
+                      break;
+                  }
+                  case > 0 when movementMag.x > 0:
+                  {
+                      if(SideView) RotatePlayer(145);
+                      break;
+                  }
+                  case > 0 when movementMag.x < 0:
+                  {
+                      if(SideView) RotatePlayer(45);
+                      break;
+                  }
+                  default:
+                      m_Animator.SetBool(IsWalking, false);
+                      m_Animator.SetBool(IsIdle, true);
+                      break;
+              }
 
-      if (movementMag.x == 0)
+              break;
+          }
+      }
+      
+      if (movementMag is { x: 0, y: 0 })
       {
           m_Animator.SetBool(IsWalking, false);
           m_Animator.SetBool(IsIdle, true);
-          playerModelTransform.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+          //playerModelTransform.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
       }
       else
       {
