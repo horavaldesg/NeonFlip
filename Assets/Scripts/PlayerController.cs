@@ -42,7 +42,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform weightLeft;
     [SerializeField] private float rotSpeed;
     [SerializeField] private RectTransform indicatorTransform;
-
+    [SerializeField] private bool DebugRotate;
+    
     [SerializeField] private Transform playerModelTransform;
 
     [SerializeField] private RectTransform coolDownThatGoesDown;
@@ -329,6 +330,7 @@ public class PlayerController : MonoBehaviour
 
     public IEnumerator WaitToRotate(float xRot)
     {
+        if(!DebugRotate) yield break;
         if (!m_CanRotate) yield break;
         if (!SideView) yield break;
         var totalAdded = 0.0f;
