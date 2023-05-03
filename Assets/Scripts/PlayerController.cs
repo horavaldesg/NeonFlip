@@ -250,7 +250,7 @@ public class PlayerController : MonoBehaviour
                   Quaternion.LookRotation(new Vector3(movementMag.y, 0, -movementMag.x)), Time.deltaTime * 40f);
       }
 
-      if (movementMag.magnitude == 0)
+      if (movementMag.x == 0)
       {
           m_Animator.SetBool(IsWalking, false);
           m_Animator.SetBool(IsIdle, true);

@@ -116,6 +116,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""Value"",
+                    ""id"": ""4d8e25a7-fef5-4367-92ab-7574a6cb841c"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -320,7 +329,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
-                    ""path"": ""<Pointer>/delta"",
+                    ""path"": ""<Mouse>/delta"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -556,6 +565,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad;Touch"",
                     ""action"": ""LookStart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""672cdc47-0d9c-43cf-a5d7-b96619848c19"",
+                    ""path"": ""<Mouse>/scroll"",
+                    ""interactions"": """",
+                    ""processors"": ""NormalizeVector2"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Zoom"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1153,6 +1173,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
         m_Player_LevelCam = m_Player.FindAction("LevelCam", throwIfNotFound: true);
         m_Player_LookStart = m_Player.FindAction("LookStart", throwIfNotFound: true);
+        m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1234,6 +1255,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Escape;
     private readonly InputAction m_Player_LevelCam;
     private readonly InputAction m_Player_LookStart;
+    private readonly InputAction m_Player_Zoom;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1248,6 +1270,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
         public InputAction @LevelCam => m_Wrapper.m_Player_LevelCam;
         public InputAction @LookStart => m_Wrapper.m_Player_LookStart;
+        public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1287,6 +1310,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @LookStart.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookStart;
                 @LookStart.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookStart;
                 @LookStart.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLookStart;
+                @Zoom.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
+                @Zoom.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
+                @Zoom.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnZoom;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1321,6 +1347,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @LookStart.started += instance.OnLookStart;
                 @LookStart.performed += instance.OnLookStart;
                 @LookStart.canceled += instance.OnLookStart;
+                @Zoom.started += instance.OnZoom;
+                @Zoom.performed += instance.OnZoom;
+                @Zoom.canceled += instance.OnZoom;
             }
         }
     }
@@ -1487,6 +1516,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnEscape(InputAction.CallbackContext context);
         void OnLevelCam(InputAction.CallbackContext context);
         void OnLookStart(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

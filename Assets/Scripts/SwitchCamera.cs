@@ -188,8 +188,10 @@ public class SwitchCamera : MonoBehaviour
         {
             #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
             PlayerController.ActionMap.FindAction("Look").performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
+            PlayerController.ActionMap.FindAction("Look").canceled += tgb => { m_CameraInput = Vector2.zero; };
             #else
             PlayerController.controls.Player.Look.performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
+            PlayerController.controls.Player.Look.performed += tgb => { m_CameraInput = Vector2.zero; };
             #endif
             
             x += m_CameraInput.x * xRotSpeed * 0.02f;
