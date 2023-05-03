@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 
     public static event Action MouseDown;
     public static event Action MouseUp;
-    
+
     public static bool SideView = true;
     private static Vector2 _move;
     public bool _jump;
@@ -48,13 +48,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private RectTransform coolDownThatGoesDown;
 
     [SerializeField] private int amountOfRotates;
-    
+
     [SerializeField] private float rotateCoolDown;
 
     private bool m_CanRotate;
     private int m_CurrentRotates;
     private int m_DownRotate;
-    
+
     private Animator m_Animator;
     private static readonly int IsWalking = Animator.StringToHash("isWalking");
     private static readonly int IsIdle = Animator.StringToHash("isIdle");
@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
     private InputAction m_SwitchCamera;
     private InputAction m_Escape;
     private InputAction m_LookStart;
-    
+
     private void Awake()
     {
         Instance = this;
@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         ActionMap.Enable();
-       
+
         m_JumpAction.started += tgb => Jump();
         m_RotateRight.performed += tgb => StartCoroutine(WaitToRotate(-90));
         m_LeftRotate.performed += tgb => StartCoroutine(WaitToRotate(90));
@@ -118,11 +118,11 @@ public class PlayerController : MonoBehaviour
         m_LevelCam.performed += tgb => ToggleLevelCam?.Invoke();
 
         m_SwitchCamera.performed += tgb => SwitchCamera?.Invoke();
-        
+
         m_Escape.performed += tgb => ShowOptions?.Invoke();
 
         m_LookStart.performed += tgb => MouseDown?.Invoke();
-        
+
         m_LookStart.canceled += tgb => MouseUp?.Invoke();
     }
 
@@ -191,12 +191,12 @@ public class PlayerController : MonoBehaviour
         controls.Player.Disable(); 
     }
 #endif
- 
-  
+
+
 
     public void TriggerJump()
     {
-        if(SideView) return;
+        if (SideView) return;
         _jump = true;
     }
 
@@ -206,10 +206,10 @@ public class PlayerController : MonoBehaviour
         m_Animator.SetBool(IsJumping, false);
         m_Animator.SetBool(landed, false);
     }
-    
+
     private void Jump()
     {
-        if(SideView) return;
+        if (SideView) return;
         m_Animator.SetBool(IsJumping, true);
         m_Animator.SetBool(IsWalking, false);
         m_Animator.SetBool(IsIdle, false);
@@ -235,85 +235,39 @@ public class PlayerController : MonoBehaviour
         }
 
         var movementMag = _move.normalized;
-      /*if(!SideView)
-      {
-          switch (movementMag.x)
-          {
-              case > 0 when movementMag.y < 0.2f:
-                  RotatePlayer(180);
-                  break;
-              case < 0 when movementMag.y < 0.2f:
-                  RotatePlayer(0);
-                  break;
-          }
-      }
-      else
-      {
-          playerModelTransform.transform.localRotation = 
-              Quaternion.Slerp(playerModelTransform.transform.localRotation, 
-                  Quaternion.LookRotation(new Vector3(movementMag.y, 0, -movementMag.x)), Time.deltaTime * 40f);
-      }*/
-      switch (movementMag.x)
-      {
-          case > 0 when movementMag.y == 0:
-              RotatePlayer(180);
-              break;
-          case < 0 when movementMag.y == 0:
-              RotatePlayer(0);
-              break;
-          default:
-          {
-              switch (movementMag.y)
-              {
-                  //Side Rotation
-                  case > 0 when movementMag.x == 0:
-                      if(SideView) RotatePlayer(90);
-                      break;
-                  case < 0 when movementMag.x == 0:
-                      if(SideView) RotatePlayer(-90);
-                      break;
-                  case < 0 when movementMag.x > 0:
-                  {
-                      if(SideView) RotatePlayer(-145);
-                      break;
-                  }
-                    
-                  case < 0 when movementMag.x < 0:
-                  {
-                      if(SideView) RotatePlayer(-45);
-                      break;
-                  }
-                  case > 0 when movementMag.x > 0:
-                  {
-                      if(SideView) RotatePlayer(145);
-                      break;
-                  }
-                  case > 0 when movementMag.x < 0:
-                  {
-                      if(SideView) RotatePlayer(45);
-                      break;
-                  }
-                  default:
-                      m_Animator.SetBool(IsWalking, false);
-                      m_Animator.SetBool(IsIdle, true);
-                      break;
-              }
+        if(!SideView)
+        {
+            switch (movementMag.x)
+            {
+                case > 0 when movementMag.y < 0.2f:
+                    RotatePlayer(180);
+                    break;
+                case < 0 when movementMag.y < 0.2f:
+                    RotatePlayer(0);
+                    break;
+            }
+        }
+        else
+        {
+            if(movementMag is not {x: 0, y: 0})
+            {
+                playerModelTransform.transform.localRotation =
+                    Quaternion.Slerp(playerModelTransform.transform.localRotation,
+                        Quaternion.LookRotation(new Vector3(movementMag.y, 0, -movementMag.x)), Time.deltaTime * 40f);
+            }
+        }
 
-              break;
-          }
-      }
-      
-      if (movementMag is { x: 0, y: 0 })
-      {
-          m_Animator.SetBool(IsWalking, false);
-          m_Animator.SetBool(IsIdle, true);
-          //playerModelTransform.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
-      }
-      else
-      {
-          m_Animator.SetBool(IsWalking, true);
-          m_Animator.SetBool(IsIdle, false);
-      }
+        if (movementMag is {x:0, y: 0})
+        {
+            m_Animator.SetBool(IsWalking, false);
+            m_Animator.SetBool(IsIdle, true);
+            //playerModelTransform.transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
+        }
+        else
+        {
+            m_Animator.SetBool(IsWalking, true);
+            m_Animator.SetBool(IsIdle, false);
+        }
 
         cc.Move(m_Movement);
     }
@@ -321,18 +275,18 @@ public class PlayerController : MonoBehaviour
     private void RotatePlayer(float rot)
     {
         playerModelTransform.localRotation =
-                Quaternion.Euler(transform.localRotation.y, rot, transform.localRotation.z);
+            Quaternion.Euler(transform.localRotation.y, rot, transform.localRotation.z);
     }
-    
+
     private void SideWaysMove()
     {
         m_Movement = Vector3.zero;
-       
+
         var ySpeed = _move.x * playerSpeed * Time.deltaTime;
         m_Movement += transform.right * ySpeed;
-        
+
         //Grounded
-        
+
         switch (doubleJump)
         {
             case true:
@@ -347,7 +301,7 @@ public class PlayerController : MonoBehaviour
                 if (m_JumpCt != 2) return;
                 doubleJump = false;
                 _jump = false;
-               // m_Animator.SetBool(landed, true);
+                // m_Animator.SetBool(landed, true);
 
                 break;
             }
@@ -362,7 +316,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
+
     private void FreeMove()
     {
         m_Movement = Vector3.zero;
@@ -386,7 +340,7 @@ public class PlayerController : MonoBehaviour
             totalAdded += increment;
             yield return null;
         }
-        
+
         CanDetectCollisions = true;
         m_CurrentRotates++;
         m_DownRotate--;
@@ -407,7 +361,7 @@ public class PlayerController : MonoBehaviour
         m_CanRotate = true;
         m_CurrentRotates = 0;
     }
-    
+
     public void RespawnPlayer()
     {
         cc.enabled = false;
@@ -415,7 +369,7 @@ public class PlayerController : MonoBehaviour
         cc.enabled = true;
         transform.rotation = Quaternion.Euler(0, 0, 0);
         indicatorTransform.localRotation = Quaternion.Euler(0, 0, 0);
-        
+
         FollowPlayer.gravityChange = false;
     }
 
@@ -437,7 +391,7 @@ public class PlayerController : MonoBehaviour
         {
             LevelEnded?.Invoke();
         }
-        
+
         if (!hit.collider.CompareTag("Collectable")) return;
         doubleJump = true;
         hit.gameObject.GetComponent<MeshRenderer>().enabled = false;
