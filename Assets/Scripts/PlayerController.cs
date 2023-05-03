@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public static event Action LevelEnded;
     public static event Action ShowOptions;
     public static event Action SwitchCamera;
-
+    public static event Action<int> ChangeIndicator;
     public static event Action MouseDown;
     public static event Action MouseUp;
 
@@ -61,6 +61,8 @@ public class PlayerController : MonoBehaviour
     private static readonly int IsIdle = Animator.StringToHash("isIdle");
     private static readonly int IsJumping = Animator.StringToHash("isJumping");
     private static readonly int landed = Animator.StringToHash("landed");
+
+    private int m_RotationIndex = 0;
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
 
     public PlayerInput controls;
@@ -99,6 +101,9 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        m_RotationIndex = 0;
+        ChangeIndicator?.Invoke(m_RotationIndex);
+
         m_InitialPos = transform.position;
         m_JumpCt = 0;
         Time.timeScale = 1;
@@ -334,6 +339,19 @@ public class PlayerController : MonoBehaviour
         if (!m_CanRotate) yield break;
         if (!SideView) yield break;
         var totalAdded = 0.0f;
+        m_RotationIndex = xRot == 90 ? m_RotationIndex+=1 : m_RotationIndex-=1;
+        switch (m_RotationIndex)
+        {
+            case -1:
+                m_RotationIndex = 3;
+                break;
+            case >= 4:
+                m_RotationIndex = 0;
+                break;
+        }
+        
+        Debug.Log(m_RotationIndex);
+        ChangeIndicator?.Invoke(m_RotationIndex);
         while (totalAdded < Mathf.Abs(xRot))
         {
             var increment = Time.deltaTime * 90 * rotSpeed;
@@ -377,6 +395,9 @@ public class PlayerController : MonoBehaviour
 
     public void RestartPlayer()
     {
+        m_RotationIndex = 0;
+        ChangeIndicator?.Invoke(m_RotationIndex);
+
         cc.enabled = false;
         cc.transform.position = m_InitialPos;
         cc.enabled = true;

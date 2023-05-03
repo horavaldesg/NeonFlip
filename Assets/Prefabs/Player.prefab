@@ -985,6 +985,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerText: {fileID: 6137984394279694649}
   coinsCollected: {fileID: 6137984394608292078}
+  rotationImages: []
+  rotationImage: {fileID: 6137984394323167386}
 --- !u!1 &6137984394279694651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,6 +1484,7 @@ MonoBehaviour:
   weightLeft: {fileID: 6137984394429960889}
   rotSpeed: 2.5
   indicatorTransform: {fileID: 6137984394323167387}
+  DebugRotate: 0
   playerModelTransform: {fileID: 3149199146982290239}
   coolDownThatGoesDown: {fileID: 7198891299672883533}
   amountOfRotates: 3

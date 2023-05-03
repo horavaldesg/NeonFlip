@@ -5,11 +5,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainUIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI coinsCollected;
+    [SerializeField] private Material[] rotationImages;
+    [SerializeField] private  Image rotationImage;
     private StringVal m_PickUpCoinsPath;
     private StringVal m_BestPickUpCoinsPath;
     private StringVal m_CurrentTime;
@@ -49,11 +52,13 @@ public class MainUIManager : MonoBehaviour
     private void OnEnable()
     {
         SwitchCamera.ChangePerspective += TurnOnCoins;
+        PlayerController.ChangeIndicator += ChangeMaterial;
     }
 
     private void OnDisable()
     {
-        SwitchCamera.ChangePerspective += TurnOnCoins;
+        SwitchCamera.ChangePerspective -= TurnOnCoins;
+        PlayerController.ChangeIndicator -= ChangeMaterial;
     }
 
     private void TurnOnCoins(bool state)
@@ -76,5 +81,10 @@ public class MainUIManager : MonoBehaviour
         m_T += Time.deltaTime;
         PlayerPrefs.SetFloat(m_CurrentTime.val, m_T);
         timerText.SetText(PlayerPrefs.GetFloat(m_CurrentTime.val).ToString("##"));
+    }
+
+    private void ChangeMaterial(int index)
+    {
+        rotationImage.color = rotationImages[index].color;
     }
 }
