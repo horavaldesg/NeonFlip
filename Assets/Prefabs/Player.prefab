@@ -1830,7 +1830,14 @@ MonoBehaviour:
   coolDownThatGoesDown: {fileID: 7198891299672883533}
   amountOfRotates: 3
   rotateCoolDown: 0.15
+  skyBoxMaterial: {fileID: 2100000, guid: 270b0bd174dbf4d49b8dfe19395bce29, type: 2}
   controls: {fileID: 0}
+  ActionMap:
+    m_Name: 
+    m_Id: 
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
 --- !u!95 &393129085303023929
 Animator:
   serializedVersion: 5

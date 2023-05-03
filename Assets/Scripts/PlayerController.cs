@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int amountOfRotates;
 
     [SerializeField] private float rotateCoolDown;
-
+    [SerializeField] private Material skyBoxMaterial;
     private bool m_CanRotate;
     private int m_CurrentRotates;
     private int m_DownRotate;
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        
+        RenderSettings.skybox = skyBoxMaterial;
         //Controls = new PlayerControls();
         TryGetComponent(out controls);
         allDevices = controls.devices;
