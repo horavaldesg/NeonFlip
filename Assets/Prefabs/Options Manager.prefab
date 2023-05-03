@@ -222,15 +222,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ae6028e86da2c864ca34e4431a11b0eb, type: 2}
+  m_sharedMaterial: {fileID: 7981447248277835613, guid: ae6028e86da2c864ca34e4431a11b0eb,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4279571734
+  m_fontColor: {r: 0.084905684, g: 0.08202209, b: 0.08202209, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -253,7 +254,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -357,15 +358,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: Restart
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ae6028e86da2c864ca34e4431a11b0eb, type: 2}
+  m_sharedMaterial: {fileID: 7981447248277835613, guid: ae6028e86da2c864ca34e4431a11b0eb,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4279571734
+  m_fontColor: {r: 0.084905684, g: 0.08202209, b: 0.08202209, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -388,7 +390,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -848,8 +850,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Options
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ae6028e86da2c864ca34e4431a11b0eb, type: 2}
+  m_sharedMaterial: {fileID: 7981447248277835613, guid: ae6028e86da2c864ca34e4431a11b0eb,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1316,8 +1319,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: 00:00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 128b6ad6057f70f4f9eb65d433d98d16, type: 2}
+  m_sharedMaterial: {fileID: -2331138733957133012, guid: 128b6ad6057f70f4f9eb65d433d98d16,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1554,15 +1558,16 @@ MonoBehaviour:
       m_Calls: []
   m_text: Rebind Inputs
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: ae6028e86da2c864ca34e4431a11b0eb, type: 2}
+  m_sharedMaterial: {fileID: 7981447248277835613, guid: ae6028e86da2c864ca34e4431a11b0eb,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4279571734
+  m_fontColor: {r: 0.084905684, g: 0.08202209, b: 0.08202209, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1585,7 +1590,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 16
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -2109,12 +2114,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197e91331eafe438c9f7156eaa0bbb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rebindButton: {fileID: 8894448580220226203}
+  rebindMenu: {fileID: 0}
   pauseMenu: {fileID: 991840681562108996}
   pauseButtonPanel: {fileID: 6782528068472319436}
   bestTime: {fileID: 991840682178670026}
   coinsPanel: {fileID: 991840682341986813}
   coinSprite: {fileID: -1522066551, guid: 03edec328da76b543af3307407e67074, type: 3}
+  totalCoinImages: []
 --- !u!1 &8894448580220226203
 GameObject:
   m_ObjectHideFlags: 0
