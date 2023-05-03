@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8924632718700368256}
   - component: {fileID: 8924632718700368259}
+  - component: {fileID: 153781078309203406}
   m_Layer: 0
   m_Name: Level Camera
   m_TagString: LevelCam
@@ -76,6 +77,24 @@ Camera:
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &153781078309203406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8924632718700368269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea89c2e3bd9d5934ca328c3f7cbb738e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomCamera: {fileID: 8924632719389242367}
+  target: {fileID: 0}
+  xRotSpeed: 50
+  yRotSpeed: 30
+  zoomMin: 7
+  zoomMax: 120
 --- !u!1 &8924632719389242361
 GameObject:
   m_ObjectHideFlags: 0
