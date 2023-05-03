@@ -60,8 +60,13 @@ public class MainUIManager : MonoBehaviour
     {
         foreach (var coin in m_CoinCollectables)
         {
-            if(coin)
-                coin.SetActive(state);
+            if (!coin) return;
+            coin.TryGetComponent(out Collider collider);
+            coin.TryGetComponent(out SpriteRenderer spriteRenderer);
+            var currentColor = spriteRenderer.color;
+            currentColor.a = state ? 1 : 0.25f;
+            spriteRenderer.color = currentColor;
+            collider.enabled = state;
         }
     }
 

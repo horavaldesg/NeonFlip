@@ -1484,7 +1484,6 @@ MonoBehaviour:
   indicatorTransform: {fileID: 6137984394323167387}
   playerModelTransform: {fileID: 3149199146982290239}
   coolDownThatGoesDown: {fileID: 7198891299672883533}
-  rotateCount: {fileID: 0}
   amountOfRotates: 3
   rotateCoolDown: 0.15
   controls: {fileID: 0}
@@ -3017,6 +3016,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Flipp
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6f7fc7723d9a8ea4f8915f8e32e28508,
+        type: 3}
+      propertyPath: m_TagString
+      value: CameraTarget
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f7fc7723d9a8ea4f8915f8e32e28508, type: 3}

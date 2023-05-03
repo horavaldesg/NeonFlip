@@ -18,6 +18,7 @@ TagManager:
   - HelpText
   - PickupCoin
   - LevelCam
+  - CameraTarget
   layers:
   - Default
   - TransparentFX

@@ -1738,6 +1738,8 @@ MonoBehaviour:
   bestCoinsPanel: {fileID: 831185180836862985}
   currentCoinsPanel: {fileID: 831185181022324817}
   coinSprite: {fileID: -1522066551, guid: 03edec328da76b543af3307407e67074, type: 3}
+  coinsPanel: {fileID: 831185180836862985}
+  totalCoinImages: []
 --- !u!114 &831185181893135800
 MonoBehaviour:
   m_ObjectHideFlags: 0

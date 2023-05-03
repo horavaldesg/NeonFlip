@@ -5,9 +5,11 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController Instance;
     public static event Action ToggleLevelCam;
     public static event Action LevelEnded;
     public static event Action ShowOptions;
@@ -62,7 +64,7 @@ public class PlayerController : MonoBehaviour
 
     public PlayerInput controls;
     public static InputActionMap ActionMap;
-    
+    public ReadOnlyArray<InputDevice> allDevices;
     private InputAction m_Move;
     private InputAction m_JumpAction;
     private InputAction m_RotateRight;
@@ -74,8 +76,10 @@ public class PlayerController : MonoBehaviour
     
     private void Awake()
     {
+        Instance = this;
         //Controls = new PlayerControls();
         TryGetComponent(out controls);
+        allDevices = controls.devices;
         ActionMap = controls.actions.FindActionMap("Player");
         CanDetectCollisions = true;
         TryGetComponent(out _switchScene);
@@ -261,7 +265,6 @@ public class PlayerController : MonoBehaviour
           m_Animator.SetBool(IsWalking, true);
           m_Animator.SetBool(IsIdle, false);
       }
-   
 
         cc.Move(m_Movement);
     }

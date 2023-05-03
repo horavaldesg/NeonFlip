@@ -1577,6 +1577,16 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6137984393849648670, guid: eb5165af3f579854892ec4c9edd0cffc,
+        type: 3}
+      propertyPath: xRotSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6137984393849648670, guid: eb5165af3f579854892ec4c9edd0cffc,
+        type: 3}
+      propertyPath: yRotSpeed
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6137984394141690288, guid: eb5165af3f579854892ec4c9edd0cffc,
         type: 3}
       propertyPath: m_IsActive

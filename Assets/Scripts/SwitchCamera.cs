@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SwitchCamera : MonoBehaviour
 {
@@ -41,6 +42,11 @@ public class SwitchCamera : MonoBehaviour
     private Vector3 m_InitialPosition;
 
     [SerializeField] private Renderer renderer;
+    
+    private string currentControlScheme;
+    private const string Controller = "Gamepad";
+    private const string KbM = "Keyboard&Mouse";
+    
     // Start is called before the first frame update
     private void Start()
     {
@@ -67,7 +73,6 @@ public class SwitchCamera : MonoBehaviour
         transform.position = target.position + rotation * offset;
         transform.LookAt(target.position);
 
-        m_MouseDown = false;
         m_InitialRotation = transform.localRotation;
         m_InitialPosition = transform.localPosition;
     }
@@ -78,6 +83,7 @@ public class SwitchCamera : MonoBehaviour
         PlayerController.MouseDown += MouseDown;
         PlayerController.MouseUp += MouseUp;
         PlayerController.SwitchCamera += Switch;
+        PlayerController.SwitchCamera += MouseUp;
         RotateCameraButton.ButtonDown += PointerHandler;
     }
 
@@ -87,6 +93,7 @@ public class SwitchCamera : MonoBehaviour
         PlayerController.MouseDown -= MouseDown;
         PlayerController.MouseUp -= MouseUp;
         PlayerController.SwitchCamera -= Switch;
+        PlayerController.SwitchCamera -= MouseUp;
         RotateCameraButton.ButtonDown -= PointerHandler;
     }
 
@@ -182,18 +189,26 @@ public class SwitchCamera : MonoBehaviour
     private void LateUpdate()
     {
         if(!PlayerController.SideView) return;
+        currentControlScheme = PlayerController.Instance.controls.currentControlScheme;
+
+#if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
+        PlayerController.ActionMap.FindAction("Look").performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
+        PlayerController.ActionMap.FindAction("Look").canceled += tgb => { m_CameraInput = Vector2.zero; };
+#else
+            PlayerController.controls.Player.Look.performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
+            PlayerController.controls.Player.Look.performed += tgb => { m_CameraInput = Vector2.zero; };
+#endif
+        if (currentControlScheme == Controller)
+        {
+            if (m_CameraInput.magnitude != 0)
+            {
+                m_MouseDown = true;
+            }
+        }
         //rotate around target with mouse button
         Quaternion rotation = Quaternion.Euler(y, x, 0);
         if (m_MouseDown)
         {
-            #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
-            PlayerController.ActionMap.FindAction("Look").performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
-            PlayerController.ActionMap.FindAction("Look").canceled += tgb => { m_CameraInput = Vector2.zero; };
-            #else
-            PlayerController.controls.Player.Look.performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
-            PlayerController.controls.Player.Look.performed += tgb => { m_CameraInput = Vector2.zero; };
-            #endif
-            
             x += m_CameraInput.x * xRotSpeed * 0.02f;
             y -= m_CameraInput.y * yRotSpeed * 0.02f;
          //   y = ClampAngle(y, -45, 45);
@@ -213,7 +228,7 @@ public class SwitchCamera : MonoBehaviour
 
     private void PointerHandler(bool state)
     {
-        m_MouseDown = state;
+        //m_MouseDown = state;
         if (m_MouseDown) return;
         transform.localRotation = m_InitialRotation;
         transform.localPosition = m_InitialPosition;
