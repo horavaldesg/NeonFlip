@@ -12,6 +12,7 @@ public class TitleSceneManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1;
         for (var i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             var sceneName = Path.GetFileNameWithoutExtension(SceneUtility.GetScenePathByBuildIndex(i));
