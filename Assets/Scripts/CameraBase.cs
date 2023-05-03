@@ -100,11 +100,11 @@ public class CameraBase : MonoBehaviour
 
     protected virtual void LateUpdate()
     {
-        PlayerController.ActionMap.FindAction("Zoom").started += tgb => { zoomVal = tgb.ReadValue<Vector2>(); };
-        PlayerController.ActionMap.FindAction("Zoom").canceled += tgb => { zoomVal =Vector2.zero; };
+        PlayerController.Instance.ActionMap.FindAction("Zoom").started += tgb => { zoomVal = tgb.ReadValue<Vector2>(); };
+        PlayerController.Instance.ActionMap.FindAction("Zoom").canceled += tgb => { zoomVal =Vector2.zero; };
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
-        PlayerController.ActionMap.FindAction("Look").started += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
-        PlayerController.ActionMap.FindAction("Look").canceled += tgb => { m_CameraInput = Vector2.zero; };
+        PlayerController.Instance.ActionMap.FindAction("Look").started += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
+        PlayerController.Instance.ActionMap.FindAction("Look").canceled += tgb => { m_CameraInput = Vector2.zero; };
 #else
             PlayerController.controls.Player.Look.performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
             PlayerController.controls.Player.Look.performed += tgb => { m_CameraInput = Vector2.zero; };

@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
 
     public PlayerInput controls;
-    public static InputActionMap ActionMap;
+    public InputActionMap ActionMap;
     public ReadOnlyArray<InputDevice> allDevices;
     private InputAction m_Move;
     private InputAction m_JumpAction;
@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        
         //Controls = new PlayerControls();
         TryGetComponent(out controls);
         allDevices = controls.devices;
@@ -97,6 +97,7 @@ public class PlayerController : MonoBehaviour
         m_LookStart = ActionMap.FindAction("LookStart");
         m_Move.performed += tgb => { _move = tgb.ReadValue<Vector2>(); };
         m_Move.canceled += tgb => { _move = Vector2.zero; };
+        Instance = this;
     }
 
     private void Start()
@@ -115,7 +116,6 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         ActionMap.Enable();
-
         m_JumpAction.started += tgb => Jump();
         m_RotateRight.performed += tgb => StartCoroutine(WaitToRotate(-90));
         m_LeftRotate.performed += tgb => StartCoroutine(WaitToRotate(90));
@@ -134,6 +134,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
+        Instance = null;
+        ActionMap.Disable();
         m_Move.Disable();
         m_JumpAction.Disable();
         m_RotateRight.Disable();
@@ -143,7 +145,6 @@ public class PlayerController : MonoBehaviour
         m_SwitchCamera.Disable();
         m_Escape.Disable();
         m_LookStart.Disable();
-        ActionMap.Disable();
     }
 #else
     public static PlayerControls controls;

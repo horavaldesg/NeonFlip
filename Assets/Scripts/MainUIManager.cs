@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Serialization;
@@ -19,11 +20,13 @@ public class MainUIManager : MonoBehaviour
     private StringVal m_BestCurrentTime;
     private float m_T;
     private int m_AmountOfCollectables;
-    private GameObject[] m_CoinCollectables;
+    private List<GameObject> m_CoinCollectables;
 
 
     private void Awake()
     {
+        m_CoinCollectables = GameObject.FindGameObjectsWithTag("PickupCoin").ToList();
+
         //Initialize Scriptable Objects
         m_PickUpCoinsPath = Resources.Load<StringVal>("ScriptableObjects/Paths/CoinsCollectedPath");
         m_CurrentTime = Resources.Load<StringVal>("ScriptableObjects/Paths/CurrentTimePath");
@@ -45,8 +48,7 @@ public class MainUIManager : MonoBehaviour
 
         PlayerPrefs.GetFloat(m_BestCurrentTime.val, 0);
 
-        m_CoinCollectables = GameObject.FindGameObjectsWithTag("PickupCoin");
-        m_AmountOfCollectables = m_CoinCollectables.Length;
+        m_AmountOfCollectables = m_CoinCollectables.Count;
     }
 
     private void OnEnable()
@@ -61,16 +63,18 @@ public class MainUIManager : MonoBehaviour
         PlayerController.ChangeIndicator -= ChangeMaterial;
     }
 
+   
     private void TurnOnCoins(bool state)
     {
+        m_CoinCollectables = GameObject.FindGameObjectsWithTag("PickupCoin").ToList();
         foreach (var coin in m_CoinCollectables)
         {
             if (!coin) return;
             coin.TryGetComponent(out Collider collider);
-            coin.TryGetComponent(out SpriteRenderer spriteRenderer);
-            var currentColor = spriteRenderer.color;
+            coin.TryGetComponent(out MeshRenderer meshRenderer);
+            var currentColor = meshRenderer.material.color;
             currentColor.a = state ? 1 : 0.25f;
-            spriteRenderer.color = currentColor;
+            meshRenderer.material.color = currentColor;
             collider.enabled = state;
         }
     }

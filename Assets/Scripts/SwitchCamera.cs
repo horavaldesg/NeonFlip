@@ -192,11 +192,11 @@ public class SwitchCamera : MonoBehaviour
         currentControlScheme = PlayerController.Instance.controls.currentControlScheme;
 
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
-        PlayerController.ActionMap.FindAction("Look").performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
-        PlayerController.ActionMap.FindAction("Look").canceled += tgb => { m_CameraInput = Vector2.zero; };
+        PlayerController.Instance.ActionMap.FindAction("Look").performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
+        PlayerController.Instance.ActionMap.FindAction("Look").canceled += tgb => { m_CameraInput = Vector2.zero; };
 #else
-            PlayerController.controls.Player.Look.performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
-            PlayerController.controls.Player.Look.performed += tgb => { m_CameraInput = Vector2.zero; };
+            PlayerController.Instance.controls.Player.Look.performed += tgb => { m_CameraInput = tgb.ReadValue<Vector2>(); };
+            PlayerController.Instance.controls.Player.Look.performed += tgb => { m_CameraInput = Vector2.zero; };
 #endif
         if (currentControlScheme == Controller)
         {
