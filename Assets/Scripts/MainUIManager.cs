@@ -14,6 +14,7 @@ public class MainUIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI coinsCollected;
     [SerializeField] private Material[] rotationImages;
     [SerializeField] private  Image rotationImage;
+    [SerializeField] private  TextMeshProUGUI levelName;
     private StringVal m_PickUpCoinsPath;
     private StringVal m_BestPickUpCoinsPath;
     private StringVal m_CurrentTime;
@@ -21,10 +22,13 @@ public class MainUIManager : MonoBehaviour
     private float m_T;
     private int m_AmountOfCollectables;
     private List<GameObject> m_CoinCollectables;
-
+    
 
     private void Awake()
     {
+        var levelNameText = SceneManager.GetActiveScene().name;
+        var editedName = levelNameText.Replace("Nf", "");
+        levelName.SetText(editedName);
         m_CoinCollectables = GameObject.FindGameObjectsWithTag("PickupCoin").ToList();
 
         //Initialize Scriptable Objects
