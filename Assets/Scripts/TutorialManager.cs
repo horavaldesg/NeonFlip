@@ -23,6 +23,7 @@ public class TutorialManager : MonoBehaviour
     private void OnDisable()
     {
         TextBoxTrigger.HideTutorialMessage -= ToggleInputText;
+        TextBoxTrigger.ChangeTutorialMessage -= SwitchInputText;
     }
 
     private void SwitchInputText(string input)

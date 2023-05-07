@@ -14,16 +14,16 @@ public class WeightRight : MonoBehaviour
    
     private void OnTriggerExit(Collider other)
     {
-        if(!PlayerController.SideView) return;
+        if(!PlayerController.Instance.SideView) return;
         if (other.gameObject.layer != 6) return;
-        if(!PlayerController.CanDetectCollisions) return;
+        if(!PlayerController.Instance.CanDetectCollisions) return;
         /*var whereToRotate = Vector3.Dot(transform.up, Vector3.down) > 0 ? -90 : 90;
         if (Vector3.Dot(-transform.right, Vector3.down) > 0)
         {
             whereToRotate = 90;
         }*/
         var whereToRotate = -90.0f;
-        PlayerController.CanDetectCollisions = false;
+        PlayerController.Instance.CanDetectCollisions = false;
 
         StartCoroutine(_playerController.WaitToRotate(whereToRotate));
     }

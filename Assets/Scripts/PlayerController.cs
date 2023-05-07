@@ -17,9 +17,11 @@ public class PlayerController : MonoBehaviour
     public static event Action<int> ChangeIndicator;
     public static event Action MouseDown;
     public static event Action MouseUp;
+    public static event Action<float> Rotate;
+    public static event Action JumpEvent;
 
-    public static bool SideView = true;
-    private static Vector2 _move;
+    public bool SideView = true;
+    private Vector2 _move;
     public bool _jump;
     private Vector3 m_Movement;
     private Vector3 m_CheckPoint;
@@ -30,7 +32,7 @@ public class PlayerController : MonoBehaviour
     private int m_JumpCt;
     public bool _grounded;
     [HideInInspector] public bool doubleJump;
-    public static bool CanDetectCollisions;
+    public bool CanDetectCollisions;
     [SerializeField] private string _nextLevelName;
     [SerializeField] private Transform checkPos;
     [SerializeField] private LayerMask groundMask;
@@ -57,10 +59,10 @@ public class PlayerController : MonoBehaviour
     private int m_DownRotate;
 
     private Animator m_Animator;
-    private static readonly int IsWalking = Animator.StringToHash("isWalking");
-    private static readonly int IsIdle = Animator.StringToHash("isIdle");
-    private static readonly int IsJumping = Animator.StringToHash("isJumping");
-    private static readonly int landed = Animator.StringToHash("landed");
+    private readonly int IsWalking = Animator.StringToHash("isWalking");
+    private readonly int IsIdle = Animator.StringToHash("isIdle");
+    private readonly int IsJumping = Animator.StringToHash("isJumping");
+    private readonly int landed = Animator.StringToHash("landed");
 
     private int m_RotationIndex = 0;
 #if UNITY_STANDALONE_WIN || UNITY_STANDALONE_OSX
@@ -116,10 +118,10 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         ActionMap.Enable();
-        m_JumpAction.started += tgb => Jump();
-        m_RotateRight.performed += tgb => StartCoroutine(WaitToRotate(-90));
-        m_LeftRotate.performed += tgb => StartCoroutine(WaitToRotate(90));
-        m_JumpAction.canceled += tgb => { _jump = false; };
+        m_JumpAction.started += tgb => JumpEvent?.Invoke();
+        m_RotateRight.performed += tgb => Rotate?.Invoke(-90);
+        m_LeftRotate.performed += tgb => Rotate?.Invoke(90);
+        m_JumpAction.canceled += tgb => { JumpEvent?.Invoke(); };
 
         m_LevelCam.performed += tgb => ToggleLevelCam?.Invoke();
 
@@ -130,11 +132,16 @@ public class PlayerController : MonoBehaviour
         m_LookStart.performed += tgb => MouseDown?.Invoke();
 
         m_LookStart.canceled += tgb => MouseUp?.Invoke();
+
+        JumpEvent += Jump;
+        Rotate += RotatePlayerEvent;
     }
 
     private void OnDisable()
     {
         Instance = null;
+        JumpEvent -= Jump;
+        Rotate -= RotatePlayerEvent;
         ActionMap.Disable();
         m_Move.Disable();
         m_JumpAction.Disable();
@@ -198,9 +205,7 @@ public class PlayerController : MonoBehaviour
         controls.Player.Disable(); 
     }
 #endif
-
-
-
+    
     public void TriggerJump()
     {
         if (SideView) return;
@@ -333,6 +338,10 @@ public class PlayerController : MonoBehaviour
         m_Movement += transform.right * ySpeed;
     }
 
+    private void RotatePlayerEvent(float xRot)
+    {
+        StartCoroutine(WaitToRotate(xRot));
+    }
 
     public IEnumerator WaitToRotate(float xRot)
     {

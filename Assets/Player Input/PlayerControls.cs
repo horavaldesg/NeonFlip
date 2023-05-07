@@ -559,17 +559,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""16f9be65-f21f-4630-a231-58b1b683ee6b"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad;Touch"",
-                    ""action"": ""LookStart"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""672cdc47-0d9c-43cf-a5d7-b96619848c19"",
                     ""path"": ""<Mouse>/scroll"",
                     ""interactions"": """",
