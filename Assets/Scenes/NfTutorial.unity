@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5808366, g: 0.25454372, b: 0.30888405, a: 1}
+  m_IndirectSpecularColor: {r: 0.58236986, g: 0.25715697, b: 0.31094405, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -660,8 +660,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
+      propertyPath: twoInputs
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
       propertyPath: textToInput
-      value: "Welcome to Neon Flip!\nUse A and D to\n move Left and Right.\n"
+      value: ' and'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textAfterAction
+      value: 'to move Left and Right.
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textBeforeAction
+      value: Welcome to Neon Flip! Use
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: preconfiguredText
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481525, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
@@ -3441,9 +3463,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
+      propertyPath: noInput
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
       propertyPath: textToInput
       value: "If you're having trouble getting up,\ntry Jumping in 2D and then changing\nthe
         perspective to 3D to move \nForward/ or Backward."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textBeforeAction
+      value: If you're having trouble getting up, try Jumping in 2D and then changing
+        the perspective to 3D to move Forward or Backward.
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481525, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
@@ -4138,13 +4171,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
+      propertyPath: noInput
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
       propertyPath: textToInput
-      value: 'There are 5 coins
-
-        hidden throughout each level.
-
-        See
-        if you can find them all!'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textBeforeAction
+      value: There are 5 coins hidden throughout each level. See if you can find
+        them all!
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481525, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
@@ -4292,6 +4331,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
+      propertyPath: noInput
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
       propertyPath: textToInput
       value: 'Nice Job!
 
@@ -4301,6 +4345,11 @@ PrefabInstance:
 
         complete
         the level.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textBeforeAction
+      value: Nice Job! Once you touch the access cube, you'll complete the level.
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481525, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
@@ -4824,6 +4873,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
+      propertyPath: whatInput
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
       propertyPath: textToInput
       value: 'If you press SPACEBAR
 
@@ -4833,6 +4887,17 @@ PrefabInstance:
         2D to 3D. However you can
 
         only Jump while in the 2D view.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textAfterAction
+      value: you can change the perspective, from 2D to 3D. However you can only
+        Jump while in the 2D view.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textBeforeAction
+      value: If you press
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481525, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
@@ -5065,8 +5130,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
+      propertyPath: whatInput
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
       propertyPath: textToInput
-      value: "You can use \nW to Jump!"
+      value: '
+
+        W '
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textAfterAction
+      value: to Jump!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textBeforeAction
+      value: You can use
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481525, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}

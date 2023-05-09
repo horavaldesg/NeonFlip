@@ -2935,10 +2935,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
+      propertyPath: twoInputs
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: whatInput
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: secondInput
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
       propertyPath: textToInput
-      value: "Keep going! Be sure to utilize\nthe diffrent perspectives using\nthe
+      value: "Keep going! Be sure to utilize the diffrent perspectives using the
         SPACEBAR, as well as using the level\ncamera with C. You can also pan the
         camera \nusing the mouse in the 3D View."
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textAfterAction
+      value: to switch to a level camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textBeforeAction
+      value: Keep going! Be sure to utilize the diffrent perspectives using the
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481525, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
@@ -3086,9 +3111,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
+      propertyPath: twoInputs
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: whatInput
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: secondInput
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
       propertyPath: textToInput
-      value: "In the 3D view you can use \nQ and E to rotate around Forward \nand
-        Back. You can rotate around\nedges to reach new places\nand to get past obsticles!"
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textAfterAction
+      value: to rotate around Forward and Back. You can rotate around edges to reach
+        new places and to get past obstacles!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6787448471917481524, guid: 1850374d91ea070458a2636a6766c9a2,
+        type: 3}
+      propertyPath: textBeforeAction
+      value: In the 3D view you can use
       objectReference: {fileID: 0}
     - target: {fileID: 6787448471917481525, guid: 1850374d91ea070458a2636a6766c9a2,
         type: 3}
