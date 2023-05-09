@@ -5,9 +5,14 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class EndScreenManager : MonoBehaviour
 {
+    private EventSystem _eventSystem;
+    [SerializeField] private GameObject firstSelected;
+    [SerializeField] private GameObject firstSelectedGameOver;
+
     private SwitchScene m_SwitchScene;
     [SerializeField] private GameObject levelEndedPanel;
     
@@ -24,6 +29,13 @@ public class EndScreenManager : MonoBehaviour
     private StringVal m_BestPickUpCoinsPath;
     private StringVal m_BestTimePath;
     private int m_totalCoins;
+
+    private void Awake()
+    {
+        GameObject.FindGameObjectWithTag("EventSystem").TryGetComponent(out _eventSystem);
+        _eventSystem.firstSelectedGameObject = firstSelected;
+    }
+
     private void OnEnable()
     {
         m_totalCoins = GameObject.FindGameObjectsWithTag("PickupCoin").Length;
@@ -45,6 +57,7 @@ public class EndScreenManager : MonoBehaviour
     private void LevelEnded()
     {
         Time.timeScale = 0;
+        _eventSystem.SetSelectedGameObject(firstSelectedGameOver);
         m_PickUpCoinsPath = Resources.Load<StringVal>("ScriptableObjects/Paths/CoinsCollectedPath");
         m_CurrentTimePath = Resources.Load<StringVal>("ScriptableObjects/Paths/CurrentTimePath");
         m_BestPickUpCoinsPath = Resources.Load<StringVal>("ScriptableObjects/Paths/BestCoinsCollectedPath");

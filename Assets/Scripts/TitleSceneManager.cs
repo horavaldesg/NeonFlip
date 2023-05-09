@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Tracing;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
+using UnityEngine.EventSystems;
 
 public class TitleSceneManager : MonoBehaviour
 {
     [SerializeField] private GameObject levelSelectButton;
     [SerializeField] private Transform selectorParent;
+    [SerializeField] private EventSystem eventSystem;
+    
     private List<string> m_LevelNames = new List<string>();
 
     private void Awake()
@@ -34,5 +38,15 @@ public class TitleSceneManager : MonoBehaviour
         levelButton.transform.SetParent(selectorParent);
         levelButton.TryGetComponent(out LevelSelectorButton levelSelectorButtonComp);
         levelSelectorButtonComp.SetText(levelName);
+        if (levelName == "NfTutorial")
+        {
+            eventSystem.firstSelectedGameObject = levelButton;
+            eventSystem.SetSelectedGameObject(levelButton);
+        }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

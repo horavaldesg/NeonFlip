@@ -4163,6 +4163,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 831185181893135803, guid: 087a0f03f3cffd24cbd04bfa2abcf485,
+        type: 3}
+      propertyPath: firstSelected
+      value: 
+      objectReference: {fileID: 5867810340300841078}
+    - target: {fileID: 831185181893135803, guid: 087a0f03f3cffd24cbd04bfa2abcf485,
+        type: 3}
+      propertyPath: firstSelectedGameOver
+      value: 
+      objectReference: {fileID: 5837175478147169582}
     - target: {fileID: 831185182056964491, guid: 087a0f03f3cffd24cbd04bfa2abcf485,
         type: 3}
       propertyPath: m_fontColor.b
@@ -4233,6 +4243,12 @@ PrefabInstance:
 --- !u!4 &5837175477900835522 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 831185181893135802, guid: 087a0f03f3cffd24cbd04bfa2abcf485,
+    type: 3}
+  m_PrefabInstance: {fileID: 6523788069469517688}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5837175478147169582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 831185182143564374, guid: 087a0f03f3cffd24cbd04bfa2abcf485,
     type: 3}
   m_PrefabInstance: {fileID: 6523788069469517688}
   m_PrefabAsset: {fileID: 0}
@@ -4838,3 +4854,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 197e91331eafe438c9f7156eaa0bbb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5867810340300841078 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 991840681668101050, guid: bb50c3d29c862b8458c5c1c05560bcba,
+    type: 3}
+  m_PrefabInstance: {fileID: 6678028672066462668}
+  m_PrefabAsset: {fileID: 0}

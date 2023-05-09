@@ -19,6 +19,7 @@ TagManager:
   - PickupCoin
   - LevelCam
   - CameraTarget
+  - EventSystem
   layers:
   - Default
   - TransparentFX
